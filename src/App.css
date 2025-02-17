@@ -1,0 +1,437 @@
+.App {
+    min-width: 100vw;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--primary) !important;
+    overflow: hidden;
+}
+
+.App-main {
+    min-height: 100vh;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: url('./assets/png/wp5835539.png');
+    background-size: cover;
+    background-position: bottom;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.App-header {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.App-logo {
+    width: 100%;
+}
+
+.App-google-button {
+    position: absolute;
+    background-color: transparent !important;
+    border: none;
+    top: 0;
+    left: 0;
+}
+
+.App-discord-button {
+    position: absolute;
+    background-color: transparent !important;
+    border: none;
+    top: 0;
+    right: 0;
+}
+
+.App-google {
+    width: 150px;
+}
+
+.App-discord {
+    padding: 0 10px;
+    width: 60px;
+    height: 60px;
+}
+
+@media only screen and (max-width: 600px) {
+    .App-google {
+        width: 40px;
+        padding: 10px;
+    }
+    .App-discord {
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+    }
+}
+@media only screen and (max-width: 421px) {
+    .App-google {
+        width: 30px;
+        padding: 10px;
+    }
+    .App-discord {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.warframeOfDay {
+    background-color: var(--primary);
+    width: 130px;
+    height: 130px;
+    border-radius: 25px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accessories {
+    width: 33%;
+}
+
+.accessories2 {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    align-items: flex-end;
+}
+
+.accessoriesLabel {
+    color: var(--light);
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+    text-shadow: 0 0 3px var(--dark);
+    text-align: left;
+    margin: 0;
+}
+
+.accessoriesLabel2,
+.accessoriesLabel3,
+.accessoriesLabel4 {
+    color: var(--light);
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+    text-shadow: 0 0 3px var(--dark);
+    text-align: right;
+    margin: 0;
+}
+
+.accessoriesLabel2 {
+    text-align: right;
+}
+
+.accessoriesLabel3 {
+    text-align: right;
+}
+
+.streakContainer {
+    background-color: var(--primary);
+    align-self: flex-end;
+    padding: 3px 5px;
+    margin: 5px 0;
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.warframeOfDayGuesses {
+    background-color: var(--gold);
+}
+
+.imageBgd {
+    height: 100%;
+}
+
+.container {
+    flex-grow: 1;
+}
+
+.mainContent {
+    width: 100%;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+
+.heading {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 300px;
+}
+
+.inputWrap {
+    position: relative;
+    min-width: 300px;
+}
+
+.input {
+    min-width: 300px;
+    position: relative;
+    height: 54px;
+    background-color: var(--primary);
+    text-align: center;
+    font-size: 20px;
+    line-height: 22px;
+    color: var(--light);
+    font-weight: 600;
+    overflow: visible;
+    border: solid;
+    border-radius: 60px;
+    border-width: 3px;
+    border-color: var(--gold);
+    z-index: 10 !important;
+    padding: 0;
+}
+
+.inputButton {
+    position: absolute;
+    height: 60px;
+    border: none;
+    background-color: transparent;
+    justify-content: center;
+    right: 10px;
+    z-index: 11;
+    border-color: var(--gold);
+    align-content: last baseline;
+    color: white;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.inputButtonContent {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inputButtonSymbol {
+    width: 20;
+    height: 20;
+}
+
+.attemptLabel {
+    margin-top: 25px;
+    color: var(--gold);
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.customDropdown {
+    position: absolute;
+    top: 33px;
+    min-width: 300px;
+    width: inherit;
+    background-color: var(--primary);
+    max-height: 170px;
+    padding-top: 25px;
+    border: solid;
+    border-width: 3px !important;
+    border-color: var(--gold);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    overflow-y: scroll;
+    z-index: 8;
+    color: white;
+}
+
+.dropdownElement {
+    width: 100%;
+    background-color: transparent;
+    height: 44px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+    z-index: 7;
+    border: none;
+}
+
+.dropdownText {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+    color: var(--light);
+}
+
+.dropdownImage {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.dropdownContainer {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.indicator {
+    color: var(--gold);
+}
+
+.guessSection {
+    border-bottom-color: var(--primary);
+    border-bottom-width: 1px;
+    overflow: scroll;
+}
+
+.devSection {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.devText {
+    color: var(--light);
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.indicatorLoading {
+    margin-top: 200px;
+}
+
+.notGuessed {
+    width: 100px;
+    height: 100px;
+}
+
+.guessed {
+    width: 130px;
+    height: 130px;
+    border-radius: 25px;
+}
+
+.warframeName {
+    color: var(--light);
+    text-align: center;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-shadow: 0 0 5px var(--dark);
+}
+
+.netErrorImage {
+    margin-top: 150px;
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.networkError {
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--light);
+}
+
+.horizontalScroll {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.alignment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: calc(100% - 20px);
+}
+
+@media only screen and (max-width: 530px) {
+    .horizontalScroll {
+        overflow-x: scroll;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .horizontalScroll {
+        align-items: flex-start;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .App-header {
+        width: 70%;
+    }
+}
+
+.newWarframeButton {
+    background-color: var(--primary);
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: var(--gold);
+    color: var(--light);
+    font-weight: 700;
+    text-align: 'center';
+}
+
+.share-button {
+    background-color: var(--primary);
+    border: 2px solid var(--gold);
+    border-radius: 100px;
+    color: var(--light);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 15px;
+}
+
+.share-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.share-button p {
+    padding: 0;
+    margin: 0;
+}

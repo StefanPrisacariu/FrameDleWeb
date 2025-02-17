@@ -1,0 +1,138 @@
+.Info {
+    min-width: 100vw;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--primary) !important;
+    overflow: hidden;
+}
+
+.Info-main {
+    min-height: 100vh;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: url('./assets/png/wp5835539.png');
+    background-size: cover;
+    background-position: bottom;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.Info-header {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.Info-logo {
+    width: 100%;
+}
+
+.info-alignment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    width: calc(100% - 20px);
+}
+
+.info-imageBgd {
+    height: 100%;
+}
+
+.info-mainContent {
+    padding: 0 15px;
+}
+
+.info-heading {
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.info-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--light);
+    margin-bottom: 10px;
+}
+
+.info-textLabel {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.info-textTitle {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 26px;
+    color: var(--light);
+    margin-bottom: 10px;
+}
+
+.info-textLink {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.info-kofi {
+    border: none;
+    background-color: transparent;
+    width: 300px;
+    height: 98px;
+    margin-bottom: 20px;
+}
+
+.red-text {
+    color: var(--red);
+}
+.blue-text {
+    color: var(--lightBlue);
+}
+.orange-text {
+    color: var(--orange);
+}
+
+.info-scroller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 519px) {
+    .info-scroller {
+        align-items: unset;
+        justify-content: unset;
+        width: 100%;
+        overflow: scroll;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Info-header {
+        width: 70%;
+    }
+}

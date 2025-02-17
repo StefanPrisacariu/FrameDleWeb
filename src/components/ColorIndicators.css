@@ -1,0 +1,67 @@
+.ci-container {
+    position: fixed;
+    bottom: 100px;
+    align-self: center;
+    max-width: 450px;
+    width: 300px;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    border: solid;
+    border-radius: 25px;
+    border-width: 3px;
+    border-color: var(--gold);
+    z-index: 1000;
+}
+
+.ci-title {
+    color: var(--light);
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.ci-indicators {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ci-indicator {
+    align-items: center;
+}
+
+.ci-indicatorBox {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ci-indicatorText {
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--light);
+    text-align: center;
+}
+
+.ci-correct {
+    background-color: var(--lightBlue);
+}
+
+.ci-partial {
+    background-color: var(--orange);
+}
+
+.ci-incorrect {
+    background-color: var(--red);
+}
+
+.ci-lowerArrow {
+    transform: rotate(180deg);
+}

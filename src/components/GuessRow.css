@@ -1,0 +1,68 @@
+.gr-imageExports {
+    margin: 0;
+    padding: 0;
+    width: 20 !important;
+    height: 20 !important;
+}
+
+.gr-container {
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-color: var(--primary);
+    width: 497px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.gr-box {
+    width: 70px !important;
+    height: 70px !important;
+    aspect-ratio: 1/1;
+    border: solid;
+    border-width: 0.5px;
+    border-color: var(--primary);
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.gr-correct {
+    background-color: var(--lightBlue);
+}
+
+.gr-incorrect {
+    background-color: var(--red);
+}
+
+.gr-partial {
+    background-color: var(--orange);
+}
+
+.gr-text {
+    color: var(--light);
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 0;
+    margin: 0;
+    z-index: 5;
+}
+
+.gr-arrow {
+    z-index: 4;
+    position: absolute;
+}
+
+.gr-lowerArrow {
+    transform: rotate(180deg);
+}
+
+.gr-multiplePolarities {
+    flex-direction: row;
+}
