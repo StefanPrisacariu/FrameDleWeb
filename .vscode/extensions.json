@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "fwcd.kotlin",
+        "usernamehw.errorlens",
+        "esbenp.prettier-vscode",
+        "GraphQL.vscode-graphql",
+        "dbaeumer.vscode-eslint",
+        "yoavbls.pretty-ts-errors",
+        "github.vscode-github-actions",
+        "msjsdiag.vscode-react-native",
+        "GraphQL.vscode-graphql-syntax",
+        "vincaslt.highlight-matching-tag",
+        "christian-kohler.path-intellisense",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}
