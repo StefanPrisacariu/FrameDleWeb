@@ -17,3 +17,19 @@ export const getDailyStreakTime = async () => {
         return '';
     }
 };
+
+export const storeDailyStreak = async data => {
+    try {
+        await localStorage.setItem('FD_DAILY_STREAK', data);
+    } catch (e) {
+        console.error('Error storing streak:', e);
+    }
+};
+
+export const storeDailyStreakTime = async () => {
+    try {
+        await localStorage.setItem('FD_DAILY_STREAK_TIME', new Date().toISOString());
+    } catch (e) {
+        console.error('Error storing guess time:', e);
+    }
+};

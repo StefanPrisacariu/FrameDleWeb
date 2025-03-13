@@ -3,10 +3,10 @@
 import logo from './assets/svg/title-logo.svg';
 import { CustomNavigator } from './components/CustomNavigator.js';
 import { GuessRow } from './components/GuessRow.js';
-import { TimerComponent } from './components/TimeComponent.js';
 import './Info.css';
 import { initialWarframes } from './resources/warframes.js';
 import SEO from './components/SEO.js';
+import { TimerComponent } from './components/TimeComponent.js';
 
 function Info() {
     return (

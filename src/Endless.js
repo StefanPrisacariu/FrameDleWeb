@@ -22,7 +22,7 @@ function Endless() {
     const [filteredWarframes, setFilteredWarframes] = useState(initialWarframes);
     const [todaysWf, setTodaysWf] = useState(
         initialWarframes[Math.floor(Math.random() * (initialWarframes.length + 1))]
-    );
+    ); //WARFRAME-UL RANDOM
     const [isGuessed, setIsGuessed] = useState(false);
     const [wasSelected, setWasSelected] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
