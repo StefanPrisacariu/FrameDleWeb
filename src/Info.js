@@ -149,7 +149,7 @@ function Info() {
                                 className="info-textLink"
                                 onClick={() =>
                                     window.open(
-                                        'https://doc-hosting.flycricket.io/framedle-terms-of-use/bfd6bf03-6179-4d83-ac12-bf487bafd6a3/terms'
+                                        'https://www.freeprivacypolicy.com/live/2432b4f6-8a66-4146-9bca-3dc364023004'
                                     )
                                 }
                             >
@@ -160,7 +160,7 @@ function Info() {
                                 className="info-textLink"
                                 onClick={() =>
                                     window.open(
-                                        'https://doc-hosting.flycricket.io/framedle-privacy-policy/a90e86ce-4d42-4bd9-993c-48b1b149393a/privacy'
+                                        'https://www.freeprivacypolicy.com/live/3cab2d1a-783c-4612-9234-b02a554d7de5'
                                     )
                                 }
                             >
