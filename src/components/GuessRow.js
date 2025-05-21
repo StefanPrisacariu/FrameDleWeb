@@ -58,13 +58,13 @@ export const GuessRow = ({ warframeGuess, todayWarframe }) => {
                     {elements(warframeGuess.progenitorElement)}
                     <p className="gr-text">{warframeGuess.progenitorElement}</p>
                 </div>
-                <div
+                {/* <div
                     className={`gr-box ${
                         warframeGuess.hasLeverian === todayWarframe.hasLeverian ? ' gr-correct' : ' gr-incorrect'
                     }`}
                 >
                     <p className="gr-text">{warframeGuess.hasLeverian ? 'Yes' : 'No'}</p>
-                </div>
+                </div> */}
                 <div
                     className={`gr-box ${
                         warframeGuess.releaseYear === todayWarframe.releaseYear ? ' gr-correct' : ' gr-incorrect'

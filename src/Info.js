@@ -202,8 +202,8 @@ function Info() {
                             />
                         </button>
                     </div>
+                    <CustomNavigator />
                 </main>
-                <CustomNavigator />
             </div>
         </>
     );

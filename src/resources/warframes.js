@@ -860,6 +860,16 @@ export const initialWarframes = [
         image: require('../assets/webp/styanax.webp'),
     },
     {
+        name: 'Temple',
+        gender: 'non binary',
+        primeUmbra: 'standard',
+        auraPolarity: ['naramon'],
+        progenitorElement: 'heat',
+        hasLeverian: true,
+        releaseYear: 2025,
+        image: require('../assets/webp/styanax.webp'),
+    },
+    {
         name: 'Titania',
         gender: 'female',
         primeUmbra: 'standard',
@@ -1037,6 +1047,16 @@ export const initialWarframes = [
         progenitorElement: 'magnetic',
         hasLeverian: false,
         releaseYear: 2021,
+        image: require('../assets/webp/yareli.webp'),
+    },
+    {
+        name: 'Yareli Prime',
+        gender: 'female',
+        primeUmbra: 'prime',
+        auraPolarity: ['madurai'],
+        progenitorElement: 'magnetic',
+        hasLeverian: false,
+        releaseYear: 2025,
         image: require('../assets/webp/yareli.webp'),
     },
     {

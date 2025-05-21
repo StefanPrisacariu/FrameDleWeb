@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 import logo from './assets/svg/title-logo.svg';
-// import share from "./assets/svg/share-solid.svg";
+import lock from './assets/svg/lock-solid.svg';
+import share from './assets/svg/share-solid.svg';
 import DropdownArrow from './assets/svg/arrow-down-gold.svg';
 import DropdownX from './assets/svg/close-x.svg';
-import Focus from './assets/png/focus.png';
 import './App.css';
 import { TableHeader } from './components/TableHeader.js';
 import { GuessRow } from './components/GuessRow.js';
@@ -12,7 +12,7 @@ import { initialWarframes } from './resources/warframes.js';
 import { useState, useEffect, useCallback } from 'react';
 import { TimerComponent } from './components/TimeComponent.js';
 import SEO from './components/SEO.js';
-// import { Modal } from "./components/Modal.js";
+import { Modal } from './components/Modal.js';
 
 import { getDailyStreak, storeDailyStreak, storeDailyStreakTime } from './helpers/storeReadStreak.js';
 import { storeGuesses, getGuesses } from './helpers/storeReadGuesses.js';
@@ -35,6 +35,7 @@ function Main() {
     const [netError, setNetError] = useState(false);
     const [loading, setLoading] = useState(true);
     const [width, setWidth] = useState(window.innerWidth);
+    const [modalToggle, setModalToggle] = useState(false);
 
     useEffect(() => {
         const updateDimensions = () => setWidth(window.innerWidth);
@@ -95,6 +96,7 @@ function Main() {
     const warframeSelected = useCallback(
         async selectedWf => {
             setSearchText('');
+            setFilteredWarframes(initialWarframes);
             setVisible(false);
             const newGuesses = [...guesses, selectedWf];
             setGuesses(newGuesses);
@@ -106,6 +108,10 @@ function Main() {
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
                 await storeDailyStreak(newStreak);
+                const timer = setTimeout(() => {
+                    setModalToggle(true);
+                }, 3000);
+                return () => clearTimeout(timer);
             }
         },
         [guesses, todaysWf, dailyStreak]
@@ -122,35 +128,39 @@ function Main() {
             <div className="App">
                 <main className="App-main">
                     <header className="App-header">
-                        <a
-                            className="App-google-button"
-                            href="https://play.google.com/store/apps/details?id=com.framedle"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <img
-                                className="App-google"
-                                src={
-                                    width > 600
-                                        ? require('./assets/png/google-play.png')
-                                        : require('./assets/png/google-play-icon.png')
-                                }
-                                alt="google-play-button"
-                            />
-                        </a>
+                        {width >= 768 && (
+                            <a
+                                className="App-google-button"
+                                href="https://play.google.com/store/apps/details?id=com.framedle"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <img
+                                    className="App-google"
+                                    src={
+                                        width > 600
+                                            ? require('./assets/png/google-play.png')
+                                            : require('./assets/png/google-play-icon.png')
+                                    }
+                                    alt="google-play-button"
+                                />
+                            </a>
+                        )}
                         <img src={logo} className="App-logo" alt="logo" />
-                        <a
-                            className="App-discord-button"
-                            href="https://discord.gg/qqmr3Uz32f"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <img
-                                className="App-discord"
-                                src={require('./assets/png/discord-icon.png')}
-                                alt="google-play-button"
-                            />
-                        </a>
+                        {width >= 768 && (
+                            <a
+                                className="App-discord-button"
+                                href="https://discord.gg/qqmr3Uz32f"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <img
+                                    className="App-discord"
+                                    src={require('./assets/png/discord-icon.png')}
+                                    alt="google-play-button"
+                                />
+                            </a>
+                        )}
                     </header>
                     {!loading && todaysWf ? (
                         <>
@@ -158,38 +168,42 @@ function Main() {
                                 <ConfettiExplosion particleCount={200} duration={3000} zIndex={100} particleSize={10} />
                             )}
                             <div className="alignment">
-                                <div className="accessories">
-                                    <p className="accessoriesLabel">Time Until Reset</p>
-                                    <p className="accessoriesLabel">
-                                        <TimerComponent />
-                                    </p>
+                                <div className="group">
+                                    <span className="groupLabel">Yesterday</span>
+                                    <div className="groupImageWrap">
+                                        <img className="groupImage" src={yesterdayWf.image} />
+                                    </div>
                                 </div>
+
                                 <div className="warframeOfDay">
                                     {isGuessed ? (
                                         <img className="guessed" src={todaysWf.image} />
                                     ) : (
-                                        <img className="notGuessed" src={Focus} />
+                                        <img width={50} height={50} className="notGuessed" src={lock} />
                                     )}
                                 </div>
-                                <div className="accessories2">
-                                    <p className="accessoriesLabel2">Yesterday's Warframe</p>
-                                    <div className="streakContainer">
-                                        <p className="accessoriesLabel3">{yesterdayWf?.name || 'Lotus'}</p>
-                                    </div>
-                                    <p className="accessoriesLabel2">Daily Streak</p>
-                                    <div className="streakContainer">
-                                        <p className="accessoriesLabel4">{dailyStreak || '0'}</p>
+
+                                <div className="group">
+                                    <span className="groupLabel">Daily</span>
+                                    <div className="groupImageWrap2">
+                                        <span className="accessoriesLabel4">{dailyStreak || '0'}</span>
                                     </div>
                                 </div>
                             </div>
-                            <p className="warframeName">{isGuessed ? todaysWf.name : '???'}</p>
-                            {/* <button
-                onClick={() => setModalToggle(!modalToggle)}
-                className="share-button"
-              >
-                <img src={share} className="App-logo" alt="logo" />
-                <p>Share</p>
-              </button> */}
+                            <span className="warframeName">
+                                <TimerComponent />
+                            </span>
+                            {isGuessed && (
+                                <button
+                                    onClick={() => {
+                                        setModalToggle(!modalToggle);
+                                    }}
+                                    className="share-button"
+                                >
+                                    <img src={share} className="App-logo" alt="logo" />
+                                    <span>Share</span>
+                                </button>
+                            )}
                             <div className="mainContent">
                                 <div className="inputWrapper">
                                     {!isGuessed && (
@@ -199,8 +213,13 @@ function Main() {
                                                 placeholder="Lotus"
                                                 value={searchText}
                                                 onChange={handleChange}
-                                                onFocus={() => setVisible(true)}
+                                                onFocus={() => {
+                                                    setVisible(true);
+                                                    768 >= width &&
+                                                        document.getElementById('warframe-input')?.scrollIntoView();
+                                                }}
                                                 className="input"
+                                                id="warframe-input"
                                             />
                                             <button
                                                 disabled={isGuessed}
@@ -226,13 +245,18 @@ function Main() {
                                                     className="dropdownElement"
                                                 >
                                                     <img src={item.image} className="dropdownImage" />
-                                                    <p className="dropdownText">{item.name}</p>
+                                                    <span className="dropdownText">{item.name}</span>
                                                 </button>
                                             ))}
                                         </div>
                                     )}
                                 </div>
-                                <p className="attemptLabel">Attempts</p>
+                                <span className="attemptLabel">
+                                    Attempts
+                                    {445 >= width && (
+                                        <span className="attemptLabelInfo">{`<- Scroll for more info ->`}</span>
+                                    )}
+                                </span>
                                 <div className="horizontalScroll">
                                     <TableHeader />
                                     {todaysWf && guesses && guesses.length > 0
@@ -254,15 +278,15 @@ function Main() {
                             <p className="networkError">Try again later</p>
                         </>
                     )}
+                    <CustomNavigator />
+                    {guesses.length > 0 && todaysWf && modalToggle && (
+                        <Modal
+                            todaysWf={todaysWf}
+                            guesses={[...guesses].reverse()}
+                            onClick={() => setModalToggle(false)}
+                        />
+                    )}
                 </main>
-                <CustomNavigator />
-                {/* {guesses.length > 0 && todaysWf && modalToggle && (
-          <Modal
-            todaysWf={todaysWf}
-            guesses={[...guesses].reverse()}
-            onClick={() => setModalToggle(false)}
-          />
-        )} */}
             </div>
         </>
     );

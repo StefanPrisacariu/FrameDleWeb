@@ -186,8 +186,8 @@ function Endless() {
                             </div>
                         </>
                     )}
+                    <CustomNavigator />
                 </main>
-                <CustomNavigator />
             </div>
         </>
     );

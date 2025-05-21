@@ -1,8 +1,14 @@
 import './ColorIndicators.css';
+import DropdownX from '../assets/svg/close-x.svg';
 
-export const ColorIndicators = () => {
+export const ColorIndicators = ({ visible, setVisible }) => {
     return (
         <div className="ci-container">
+            <button className="ci-button" onClick={() => setVisible(!visible)}>
+                <div className="inputButtonContent">
+                    <img src={DropdownX} className="inputButtonSymbol" alt="logo" />
+                </div>
+            </button>
             <p className="ci-title">Color Indicators</p>
             <div className="ci-indicators">
                 <div className="ci-indicator">

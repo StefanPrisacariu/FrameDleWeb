@@ -11,14 +11,25 @@
 }
 
 .modal {
-    background-color: var(--primary);
-    width: 300px;
     min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.modalWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background-color: var(--primary);
     border: 3px solid var(--gold) !important;
     border-radius: 20px;
-
-    padding: 20px;
-    position: relative;
+    padding: 15px 15px;
+    margin: 0 15px;
 }
 
 .modal p {
@@ -38,7 +49,7 @@
 }
 
 .close-button {
-    z-index: 150;
+    z-index: 2000;
     position: absolute;
     background-color: var(--none);
     border: 0;

@@ -1,3 +1,7 @@
+## 1.2.5
+
+-   Stefan: Ui Improvement, Share functionality, Temple + Yareli Prime
+
 ## 1.2.4
 
 -   Stefan: Time Management + Refactoring Main Game

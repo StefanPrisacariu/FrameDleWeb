@@ -5,6 +5,7 @@
 }
 
 .nav-container {
+    margin-bottom: -1px;
     background-color: var(--primary);
     border-top: 2px solid var(--gray);
     display: flex;
@@ -49,4 +50,101 @@
 
 .nav-isSelectedText {
     color: var(--lightBlue);
+}
+
+.mobile-nav-wrap {
+    width: 100vh;
+    max-width: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+}
+
+.mobile-nav {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background-color: var(--primary);
+}
+
+.mobile-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+}
+
+.mobile-buttons-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+.mobile-logo {
+    width: 100%;
+    max-width: 270px;
+}
+
+.mobile-button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: transparent;
+    border: none;
+    gap: 10px;
+}
+
+.mobile-buttonWrap {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    width: 25%;
+    padding: 15px 0;
+    background-color: transparent;
+    border: none;
+}
+
+.mobile-buttonText {
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 700;
+    color: var(--light);
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-close {
+    top: 20px;
+    right: 20px;
+}
+
+.mobile-menu-button {
+    width: fit-content;
+    top: 0;
+    left: 0;
+    padding: 15px;
+}
+
+.mobile-menu-button img {
+    width: 30px;
+    height: 30px;
+}
+
+.mobile-google-icon {
+    width: 200px;
+    margin: 0 -13px;
+}
+.mobile-discord-icon {
+    height: 70px;
+}
+
+.mobile-social-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    padding-top: 40px;
 }

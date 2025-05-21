@@ -10,7 +10,7 @@ export const TableHeader = () => {
                 <p className="tableHeadersText">Gender</p>
             </div>
             <div className="tableSection">
-                <p className="tableHeadersText">Prime / Umbra</p>
+                <p className="tableHeadersText">Variant</p>
             </div>
             <div className="tableSection">
                 <p className="tableHeadersText">Aura Polarity</p>
@@ -18,9 +18,9 @@ export const TableHeader = () => {
             <div className="tableSection">
                 <p className="tableHeadersText">Progenitor Element</p>
             </div>
-            <div className="tableSection">
+            {/* <div className="tableSection">
                 <p className="tableHeadersText">Has Leverian</p>
-            </div>
+            </div> */}
             <div className="tableSection">
                 <p className="tableHeadersText">Release Year</p>
             </div>

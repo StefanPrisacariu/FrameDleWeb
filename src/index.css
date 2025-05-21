@@ -5,6 +5,7 @@
 
     --red: #ff2400;
     --lightBlue: #0092db;
+    --green: #00b643;
     --orange: #ff9d00;
 
     --gold: #ffd700;
@@ -40,8 +41,7 @@ a:visited {
     color: unset;
 }
 
-a:hover,
-span:hover {
+a:hover {
     cursor: pointer !important;
 }
 
@@ -51,4 +51,16 @@ button:hover {
 
 h1 {
     display: none;
+}
+
+button {
+    outline: none;
+}
+
+input {
+    outline: none;
+}
+
+span :hover {
+    cursor: default !important;
 }
