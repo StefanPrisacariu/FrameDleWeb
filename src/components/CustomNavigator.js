@@ -62,15 +62,19 @@ export const CustomNavigator = () => {
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside, true);
+        document.addEventListener('touchend', handleClickOutside, true);
         return () => {
             document.removeEventListener('click', handleClickOutside, true);
+            document.removeEventListener('touchend', handleClickOutside, true);
         };
     }, []);
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutsideMobile, true);
+        document.addEventListener('touchend', handleClickOutsideMobile, true);
         return () => {
             document.removeEventListener('click', handleClickOutsideMobile, true);
+            document.removeEventListener('touchend', handleClickOutsideMobile, true);
         };
     }, []);
 
@@ -104,7 +108,9 @@ export const CustomNavigator = () => {
                     <Link className="nav-buttonWrap" to="/info">
                         <div className="nav-button">
                             <img className="nav-icon" src={require('../assets/png/icons/IconQuest.webp')} alt="Info" />
-                            <p className={`nav-buttonText ${descriptor === '/info' && ' nav-isSelectedText'}`}>Info</p>
+                            <p className={`nav-buttonText ${descriptor === '/info' && ' nav-isSelectedText'}`}>
+                                Tutorial
+                            </p>
                         </div>
                     </Link>
                     <Link
@@ -113,7 +119,7 @@ export const CustomNavigator = () => {
                         target="_blank"
                     >
                         <div className="nav-button">
-                            <img className="nav-icon" src={require('../assets/png/icons/IconQuest.webp')} alt="Info" />
+                            <img className="nav-icon" src={require('../assets/png/icons/Chem_w.webp')} alt="Info" />
                             <p className="nav-buttonText">Feedback</p>
                         </div>
                     </Link>
@@ -132,7 +138,7 @@ export const CustomNavigator = () => {
                                 }
                                 alt="Toggle"
                             />
-                            <p className="nav-buttonText">Indicators</p>
+                            <p className="nav-buttonText">Legend</p>
                         </div>
                     </button>
                 </div>
@@ -189,7 +195,7 @@ export const CustomNavigator = () => {
                                                 descriptor === '/info' && ' nav-isSelectedText'
                                             }`}
                                         >
-                                            Info
+                                            Tutorial
                                         </p>
                                     </div>
                                 </Link>
@@ -201,7 +207,7 @@ export const CustomNavigator = () => {
                                     <div className="mobile-button">
                                         <img
                                             className="nav-icon"
-                                            src={require('../assets/png/icons/IconQuest.webp')}
+                                            src={require('../assets/png/icons/Chem_w.webp')}
                                             alt="Info"
                                         />
                                         <p className="mobile-buttonText">Feedback</p>
@@ -235,9 +241,29 @@ export const CustomNavigator = () => {
                     </div>
                 </div>
             ) : (
-                <button onClick={() => setIsMobileNavVisible(true)} className="close-button mobile-menu-button">
-                    <img src={menu} alt="close button" />
-                </button>
+                <>
+                    <button onClick={() => setIsMobileNavVisible(true)} className="close-button mobile-menu-button">
+                        <img src={menu} alt="close button" />
+                    </button>
+                    <button
+                        disabled={'/info' === descriptor && true}
+                        className="mobile-button-indicator"
+                        onClick={() => handleToggle()}
+                    >
+                        <div className="mobile-indicator" ref={ref}>
+                            <img
+                                className="nav-icon mobile-indicator-icon"
+                                src={
+                                    visible && '/info' !== descriptor
+                                        ? require('../assets/png/icons/arcaneOn.webp')
+                                        : require('../assets/png/icons/arcaneOff.webp')
+                                }
+                                alt="Toggle"
+                            />
+                            <p className="nav-buttonText">Legend</p>
+                        </div>
+                    </button>
+                </>
             )}
         </>
     );

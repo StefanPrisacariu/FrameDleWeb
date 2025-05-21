@@ -44,7 +44,7 @@ function Info() {
                             tiles will change to show how close your guess was to the warframe to find.
                         </p>
                         <p className="info-text">
-                            <span className="info-text blue-text">Blue</span> indicates the property is an exact match.
+                            <span className="info-text blue-text">Green</span> indicates the property is an exact match.
                         </p>
                         <p className="info-text">
                             <span className="info-text red-text">Red</span> indicates there is no overlap between your
@@ -63,14 +63,12 @@ function Info() {
 
                         <p className="info-textLabel">Gender</p>
                         <p className="info-text">Possible Values: Male, Female, Non Binary</p>
-                        <p className="info-textLabel">Prime / Umbra</p>
+                        <p className="info-textLabel">Variant</p>
                         <p className="info-text">Possible Values: Standard, Prime, Umbra</p>
                         <p className="info-textLabel">Aura Polarity</p>
                         <p className="info-text">Possible Values: Madurai, Vazarin, Naramon, etc...</p>
                         <p className="info-textLabel">Progenitor Element</p>
                         <p className="info-text">Possible Values: Impact, Radiation, Cold, etc...</p>
-                        <p className="info-textLabel">Has Leverian</p>
-                        <p className="info-text">Possible Values: Yes, No</p>
                         <p className="info-textLabel">Release Year</p>
                         <p className="info-text">When the champion was released to be played.</p>
 
@@ -87,7 +85,7 @@ function Info() {
                         </div>
 
                         <p className="info-textLabel">
-                            Gender: <span className="info-text blue-text">Blue</span>
+                            Gender: <span className="info-text blue-text">Green</span>
                         </p>
                         <p className="info-text">It is an exact match, they are both male.</p>
                         <p className="info-textLabel">
@@ -104,10 +102,6 @@ function Info() {
                         <p className="info-text">
                             It is not a match since Excalibur Prime's progenitor element is Electricity.
                         </p>
-                        <p className="info-textLabel">
-                            Has Leverian: <span className="info-text blue-text">Blue</span>
-                        </p>
-                        <p className="info-text">It is an exact match, they both don't have leverians.</p>
                         <p className="info-textLabel">
                             Release Year: <span className="info-text red-text">Red</span> and down arrow
                         </p>
@@ -148,9 +142,7 @@ function Info() {
                             <span
                                 className="info-textLink"
                                 onClick={() =>
-                                    window.open(
-                                        'https://www.freeprivacypolicy.com/live/2432b4f6-8a66-4146-9bca-3dc364023004'
-                                    )
+                                    window.open('https://sites.google.com/view/framedle/terms-of-service?authuser=0')
                                 }
                             >
                                 Terms & Conditions
@@ -159,9 +151,7 @@ function Info() {
                             <span
                                 className="info-textLink"
                                 onClick={() =>
-                                    window.open(
-                                        'https://www.freeprivacypolicy.com/live/3cab2d1a-783c-4612-9234-b02a554d7de5'
-                                    )
+                                    window.open('https://sites.google.com/view/framedle/privacy-policy?authuser=0')
                                 }
                             >
                                 Privacy Policy

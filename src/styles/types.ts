@@ -4,7 +4,6 @@ export type Warframe = {
     primeUmbra: 'standard' | 'prime' | 'umbra';
     auraPolarity: Polarities[];
     progenitorElement: Elements;
-    hasLeverian: boolean;
     releaseYear: number;
     image: string;
 };

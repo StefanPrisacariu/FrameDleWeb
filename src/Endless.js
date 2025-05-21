@@ -3,7 +3,7 @@
 import logo from './assets/svg/title-logo.svg';
 import DropdownArrow from './assets/svg/arrow-down-gold.svg';
 import DropdownX from './assets/svg/close-x.svg';
-import Focus from './assets/png/focus.png';
+import lock from './assets/svg/lock-solid.svg';
 import './App.css';
 import { TableHeader } from './components/TableHeader.js';
 import { GuessRow } from './components/GuessRow.js';
@@ -53,6 +53,7 @@ function Endless() {
     const warframeSelected = useCallback(
         async e => {
             setWasSelected(false);
+            setFilteredWarframes(initialWarframes);
             if (todaysWf !== null) {
                 setSearchText('');
                 handleCloseThings();
@@ -89,23 +90,39 @@ function Endless() {
             <div className="App">
                 <main className="App-main">
                     <header className="App-header">
+                        {width >= 768 && (
+                            <a
+                                className="App-google-button"
+                                href="https://play.google.com/store/apps/details?id=com.framedle"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <img
+                                    className="App-google"
+                                    src={
+                                        width > 600
+                                            ? require('./assets/png/google-play.png')
+                                            : require('./assets/png/google-play-icon.png')
+                                    }
+                                    alt="google-play-button"
+                                />
+                            </a>
+                        )}
                         <img src={logo} className="App-logo" alt="logo" />
-                        <a
-                            className="App-google-button"
-                            href="https://play.google.com/store/apps/details?id=com.framedle"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <img
-                                className="App-google"
-                                src={
-                                    width > 600
-                                        ? require('./assets/png/google-play.png')
-                                        : require('./assets/png/google-play-icon.png')
-                                }
-                                alt="google-play-button"
-                            />
-                        </a>
+                        {width >= 768 && (
+                            <a
+                                className="App-discord-button"
+                                href="https://discord.gg/qqmr3Uz32f"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <img
+                                    className="App-discord"
+                                    src={require('./assets/png/discord-icon.png')}
+                                    alt="google-play-button"
+                                />
+                            </a>
+                        )}
                     </header>
                     {todaysWf && (
                         <>
@@ -113,23 +130,20 @@ function Endless() {
                                 <ConfettiExplosion particleCount={200} duration={3000} zIndex={100} particleSize={10} />
                             )}
                             <div className="alignment">
-                                <div className="accessories">
-                                    <button onClick={() => newWarframe()} className="newWarframeButton">
-                                        New Warframe
-                                    </button>
-                                </div>
                                 <div className="warframeOfDay">
                                     {isGuessed ? (
                                         <img className="guessed" src={todaysWf.image} />
                                     ) : (
-                                        <img className="notGuessed" src={Focus} />
+                                        <img width={50} height={50} className="notGuessed" src={lock} />
                                     )}
                                 </div>
-                                <div className="accessories2">
-                                    <p className="accessoriesLabel2">Endless Mode</p>
-                                </div>
                             </div>
-                            <p className="warframeName">{isGuessed ? todaysWf.name : '???'}</p>
+                            <p className="warframeName">
+                                Endless
+                                <button onClick={() => newWarframe()} className="newWarframeButton">
+                                    New Warframe
+                                </button>
+                            </p>
                             <div className="mainContent">
                                 <div className="inputWrapper">
                                     {!isGuessed && (
@@ -172,7 +186,12 @@ function Endless() {
                                         </div>
                                     )}
                                 </div>
-                                <p className="attemptLabel">Attempts</p>
+                                <span className="attemptLabel">
+                                    Attempts
+                                    {445 >= width && (
+                                        <span className="attemptLabelInfo">{`<- Scroll for more info ->`}</span>
+                                    )}
+                                </span>
                                 <div className="horizontalScroll">
                                     <TableHeader />
                                     {todaysWf && guesses && wasSelected && guesses.length > 0
