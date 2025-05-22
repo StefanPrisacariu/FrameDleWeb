@@ -780,7 +780,7 @@ export const initialWarframes = [
         auraPolarity: ['naramon'],
         progenitorElement: 'heat',
         releaseYear: 2025,
-        image: require('../assets/webp/styanax.webp'),
+        image: require('../assets/webp/temple.webp'),
     },
     {
         name: 'Titania',
@@ -951,7 +951,7 @@ export const initialWarframes = [
         auraPolarity: ['madurai'],
         progenitorElement: 'magnetic',
         releaseYear: 2025,
-        image: require('../assets/webp/yareli.webp'),
+        image: require('../assets/webp/yareli-prime.webp'),
     },
     {
         name: 'Zephyr',

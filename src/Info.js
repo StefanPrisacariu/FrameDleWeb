@@ -17,10 +17,11 @@ function Info() {
                 url="https://framedle.org/info"
             />
             <h1>How to Play</h1>
+
             <div className="Info">
                 <main className="Info-main">
                     <header className="Info-header">
-                        <img src={logo} className="Info-logo" alt="logo" />
+                        <img src={logo} className="App-logo" alt="logo" />
                     </header>
                     <div className="info-alignment">
                         <p className="info-textTitle">How to play?</p>

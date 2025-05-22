@@ -23,6 +23,7 @@
     background-position: bottom;
     overflow-y: scroll;
     overflow-x: hidden;
+    position: relative;
 }
 
 .Info-header {
