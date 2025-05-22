@@ -60,7 +60,7 @@ export const Modal = ({ todaysWf, guesses, onClick }) => {
             .join('\n');
         return `I guessed today's Warframe #FrameDle in ${guesses.length} ${
             guesses.length === 1 ? 'try' : 'tries'
-        }\n${grid} \n ${guesses.length > 5 ? `+ ${guesses.length - 5} more` : ''}`;
+        }\n${grid} \n ${guesses.length > 5 ? `+ ${guesses.length - 5} more` : ''} \n framedle.org`;
     };
 
     const [copied, setCopied] = useClipboard(generateMessage(), { successDuration: 3000 });
