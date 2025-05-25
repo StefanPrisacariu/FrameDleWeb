@@ -12,7 +12,7 @@ function Info() {
     return (
         <>
             <SEO
-                title="FrameDle - How to Play"
+                title="FrameDle - How to Play, Useful information and Disclaimers"
                 description="Learn how to play FrameDle! Understand the clues and master the game to become a Warframe guessing expert."
                 url="https://framedle.org/info"
             />
@@ -24,7 +24,7 @@ function Info() {
                         <img src={logo} className="App-logo" alt="logo" />
                     </header>
                     <div className="info-alignment">
-                        <p className="info-textTitle">How to play?</p>
+                        <h2 className="info-textTitle">How to play?</h2>
                         <p className="info-text">
                             In <span className="info-textLink">Daily</span> mode you have to guess today's warframe from
                             Digital Extreme's game "Warframe". It changes every 24h. For Daily mode you also need an

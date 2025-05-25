@@ -120,11 +120,12 @@ function Main() {
     return (
         <>
             <SEO
-                title="FrameDle - Warframe Guessing Game"
-                description="Test your Warframe knowledge! Use clues like gender, aura polarity, and more to guess the Warframe of the day."
+                title="FrameDle - The Warframe Guessing Game made for true Tenno"
+                description="Test your Warframe knowledge! Use clues like gender, aura polarity, and more to guess the Warframe of the day. Good luck, Tenno!"
                 url="https://framedle.org/"
             />
             <h1>Welcome to FrameDle!</h1>
+            <h2 style={{ display: 'none' }}>Daily Mode</h2>
             <div className="App">
                 <main className="App-main">
                     <header className="App-header">
@@ -167,22 +168,22 @@ function Main() {
                             )}
                             <div className="alignment">
                                 <div className="group">
-                                    <span className="groupLabel">Yesterday</span>
+                                    <h3 className="groupLabel">Yesterday</h3>
                                     <div className="groupImageWrap">
-                                        <img className="groupImage" src={yesterdayWf.image} />
+                                        <img className="groupImage" src={yesterdayWf.image} alt={yesterdayWf.name} />
                                     </div>
                                 </div>
 
                                 <div className="warframeOfDay">
                                     {isGuessed ? (
-                                        <img className="guessed" src={todaysWf.image} />
+                                        <img className="guessed" src={todaysWf.image} alt={todaysWf.name} />
                                     ) : (
-                                        <img width={50} height={50} className="notGuessed" src={lock} />
+                                        <img width={50} height={50} className="notGuessed" src={lock} alt="locked" />
                                     )}
                                 </div>
 
                                 <div className="group">
-                                    <span className="groupLabel">Daily</span>
+                                    <h3 className="groupLabel">Daily</h3>
                                     <div className="groupImageWrap2">
                                         <span className="accessoriesLabel4">{dailyStreak || '0'}</span>
                                     </div>
@@ -242,19 +243,19 @@ function Main() {
                                                     onClick={() => warframeSelected(item)}
                                                     className="dropdownElement"
                                                 >
-                                                    <img src={item.image} className="dropdownImage" />
+                                                    <img src={item.image} className="dropdownImage" alt={item.name} />
                                                     <span className="dropdownText">{item.name}</span>
                                                 </button>
                                             ))}
                                         </div>
                                     )}
                                 </div>
-                                <span className="attemptLabel">
+                                <h4 className="attemptLabel">
                                     Attempts
                                     {445 >= width && (
                                         <span className="attemptLabelInfo">{`<- Scroll for more info ->`}</span>
                                     )}
-                                </span>
+                                </h4>
                                 <div className="horizontalScroll">
                                     <TableHeader />
                                     {todaysWf && guesses && guesses.length > 0
@@ -271,7 +272,11 @@ function Main() {
                         <OrbitProgress size="medium" color={'#FFFFFF'} />
                     ) : (
                         <>
-                            <img className="netErrorImage" src={require('./assets/png/netError.png')} />
+                            <img
+                                className="netErrorImage"
+                                src={require('./assets/png/netError.png')}
+                                alt="internet-error"
+                            />
                             <p className="networkError">There was a server error</p>
                             <p className="networkError">Try again later</p>
                         </>

@@ -82,7 +82,7 @@ function Endless() {
     return (
         <>
             <SEO
-                title="FrameDle - Endless Mode"
+                title="FrameDle - Endless Mode, perfect for passing time & training"
                 description="Love FrameDle? Play Endless Mode and guess as many Warframes as you want without affecting your daily streak!"
                 url="https://framedle.org/endless"
             />
@@ -132,18 +132,18 @@ function Endless() {
                             <div className="alignment">
                                 <div className="warframeOfDay">
                                     {isGuessed ? (
-                                        <img className="guessed" src={todaysWf.image} />
+                                        <img className="guessed" src={todaysWf.image} alt={todaysWf.name} />
                                     ) : (
-                                        <img width={50} height={50} className="notGuessed" src={lock} />
+                                        <img width={50} height={50} className="notGuessed" src={lock} alt="locked" />
                                     )}
                                 </div>
                             </div>
-                            <p className="warframeName">
+                            <h2 className="warframeName">
                                 Endless
                                 <button onClick={() => newWarframe()} className="newWarframeButton">
                                     New Warframe
                                 </button>
-                            </p>
+                            </h2>
                             <div className="mainContent">
                                 <div className="inputWrapper">
                                     {!isGuessed && (
@@ -179,19 +179,19 @@ function Endless() {
                                                     onClick={() => warframeSelected(item)}
                                                     className="dropdownElement"
                                                 >
-                                                    <img src={item.image} className="dropdownImage" />
+                                                    <img src={item.image} className="dropdownImage" alt={item.name} />
                                                     <p className="dropdownText">{item.name}</p>
                                                 </button>
                                             ))}
                                         </div>
                                     )}
                                 </div>
-                                <span className="attemptLabel">
+                                <h4 className="attemptLabel">
                                     Attempts
                                     {445 >= width && (
                                         <span className="attemptLabelInfo">{`<- Scroll for more info ->`}</span>
                                     )}
-                                </span>
+                                </h4>
                                 <div className="horizontalScroll">
                                     <TableHeader />
                                     {todaysWf && guesses && wasSelected && guesses.length > 0

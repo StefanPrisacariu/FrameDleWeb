@@ -8,7 +8,7 @@ export const GuessRow = ({ warframeGuess, todayWarframe }) => {
     return (
         <>
             <div className="gr-container">
-                <img className="gr-box" src={warframeGuess.image} />
+                <img className="gr-box" src={warframeGuess.image} alt={warframeGuess.name} />
                 <div
                     className={`gr-box ${
                         warframeGuess.gender === todayWarframe.gender ? ' gr-correct' : ' gr-incorrect'
@@ -70,6 +70,7 @@ export const GuessRow = ({ warframeGuess, todayWarframe }) => {
                             className="gr-arrow"
                             width={50}
                             height={40}
+                            alt="ArrowIncorrect"
                         />
                     ) : (
                         warframeGuess.releaseYear !== todayWarframe.releaseYear && (
@@ -78,6 +79,7 @@ export const GuessRow = ({ warframeGuess, todayWarframe }) => {
                                 className="gr-arrow gr-lowerArrow"
                                 width={50}
                                 height={40}
+                                alt="ArrowIncorrect"
                             />
                         )
                     )}

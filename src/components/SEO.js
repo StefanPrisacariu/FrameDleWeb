@@ -21,7 +21,7 @@ const SEO = ({ title, description, url }) => {
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={imageUrl} />
 
-            <link rel="canonical" href={url} />
+            <link href={url} />
         </Helmet>
     );
 };

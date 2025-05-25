@@ -112,7 +112,7 @@ export const CustomNavigator = () => {
                     target="_blank"
                 >
                     <div className="nav-button">
-                        <img className="nav-icon" src={require('../assets/png/icons/Chem_w.webp')} alt="Info" />
+                        <img className="nav-icon" src={require('../assets/png/icons/Chem_w.webp')} alt="Feedback" />
                         <p className="nav-buttonText">Feedback</p>
                     </div>
                 </Link>
@@ -201,7 +201,7 @@ export const CustomNavigator = () => {
                                         <img
                                             className="nav-icon"
                                             src={require('../assets/png/icons/Chem_w.webp')}
-                                            alt="Info"
+                                            alt="Feedback"
                                         />
                                         <p className="mobile-buttonText">Feedback</p>
                                     </div>

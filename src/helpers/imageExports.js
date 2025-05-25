@@ -8,17 +8,17 @@ import Zenurik from '../assets/png/polarities/Zenurik_Pol.png';
 export const polarity = (e, index) => {
     switch (e) {
         case 'madurai':
-            return <img key={index} className="imageExports" src={Madurai} width={20} height={20} />;
+            return <img key={index} alt="madurai" className="imageExports" src={Madurai} width={20} height={20} />;
         case 'naramon':
-            return <img key={index} className="imageExports" src={Naramon} width={20} height={20} />;
+            return <img key={index} alt="naramon" className="imageExports" src={Naramon} width={20} height={20} />;
         case 'unairu':
-            return <img key={index} className="imageExports" src={Unairu} width={20} height={20} />;
+            return <img key={index} alt="unairu" className="imageExports" src={Unairu} width={20} height={20} />;
         case 'vazarin':
-            return <img key={index} className="imageExports" src={Vazarin} width={20} height={20} />;
+            return <img key={index} alt="vazarin" className="imageExports" src={Vazarin} width={20} height={20} />;
         case 'zenurik':
-            return <img key={index} className="imageExports" src={Zenurik} width={20} height={20} />;
+            return <img key={index} alt="zenurik" className="imageExports" src={Zenurik} width={20} height={20} />;
         case 'universal':
-            return <img key={index} className="imageExports" src={Universal} width={20} height={20} />;
+            return <img key={index} alt="universal" className="imageExports" src={Universal} width={20} height={20} />;
         default:
             return null;
     }
@@ -33,6 +33,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgColdSmall64.webp')}
                     width={30}
                     height={30}
+                    alt="cold"
                 />
             );
         case 'electricity':
@@ -42,6 +43,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgElectricitySmall64.webp')}
                     width={30}
                     height={30}
+                    alt="electricity"
                 />
             );
         case 'heat':
@@ -51,6 +53,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgHeatSmall64.webp')}
                     width={30}
                     height={30}
+                    alt="heat"
                 />
             );
         case 'impact':
@@ -60,6 +63,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgImpactSmall64.webp')}
                     width={30}
                     height={30}
+                    alt="impact"
                 />
             );
         case 'magnetic':
@@ -69,6 +73,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgMagneticSmall64.webp')}
                     width={30}
                     height={30}
+                    alt="magnetic"
                 />
             );
         case 'radiation':
@@ -78,6 +83,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgRadiationSmall64.webp')}
                     width={30}
                     height={30}
+                    alt="radiation"
                 />
             );
         case 'toxin':
@@ -87,6 +93,7 @@ export const elements = e => {
                     src={require('../assets/png/damage_types/DmgToxinSmall64.webp')}
                     width={30}
                     height={30}
+                    alt="toxin"
                 />
             );
         default:
