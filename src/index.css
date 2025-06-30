@@ -4,15 +4,31 @@
     --primary: #090c27;
 
     --red: #ff2400;
-    --lightBlue: #0092db;
     --green: #00b643;
     --orange: #ff9d00;
+    --lightBlue: #0092db;
 
     --gold: #ffd700;
     --darkBlue: #000080;
     --gray: #707070;
 
     --none: transparent;
+
+    --pro-red: #d7263d;
+    --pro-green: #0075ff;
+    --pro-orange: #ffae00;
+
+    --deu-red: #c9243f;
+    --deu-green: #2a9df4;
+    --deu-orange: #a29708;
+
+    --tri-red: #c72040;
+    --tri-green: #00c49a;
+    --tri-orange: #ff6f00;
+
+    --acro-red: #333333;
+    --acro-green: #828282;
+    --acro-orange: #505050;
 }
 
 main {
@@ -50,7 +66,11 @@ button:hover {
 }
 
 h1 {
-    display: none;
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    pointer-events: none;
+    color: transparent;
 }
 
 button {

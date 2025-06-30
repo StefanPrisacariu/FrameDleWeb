@@ -666,6 +666,15 @@ export const initialWarframes = [
         image: require('../assets/webp/octavia-prime.webp'),
     },
     {
+        name: 'Oraxia',
+        gender: 'female',
+        primeUmbra: 'standard',
+        auraPolarity: ['madurai'],
+        progenitorElement: 'toxin',
+        releaseYear: 2025,
+        image: require('../assets/webp/oraxia.webp'),
+    },
+    {
         name: 'Protea',
         gender: 'female',
         primeUmbra: 'standard',

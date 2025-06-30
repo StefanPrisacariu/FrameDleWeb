@@ -6,6 +6,8 @@ import { ColorIndicators } from './ColorIndicators';
 import logo from '../assets/svg/title-logo.svg';
 import close from '../assets/svg/close-x.svg';
 import menu from '../assets/svg/bars-solid-icon.svg';
+import { getColorblindMode, storeColorblindMode } from '../helpers/colorblindStore';
+import DropdownArrow from '../assets/svg/arrow-down-gold.svg';
 
 export const CustomNavigator = () => {
     const descriptor = useLocation().pathname;
@@ -15,6 +17,9 @@ export const CustomNavigator = () => {
     const ref = useRef();
     const ref2 = useRef();
     const mobileRef = useRef();
+
+    const [colorblindMenu, setColorblindMenu] = useState(false);
+    const [colorblind, setColorblind] = useState(getColorblindMode());
 
     useEffect(() => {
         const fetchToggle = async () => {
@@ -56,7 +61,15 @@ export const CustomNavigator = () => {
     const handleClickOutsideMobile = event => {
         if (mobileRef.current && !mobileRef.current.contains(event.target)) {
             setIsMobileNavVisible(false);
+            setColorblindMenu(false);
         }
+    };
+
+    const handleColorblind = cb => {
+        setColorblind(cb);
+        storeColorblindMode(cb);
+        setColorblindMenu(false);
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -89,21 +102,23 @@ export const CustomNavigator = () => {
                             src={require('../assets/png/icons/IconMissionMarkerExtraction.webp')}
                             alt="Home"
                         />
-                        <p className={`nav-buttonText ${descriptor === '/' && ' nav-isSelectedText'}`}>Home</p>
+                        <span className={`nav-buttonText ${descriptor === '/' && ' nav-isSelectedText'}`}>Home</span>
                     </div>
                 </Link>
                 <Link className="nav-buttonWrap" to="/endless">
                     <div className="nav-button">
                         <img className="nav-icon" src={require('../assets/png/icons/IconUtility.webp')} alt="Endless" />
-                        <p className={`nav-buttonText ${descriptor === '/endless' && ' nav-isSelectedText'}`}>
+                        <span className={`nav-buttonText ${descriptor === '/endless' && ' nav-isSelectedText'}`}>
                             Endless
-                        </p>
+                        </span>
                     </div>
                 </Link>
                 <Link className="nav-buttonWrap" to="/info">
                     <div className="nav-button">
                         <img className="nav-icon" src={require('../assets/png/icons/IconQuest.webp')} alt="Info" />
-                        <p className={`nav-buttonText ${descriptor === '/info' && ' nav-isSelectedText'}`}>Tutorial</p>
+                        <span className={`nav-buttonText ${descriptor === '/info' && ' nav-isSelectedText'}`}>
+                            Tutorial
+                        </span>
                     </div>
                 </Link>
                 <Link
@@ -113,7 +128,7 @@ export const CustomNavigator = () => {
                 >
                     <div className="nav-button">
                         <img className="nav-icon" src={require('../assets/png/icons/Chem_w.webp')} alt="Feedback" />
-                        <p className="nav-buttonText">Feedback</p>
+                        <span className="nav-buttonText">Feedback</span>
                     </div>
                 </Link>
                 <button
@@ -131,103 +146,185 @@ export const CustomNavigator = () => {
                             }
                             alt="Toggle"
                         />
-                        <p className="nav-buttonText">Legend</p>
+                        <span className="nav-buttonText">Legend</span>
                     </div>
                 </button>
             </div>
             {isMobileNavVisible ? (
                 <div className="mobile-nav-wrap">
-                    <div ref={mobileRef} className="mobile-nav">
-                        <div className="mobile-container">
-                            <img src={logo} className="mobile-logo" alt="logo" />
-                            <button onClick={() => setIsMobileNavVisible(false)} className="close-button mobile-close">
-                                <img src={close} alt="close button" />
-                            </button>
-                            <div className="mobile-buttons-container">
-                                <Link className="mobile-buttonWrap" to="/">
-                                    <div className="mobile-button">
-                                        <img
-                                            className="nav-icon"
-                                            src={require('../assets/png/icons/IconMissionMarkerExtraction.webp')}
-                                            alt="Home"
-                                        />
-                                        <p
-                                            className={`mobile-buttonText ${
-                                                descriptor === '/' && ' nav-isSelectedText'
-                                            }`}
-                                        >
-                                            Home
-                                        </p>
-                                    </div>
-                                </Link>
-                                <Link className="mobile-buttonWrap" to="/endless">
-                                    <div className="mobile-button">
-                                        <img
-                                            className="nav-icon"
-                                            src={require('../assets/png/icons/IconUtility.webp')}
-                                            alt="Endless"
-                                        />
-                                        <p
-                                            className={`mobile-buttonText ${
-                                                descriptor === '/endless' && ' nav-isSelectedText'
-                                            }`}
-                                        >
-                                            Endless
-                                        </p>
-                                    </div>
-                                </Link>
-                                <Link className="mobile-buttonWrap" to="/info">
-                                    <div className="mobile-button">
-                                        <img
-                                            className="nav-icon"
-                                            src={require('../assets/png/icons/IconQuest.webp')}
-                                            alt="Info"
-                                        />
-                                        <p
-                                            className={`mobile-buttonText ${
-                                                descriptor === '/info' && ' nav-isSelectedText'
-                                            }`}
-                                        >
-                                            Tutorial
-                                        </p>
-                                    </div>
-                                </Link>
-                                <Link
-                                    className="mobile-buttonWrap"
-                                    to="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
-                                    target="_blank"
+                    <div className="mobile-nav-wrap-2">
+                        <div ref={mobileRef} className="mobile-nav">
+                            <div className="mobile-container">
+                                <img src={logo} className="mobile-logo" alt="logo" />
+                                <button
+                                    onClick={() => {
+                                        setIsMobileNavVisible(false);
+                                        setColorblindMenu(false);
+                                    }}
+                                    className="close-button mobile-close"
                                 >
-                                    <div className="mobile-button">
-                                        <img
-                                            className="nav-icon"
-                                            src={require('../assets/png/icons/Chem_w.webp')}
-                                            alt="Feedback"
-                                        />
-                                        <p className="mobile-buttonText">Feedback</p>
-                                    </div>
-                                </Link>
-                                <div className="mobile-social-container">
+                                    <img src={close} alt="close button" />
+                                </button>
+                                <div className="mobile-buttons-container">
+                                    <Link className="mobile-buttonWrap" to="/">
+                                        <div className="mobile-button">
+                                            <img
+                                                className="nav-icon"
+                                                src={require('../assets/png/icons/IconMissionMarkerExtraction.webp')}
+                                                alt="Home"
+                                            />
+                                            <span
+                                                className={`mobile-buttonText ${
+                                                    descriptor === '/' && ' nav-isSelectedText'
+                                                }`}
+                                            >
+                                                Home
+                                            </span>
+                                        </div>
+                                    </Link>
+                                    <Link className="mobile-buttonWrap" to="/endless">
+                                        <div className="mobile-button">
+                                            <img
+                                                className="nav-icon"
+                                                src={require('../assets/png/icons/IconUtility.webp')}
+                                                alt="Endless"
+                                            />
+                                            <span
+                                                className={`mobile-buttonText ${
+                                                    descriptor === '/endless' && ' nav-isSelectedText'
+                                                }`}
+                                            >
+                                                Endless
+                                            </span>
+                                        </div>
+                                    </Link>
+                                    <Link className="mobile-buttonWrap" to="/info">
+                                        <div className="mobile-button">
+                                            <img
+                                                className="nav-icon"
+                                                src={require('../assets/png/icons/IconQuest.webp')}
+                                                alt="Info"
+                                            />
+                                            <span
+                                                className={`mobile-buttonText ${
+                                                    descriptor === '/info' && ' nav-isSelectedText'
+                                                }`}
+                                            >
+                                                Tutorial
+                                            </span>
+                                        </div>
+                                    </Link>
                                     <Link
-                                        to="https://play.google.com/store/apps/details?id=com.framedle"
+                                        className="mobile-buttonWrap"
+                                        to="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
                                         target="_blank"
                                     >
-                                        <div>
+                                        <div className="mobile-button">
                                             <img
-                                                className="mobile-google-icon"
-                                                src={require('../assets/png/google-play.png')}
-                                                alt="Info"
+                                                className="nav-icon"
+                                                src={require('../assets/png/icons/Chem_w.webp')}
+                                                alt="Feedback"
                                             />
+                                            <span className="mobile-buttonText">Feedback</span>
                                         </div>
                                     </Link>
-                                    <Link to="https://discord.gg/qqmr3Uz32f" target="_blank">
-                                        <div>
+                                    <div className="mobile-buttonWrap">
+                                        <div className="mobile-button">
                                             <img
-                                                className="mobile-discord-icon"
-                                                src={require('../assets/png/discord-icon.png')}
-                                                alt="Info"
+                                                className="nav-icon"
+                                                src={require('../assets/png/icons/Ionic_w.webp')}
+                                                alt="Feedback"
                                             />
+                                            <span className="mobile-buttonText">Colorblind Mode</span>
                                         </div>
-                                    </Link>
+                                        <div className="cb-dropdown-wrap">
+                                            <div
+                                                onClick={() => setColorblindMenu(!colorblindMenu)}
+                                                className="cb-dropdown"
+                                            >
+                                                <span className="mobile-buttonText">{colorblind}</span>
+                                            </div>
+                                            <button
+                                                className="cb-inputButton"
+                                                onClick={() => setColorblindMenu(!colorblindMenu)}
+                                            >
+                                                <div className="cb-inputButtonContent">
+                                                    <img
+                                                        src={DropdownArrow}
+                                                        className="cb-inputButtonSymbol"
+                                                        alt="logo"
+                                                    />
+                                                </div>
+                                            </button>
+                                            {colorblindMenu && (
+                                                <div className="cb-dropdown-menu">
+                                                    <span
+                                                        onClick={() => handleColorblind('Disabled')}
+                                                        className={`mobile-buttonText cb-dropdown-menu-item ${
+                                                            'Disabled' === colorblind ? 'nav-isSelectedText' : ''
+                                                        }`}
+                                                    >
+                                                        Disabled
+                                                    </span>
+                                                    <span
+                                                        onClick={() => handleColorblind('Protanopia')}
+                                                        className={`mobile-buttonText cb-dropdown-menu-item ${
+                                                            'Protanopia' === colorblind ? 'nav-isSelectedText' : ''
+                                                        }`}
+                                                    >
+                                                        Protanopia
+                                                    </span>
+                                                    <span
+                                                        onClick={() => handleColorblind('Deuteranopia')}
+                                                        className={`mobile-buttonText cb-dropdown-menu-item ${
+                                                            'Deuteranopia' === colorblind ? 'nav-isSelectedText' : ''
+                                                        }`}
+                                                    >
+                                                        Deuteranopia
+                                                    </span>
+                                                    <span
+                                                        onClick={() => handleColorblind('Tritanopia')}
+                                                        className={`mobile-buttonText cb-dropdown-menu-item ${
+                                                            'Tritanopia' === colorblind ? 'nav-isSelectedText' : ''
+                                                        }`}
+                                                    >
+                                                        Tritanopia
+                                                    </span>
+                                                    <span
+                                                        onClick={() => handleColorblind('Achromatopsia')}
+                                                        className={`mobile-buttonText cb-dropdown-menu-item ${
+                                                            'Achromatopsia' === colorblind ? 'nav-isSelectedText' : ''
+                                                        }`}
+                                                    >
+                                                        Achromatopsia
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="mobile-social-container">
+                                        <Link
+                                            to="https://play.google.com/store/apps/details?id=com.framedle"
+                                            target="_blank"
+                                        >
+                                            <div>
+                                                <img
+                                                    className="mobile-google-icon"
+                                                    src={require('../assets/png/google-play.png')}
+                                                    alt="Info"
+                                                />
+                                            </div>
+                                        </Link>
+                                        <Link to="https://discord.gg/qqmr3Uz32f" target="_blank">
+                                            <div>
+                                                <img
+                                                    className="mobile-discord-icon"
+                                                    src={require('../assets/png/discord-icon.png')}
+                                                    alt="Info"
+                                                />
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +351,7 @@ export const CustomNavigator = () => {
                                     }
                                     alt="Toggle"
                                 />
-                                <p className="nav-buttonText">Legend</p>
+                                <span className="nav-buttonText">Legend</span>
                             </div>
                         </button>
                     )}

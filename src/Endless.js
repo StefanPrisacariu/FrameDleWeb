@@ -90,39 +90,7 @@ function Endless() {
             <div className="App">
                 <main className="App-main">
                     <header className="App-header">
-                        {width >= 768 && (
-                            <a
-                                className="App-google-button"
-                                href="https://play.google.com/store/apps/details?id=com.framedle"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                <img
-                                    className="App-google"
-                                    src={
-                                        width > 600
-                                            ? require('./assets/png/google-play.png')
-                                            : require('./assets/png/google-play-icon.png')
-                                    }
-                                    alt="google-play-button"
-                                />
-                            </a>
-                        )}
                         <img src={logo} className="App-logo" alt="logo" />
-                        {width >= 768 && (
-                            <a
-                                className="App-discord-button"
-                                href="https://discord.gg/qqmr3Uz32f"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                <img
-                                    className="App-discord"
-                                    src={require('./assets/png/discord-icon.png')}
-                                    alt="google-play-button"
-                                />
-                            </a>
-                        )}
                     </header>
                     {todaysWf && (
                         <>

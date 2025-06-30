@@ -79,3 +79,71 @@
     padding-right: 5px;
     padding-left: 5px;
 }
+
+.cb-pro-ci-correct {
+    background-color: var(--pro-green);
+}
+
+.cb-pro-ci-partial {
+    background-color: var(--pro-orange);
+}
+
+.cb-pro-ci-incorrect {
+    background-color: var(--pro-red);
+}
+
+.cb-deu-ci-correct {
+    background-color: var(--deu-green);
+}
+
+.cb-deu-ci-partial {
+    background-color: var(--deu-orange);
+}
+
+.cb-deu-ci-incorrect {
+    background-color: var(--deu-red);
+}
+.cb-tri-ci-correct {
+    background-color: var(--tri-green);
+}
+
+.cb-tri-ci-partial {
+    background-color: var(--tri-orange);
+}
+
+.cb-tri-ci-incorrect {
+    background-color: var(--tri-red);
+}
+
+.cb-acro-ci-correct {
+    background-color: var(--acro-green);
+}
+
+.cb-acro-ci-partial {
+    background-color: var(--acro-orange);
+}
+
+.cb-acro-ci-incorrect {
+    background-color: var(--acro-red);
+}
+
+.icon-correct {
+    padding: 3px;
+}
+
+.icon-incorrect {
+    padding: 5px;
+}
+
+.icon-partial {
+    padding: 3px;
+}
+
+.icon-arrow {
+    padding: 3px;
+}
+
+.icon-absolute {
+    position: absolute;
+    z-index: 3;
+}

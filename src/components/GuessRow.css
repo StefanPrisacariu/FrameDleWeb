@@ -4,6 +4,10 @@
     width: 20 !important;
     height: 20 !important;
 }
+.imageExports {
+    z-index: 5;
+    filter: drop-shadow(0 0 3px #000000ba);
+}
 
 .gr-container {
     border-top-width: 1px;
@@ -29,6 +33,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    z-index: 5;
 }
 
 .gr-correct {
@@ -43,6 +48,54 @@
     background-color: var(--orange);
 }
 
+.cb-pro-gr-correct {
+    background-color: var(--pro-green);
+}
+
+.cb-pro-gr-incorrect {
+    background-color: var(--pro-red);
+}
+
+.cb-pro-gr-partial {
+    background-color: var(--pro-orange);
+}
+
+.cb-deu-gr-correct {
+    background-color: var(--deu-green);
+}
+
+.cb-deu-gr-incorrect {
+    background-color: var(--deu-red);
+}
+
+.cb-deu-gr-partial {
+    background-color: var(--deu-orange);
+}
+
+.cb-tri-gr-correct {
+    background-color: var(--tri-green);
+}
+
+.cb-tri-gr-incorrect {
+    background-color: var(--tri-red);
+}
+
+.cb-tri-gr-partial {
+    background-color: var(--tri-orange);
+}
+
+.cb-acro-gr-correct {
+    background-color: var(--acro-green);
+}
+
+.cb-acro-gr-incorrect {
+    background-color: var(--acro-red);
+}
+
+.cb-acro-gr-partial {
+    background-color: var(--acro-orange);
+}
+
 .gr-text {
     color: var(--light);
     font-size: 13px;
@@ -53,6 +106,7 @@
     padding: 0;
     margin: 0;
     z-index: 5;
+    text-shadow: 0 0 3px #000000ba;
 }
 
 .gr-arrow {
@@ -66,4 +120,5 @@
 
 .gr-multiplePolarities {
     flex-direction: row;
+    z-index: 5;
 }
