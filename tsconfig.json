@@ -1,0 +1,58 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "allowJs": true,
+        "checkJs": false,
+        "jsx": "preserve",
+        "module": "esnext",
+        "target": "es2017",
+        "incremental": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "lib": ["dom", "dom.iterable", "esnext"],
+
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+
+        "noUnusedLocals": false,
+        "noImplicitReturns": false,
+        "noUnusedParameters": false,
+        "useDefineForClassFields": true,
+
+        "strictNullChecks": true,
+        "noUncheckedIndexedAccess": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+
+        "paths": {
+            "@/app/*": ["./src/*"],
+            "@/types/*": ["./types/*"],
+            "@/styles/*": ["./styles/*"],
+            "@/clients/*": ["./clients/*"],
+            "@/fonts/*": ["./assets/fonts/*"],
+            "@/images/*": ["./assets/images/*"],
+            "@/assets/*": ["./assets/*"]
+        }
+    },
+
+    "exclude": ["node_modules"],
+    "include": [
+        "types/next-env-overwrite.d.ts",
+        "types/svgr-transform-react.d.ts",
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.js",
+        "**/*.jsx",
+        ".next/types/**/*.ts",
+        "types/**/*.d.ts",
+        "types/*.d.ts"
+    ]
+}

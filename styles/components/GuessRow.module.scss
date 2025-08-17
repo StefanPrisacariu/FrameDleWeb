@@ -1,0 +1,123 @@
+.fd_gr {
+    &_0 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        padding: 0 10px;
+        border-color: var(--primary);
+        border-top-width: 1px;
+        border-left-width: 1px;
+
+        &_box {
+            position: relative;
+            z-index: 5;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            aspect-ratio: 1/1;
+            width: 70px !important;
+            height: 70px !important;
+            border: solid;
+            border-color: var(--primary);
+            border-width: 0.5px;
+
+            background-color: var(--primary);
+        }
+
+        &_text {
+            z-index: 5;
+
+            margin: 0;
+            padding: 0;
+
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 15px;
+            color: var(--light);
+            text-align: center;
+            text-shadow: 0 0 3px #000000ba;
+            text-transform: capitalize;
+        }
+
+        &_multiple {
+            z-index: 5;
+            flex-direction: row;
+        }
+    }
+
+    &_colors {
+        &_std {
+            &_correct {
+                background-color: var(--green);
+            }
+
+            &_incorrect {
+                background-color: var(--red);
+            }
+
+            &_partial {
+                background-color: var(--orange);
+            }
+        }
+
+        &_pro {
+            &_correct {
+                background-color: var(--pro-green);
+            }
+
+            &_incorrect {
+                background-color: var(--pro-red);
+            }
+
+            &_partial {
+                background-color: var(--pro-orange);
+            }
+        }
+
+        &_deu {
+            &_correct {
+                background-color: var(--deu-green);
+            }
+
+            &_incorrect {
+                background-color: var(--deu-red);
+            }
+
+            &_partial {
+                background-color: var(--deu-orange);
+            }
+        }
+
+        &_tri {
+            &_correct {
+                background-color: var(--tri-green);
+            }
+
+            &_incorrect {
+                background-color: var(--tri-red);
+            }
+
+            &_partial {
+                background-color: var(--tri-orange);
+            }
+        }
+
+        &_acro {
+            &_correct {
+                background-color: var(--acro-green);
+            }
+
+            &_incorrect {
+                background-color: var(--acro-red);
+            }
+
+            &_partial {
+                background-color: var(--acro-orange);
+            }
+        }
+    }
+}

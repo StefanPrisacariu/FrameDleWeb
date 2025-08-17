@@ -1,3 +1,7 @@
+## 1.2.6
+
+-   Stefan: COmplete Refactor: React -> Next.js
+
 ## 1.2.5
 
 -   Stefan: Ui Improvement, Share functionality, Temple + Yareli Prime

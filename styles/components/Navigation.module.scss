@@ -1,0 +1,56 @@
+.fd_nav {
+    $nav: &;
+
+    &_0 {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100vh;
+
+        &_wrap {
+            z-index: 1000;
+
+            align-self: center;
+
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+        }
+
+        #{$nav}_content {
+            width: 100%;
+            max-width: 600px;
+            height: 100%;
+            background-color: var(--primary);
+        }
+        #{$nav}_container {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            height: 100%;
+            padding: 20px;
+        }
+        #{$nav}_button {
+            position: absolute;
+            z-index: 2000;
+            top: 20px;
+            right: 20px;
+
+            margin: 0;
+            padding: 0;
+            border: 0;
+
+            background-color: var(--none);
+        }
+    }
+}

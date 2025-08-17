@@ -1,0 +1,23 @@
+.fd_icon {
+    &_0 {
+        position: absolute;
+        z-index: 3;
+    }
+
+    &_1 {
+        z-index: 5;
+        filter: drop-shadow(0 0 3px #000000ba);
+    }
+
+    &_p_3 {
+        padding: 3px;
+    }
+
+    &_p_5 {
+        padding: 5px;
+    }
+
+    &_reverse {
+        transform: rotate(180deg);
+    }
+}

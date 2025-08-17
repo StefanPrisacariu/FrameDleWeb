@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "name": "Next.JS: Debug Client-Side"
+        },
+        {
+            "request": "launch",
+            "type": "node-terminal",
+            "command": "npm run dev",
+            "name": "Next.JS: Debug Server-Side"
+        },
+        {
+            "request": "launch",
+            "type": "node-terminal",
+            "command": "npm run dev",
+            "name": "Next.JS: Debug Full Stack",
+            "serverReadyAction": {
+                "uriFormat": "%s",
+                "action": "debugWithChrome",
+                "pattern": "started server on .+, url: (https?://.+)"
+            }
+        }
+    ]
+}

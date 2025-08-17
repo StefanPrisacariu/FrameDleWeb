@@ -1,0 +1,21 @@
+.fd_header {
+    &_0 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 50%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+
+        font-size: calc(10px + 2vmin);
+
+        @media only screen and (max-width: 600px) {
+            width: 70%;
+            margin-top: 16px;
+        }
+    }
+}

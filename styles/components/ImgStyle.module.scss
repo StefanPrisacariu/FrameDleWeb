@@ -1,0 +1,48 @@
+.fd_imgstyle {
+    &_0 {
+        position: relative;
+
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+
+        width: 120px;
+        height: 120px;
+        border: 3px solid var(--gold);
+        border-radius: 50%;
+
+        background-color: var(--primary);
+
+        &_guessed {
+            width: 130px;
+            height: 130px;
+            border-radius: 25px;
+        }
+
+        &_hidden {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            width: 94px;
+            height: 94px;
+
+            &_guessed {
+                width: 94px;
+                height: 94px;
+            }
+        }
+    }
+
+    &_google {
+        width: 200px;
+        margin: 0 -13px;
+    }
+
+    &_discord {
+        height: 70px;
+    }
+}
