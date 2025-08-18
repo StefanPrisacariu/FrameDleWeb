@@ -1,4 +1,4 @@
-@use 'global/reset';
+@use "global/reset";
 
 :root {
     --dark: #000;
@@ -39,12 +39,14 @@ main {
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
 ::-webkit-scrollbar {
@@ -71,10 +73,20 @@ h1 {
     pointer-events: none;
 
     position: absolute;
+    top: -100px;
     right: 0;
 
     font-size: 20px;
-    color: transparent;
+}
+
+.dont {
+    pointer-events: none;
+
+    position: absolute;
+    top: -100px;
+    right: 0;
+
+    font-size: 20px;
 }
 
 button {

@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /health-check
+Disallow: /api
+
+# Host
+Host: https://framedle.org
+
+# Sitemaps
+Sitemap: https://framedle.org/sitemap.xml

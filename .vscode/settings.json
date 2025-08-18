@@ -44,7 +44,12 @@
     "trailing-spaces.borderColor": "rgba(255, 100, 100, 0.15)",
 
     // ESLint
-    "eslint.codeActionsOnSave.rules": ["!/*", "import/*", "react-hooks/*", "sort-exports/*"],
+    "eslint.codeActionsOnSave.rules": [
+        "!/*",
+        "import/*",
+        "react-hooks/*",
+        "sort-exports/*"
+    ],
 
     // Error Lens
     "errorLens.margin": "25px",
@@ -58,7 +63,10 @@
     "errorLens.statusBarIconsPriority": 90000,
     "errorLens.messageBackgroundMode": "message",
     "errorLens.statusBarMessagePriority": -100000,
-    "errorLens.enabledDiagnosticLevels": ["error", "warning" /* "info", "hint" */],
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning" /* "info", "hint" */
+    ],
 
     // Run It
     "run-it.commands": [
@@ -67,5 +75,8 @@
             "commands": ["eslint.restart"],
             "files": ["**/clients/**/*.ts", "**/styles/**/*.d.ts"]
         }
-    ]
+    ],
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    }
 }
