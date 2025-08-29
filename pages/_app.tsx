@@ -1,3 +1,5 @@
+"use client";
+
 import "@/styles/main.scss";
 import type { AppProps } from "next/app";
 import { useLocalFonts } from "@/app/hooks/useLocalFonts";
@@ -11,6 +13,7 @@ import Header from "@/styles/components/Header.module.scss";
 import Logo from "@/styles/components/Logo.module.scss";
 import LogoBaban from "@/assets/svg/title-logo.svg";
 import { CustomNavigator } from "@/app/components/CustomNavigator";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 export default function App({ Component, pageProps }: AppProps) {
     const { variables } = useLocalFonts();
@@ -20,10 +23,12 @@ export default function App({ Component, pageProps }: AppProps) {
                 <main className={clsx(variables)}>
                     <div className={Section.fd_section_0}>
                         <div className={Container.fd_container_0}>
-                            <div className={Header.fd_header_0}>
+                            <div id="logo" className={Header.fd_header_0}>
                                 <LogoBaban className={Logo.fd_logo_0} />
                             </div>
-                            <Component {...pageProps} />
+                            <SkeletonTheme>
+                                <Component {...pageProps} />
+                            </SkeletonTheme>
                             <CustomNavigator />
                         </div>
                     </div>

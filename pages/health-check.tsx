@@ -1,4 +1,6 @@
-import Head from 'next/head';
+"use client";
+
+import Head from "next/head";
 
 export default function HealthCheck() {
     return (
@@ -11,14 +13,14 @@ export default function HealthCheck() {
             <div
                 style={{
                     flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                 }}
             >
                 <p
                     style={{
-                        color: '#fff',
+                        color: "#fff",
                     }}
                 >
                     Everything is working as expected
