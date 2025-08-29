@@ -8,15 +8,10 @@ import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Lock from "@/assets/svg/lock-solid.svg";
 import Share from "@/assets/svg/share-solid.svg";
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
-import { TableHeader } from "@/app/components/TableHeader";
-import { GuessRow } from "@/app/components/GuessRow";
-import { initialWarframes } from "@/app/lib/warframes";
 import { TimerComponent } from "@/app/components/TimeComponent";
-import { Modal } from "@/app/components/Modal";
 import Container from "@/styles/components/Container.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import ImgStyle from "@/styles/components/ImgStyle.module.scss";
@@ -25,25 +20,34 @@ import Button from "@/styles/components/Button.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import {
-    getDailyStreak,
+    getAbilityStreak,
+    storeAbilityStreak,
+    storeAbilityStreakTime,
     storeDailyStreak,
-    storeDailyStreakTime,
 } from "@/app/helpers/storeReadStreak";
-import { storeGuesses, getGuesses } from "@/app/helpers/storeReadGuesses";
+import {
+    storeAbilityGuesses,
+    getAbilityGuesses,
+} from "@/app/helpers/storeReadGuesses";
 import { checkResetNeeded } from "@/app/helpers/resetCheck";
 import {
+    fetchTodaysAbility,
     fetchTodaysWarframe,
+    fetchYesterdayAbility,
     fetchYesterdayWarframe,
 } from "@/app/lib/queries/warframe";
+import { initialAbilities } from "@/app/lib/abilities";
+import { GuessAbility } from "@/app/components/GuessAbiity";
+import { AbilityModal } from "@/app/components/AbilityModal";
 
 export default function Home() {
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
-    const [guesses, setGuesses] = useState<Warframe[]>([]);
+    const [guesses, setGuesses] = useState<WarframeAbility[]>([]);
     const [isGuessed, setIsGuessed] = useState(false);
     const [filteredWarframes, setFilteredWarframes] =
-        useState(initialWarframes);
+        useState(initialAbilities);
     const [width, setWidth] = useState<number>();
     const [modalToggle, setModalToggle] = useState(false);
     const [netError, setNetError] = useState(false);
@@ -55,7 +59,7 @@ export default function Home() {
         isError: todayError,
     } = useQuery({
         queryKey: ["today"],
-        queryFn: fetchTodaysWarframe,
+        queryFn: fetchTodaysAbility,
         staleTime: 0,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
@@ -68,7 +72,7 @@ export default function Home() {
         isError: yesterdayError,
     } = useQuery({
         queryKey: ["yesterday"],
-        queryFn: fetchYesterdayWarframe,
+        queryFn: fetchYesterdayAbility,
         staleTime: 0,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
@@ -95,7 +99,7 @@ export default function Home() {
         if (
             todaysWf &&
             guesses.length > 0 &&
-            guesses[guesses.length - 1]?.name === todaysWf.name
+            guesses[guesses.length - 1]?.warframeName === todaysWf.warframeName
         ) {
             setIsGuessed(true);
         }
@@ -103,20 +107,20 @@ export default function Home() {
 
     const initializeGame = async () => {
         try {
-            const resetTime = await checkResetNeeded("FD_DAILY_STREAK_TIME");
+            const resetTime = await checkResetNeeded("FD_ABILITY_STREAK_TIME");
 
             if (resetTime >= 48) {
                 setDailyStreak(0);
-                await storeDailyStreak(String(0));
+                await storeAbilityStreak(0);
                 setGuesses([]);
-                await storeGuesses([]);
+                await storeAbilityGuesses([]);
             } else if (resetTime >= 24) {
                 setGuesses([]);
-                await storeGuesses([]);
-                setDailyStreak(await getDailyStreak());
+                await storeAbilityGuesses([]);
+                setDailyStreak(await getAbilityStreak());
             } else {
-                setGuesses(await getGuesses());
-                setDailyStreak(await getDailyStreak());
+                setGuesses(await getAbilityGuesses());
+                setDailyStreak(await getAbilityStreak());
             }
         } catch (error) {
             console.error("Initialization error:", error);
@@ -130,8 +134,8 @@ export default function Home() {
             setSearchText(value);
             setVisible(true);
             setFilteredWarframes(
-                initialWarframes.filter((wf) =>
-                    wf.name.toLowerCase().includes(value.toLowerCase())
+                initialAbilities.filter((wf) =>
+                    wf.warframeName.toLowerCase().includes(value.toLowerCase())
                 )
             );
         },
@@ -139,16 +143,19 @@ export default function Home() {
     );
 
     const warframeSelected = useCallback(
-        async (selectedWf: Warframe) => {
+        async (selectedWf: WarframeAbility) => {
             setSearchText("");
-            setFilteredWarframes(initialWarframes);
+            setFilteredWarframes(initialAbilities);
             setVisible(false);
             const newGuesses = [...guesses, selectedWf];
             setGuesses(newGuesses);
-            await storeGuesses(newGuesses);
-            await storeDailyStreakTime();
+            await storeAbilityGuesses(newGuesses);
+            await storeAbilityStreakTime();
 
-            if (todaysWf && selectedWf.name === todaysWf.name) {
+            // if (768 >= (width || 0)) {
+            //     document.getElementById("logo")?.scrollIntoView();
+            // }
+            if (todaysWf && selectedWf.warframeName === todaysWf.warframeName) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
@@ -159,28 +166,34 @@ export default function Home() {
         [guesses, todaysWf, dailyStreak]
     );
 
+    // const reset = () => {
+    //     setGuesses([]);
+    //     storeAbilityGuesses([]);
+    //     setIsGuessed(false);
+    // };
+
     const loading = todayLoading || yesterdayLoading;
     const error = todayError || yesterdayError || netError;
 
     return (
         <>
             <NextSeo
-                title="FrameDle - The Ultimate Warframe Guessing Game for True Tenno"
-                description="Think you know Warframe? Guess the Warframe of the day using clues like gender, aura polarity, and unique traits. Challenge your Tenno knowledge daily!"
-                canonical="https://framedle.org/"
+                title="FrameDle - Guess the Warframe Ability of the Day"
+                description="Test your Warframe knowledge! Can you guess the Warframe ability of the day using only clues? Challenge yourself daily with FrameDle’s ability mode!"
+                canonical="https://framedle.org/ability"
                 openGraph={{
-                    url: "https://framedle.org/",
-                    title: "FrameDle - The Ultimate Warframe Guessing Game for True Tenno",
+                    url: "https://framedle.org/ability",
+                    title: "FrameDle - Guess the Warframe Ability of the Day",
                     description:
-                        "Think you know Warframe? Guess the Warframe of the day using clues like gender, aura polarity, and unique traits. Challenge your Tenno knowledge daily!",
+                        "Think you know every Warframe ability? Guess the ability of the day with FrameDle’s new ability mode and prove your Tenno knowledge!",
                     site_name: "FrameDle",
                     type: "website",
                     images: [
                         {
-                            url: "https://framedle.org/thumbnail.png",
+                            url: "https://framedle.org/ability-thumbnail.png",
                             width: 1200,
                             height: 630,
-                            alt: "FrameDle - Warframe Guessing Game",
+                            alt: "FrameDle Ability Mode - Warframe Ability Guessing Game",
                         },
                     ],
                 }}
@@ -191,12 +204,12 @@ export default function Home() {
                     {
                         name: "keywords",
                         content:
-                            "warframe, warframe game, warframe guessing game, framedle, tenno, warframe challenge, daily warframe puzzle, warframedle, warframe wordle, tenno warframe wordle, tennodle",
+                            "warframe, warframe game, warframe ability, warframe ability guessing game, framedle ability mode, daily warframe ability puzzle, tenno challenge, warframe wordle ability, tennodle abilities",
                     },
                 ]}
             />
             <h1>Welcome to FrameDle!</h1>
-            <h2 className="dont">Daily Mode</h2>
+            <h2 className="dont">Ability Mode</h2>
 
             {!loading && todaysWf ? (
                 <>
@@ -219,27 +232,66 @@ export default function Home() {
                                         width={50}
                                         height={50}
                                         className={Group.fd_group_0_wrap_image}
-                                        src={yesterdayWf.image as string}
-                                        alt={yesterdayWf.name}
+                                        src={
+                                            initialAbilities[
+                                                yesterdayWf.warframe
+                                            ]?.image as string
+                                        }
+                                        alt={
+                                            initialAbilities[
+                                                yesterdayWf.warframe
+                                            ]?.warframeName as string
+                                        }
                                     />
                                 )}
                             </div>
                         </div>
+                        <div className={ImgStyle.fd_imgstyle_1}>
+                            <Image
+                                width={130}
+                                height={130}
+                                className={ImgStyle.fd_imgstyle_1_guessed}
+                                src={todaysWf.icon}
+                                alt={"hidden"}
+                                placeholder="blur"
+                                blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+                                loading="eager"
+                            />
 
-                        <div className={ImgStyle.fd_imgstyle_0}>
-                            {isGuessed ? (
-                                <Image
-                                    width={130}
-                                    height={130}
-                                    className={ImgStyle.fd_imgstyle_0_guessed}
-                                    src={todaysWf.image}
-                                    alt={todaysWf.name}
+                            <div className={ImgStyle.fd_imgstyle_1_hidden_wrap}>
+                                <div
+                                    className={
+                                        ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                    }
                                 />
-                            ) : (
-                                <Lock
-                                    className={ImgStyle.fd_imgstyle_0_hidden}
+                                <div
+                                    className={
+                                        isGuessed
+                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                            : guesses.length >= 1
+                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                            : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                    }
                                 />
-                            )}
+                                <div
+                                    className={
+                                        isGuessed
+                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                            : guesses.length >= 2
+                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                            : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                    }
+                                />
+                                <div
+                                    className={
+                                        isGuessed
+                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                            : guesses.length >= 3
+                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                            : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                    }
+                                />
+                            </div>
                         </div>
 
                         <div className={Group.fd_group_0}>
@@ -256,6 +308,19 @@ export default function Home() {
                     <span className={Text.fd_text_0}>
                         <TimerComponent />
                     </span>
+                    <>
+                        {4 - guesses.length > 0 && !isGuessed && (
+                            <span className={Text.fd_text_3}>
+                                Hint available in {4 - guesses.length}{" "}
+                                {4 - guesses.length > 1 ? "guesses" : "guess"}
+                            </span>
+                        )}
+                        {(4 - guesses.length <= 0 || isGuessed) && (
+                            <span className={Text.fd_text_3}>
+                                Ability Name: {todaysWf.abilityName}
+                            </span>
+                        )}
+                    </>
                     {isGuessed && (
                         <button
                             onClick={() => setModalToggle(!modalToggle)}
@@ -320,7 +385,7 @@ export default function Home() {
                                 <div className={Dropdown.fd_dropdown_0}>
                                     {filteredWarframes.map((item) => (
                                         <button
-                                            key={item.name}
+                                            key={item.warframeName}
                                             onClick={() =>
                                                 warframeSelected(item)
                                             }
@@ -335,14 +400,14 @@ export default function Home() {
                                                 className={
                                                     Dropdown.fd_dropdown_0_item_image
                                                 }
-                                                alt={item.name}
+                                                alt={item.warframeName}
                                             />
                                             <span
                                                 className={
                                                     Dropdown.fd_dropdown_0_item_text
                                                 }
                                             >
-                                                {item.name}
+                                                {item.warframeName}
                                             </span>
                                         </button>
                                     ))}
@@ -357,14 +422,15 @@ export default function Home() {
                                 >{`<- Scroll for more info ->`}</span>
                             )}
                         </h4>
-                        <div className={Container.fd_container_3}>
-                            <TableHeader />
+                        <div className={Container.fd_container_7}>
                             <AnimatePresence>
                                 {todaysWf && guesses.length > 0
                                     ? [...guesses]
                                           .map((item, index) => (
                                               <motion.div
-                                                  key={item.name + index}
+                                                  key={
+                                                      item.warframeName + index
+                                                  }
                                                   initial={{
                                                       opacity: 0,
                                                       x: 100,
@@ -382,7 +448,7 @@ export default function Home() {
                                                       ease: "easeOut",
                                                   }}
                                               >
-                                                  <GuessRow
+                                                  <GuessAbility
                                                       warframeGuess={item}
                                                       todayWarframe={todaysWf}
                                                   />
@@ -414,8 +480,7 @@ export default function Home() {
                 </div>
             )}
             {guesses.length > 0 && todaysWf && modalToggle && (
-                <Modal
-                    todaysWf={todaysWf}
+                <AbilityModal
                     guesses={[...guesses].reverse()}
                     onClick={() => setModalToggle(false)}
                 />
