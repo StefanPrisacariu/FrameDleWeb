@@ -1,20 +1,19 @@
-import { safeGetItem } from "@/app/helpers/safeStorage";
+export const checkResetNeeded = async (): Promise<number> => {
+    try {
+        const storedValue = await localStorage.getItem('FD_DAILY_STREAK_TIME');
+        if (!storedValue) return Number.POSITIVE_INFINITY;
 
-export const checkResetNeeded = (storage: string) => {
-    const storedTime = safeGetItem(storage);
+        const lastPlayed = new Date(storedValue);
+        const now = new Date();
 
-    if (!storedTime) {
-        console.log("No stored time found, returning 0 hours.");
-        return 0; // Default case if no time was previously stored
+        lastPlayed.setUTCHours(0, 0, 0, 0);
+
+        const timeDifferenceMs = now.getTime() - lastPlayed.getTime();
+        const hoursDifference = timeDifferenceMs / (1000 * 60 * 60);
+
+        return hoursDifference;
+    } catch (e) {
+        console.error('Error checking reset:', e);
+        return Number.POSITIVE_INFINITY;
     }
-
-    const lastPlayed = new Date(storedTime); // Ensure storedTime is a valid string before using Date constructor
-    const now = new Date();
-
-    lastPlayed.setUTCHours(0, 0, 0, 0); // Reset time to start of the day
-
-    const timeDifferenceMs = now.getTime() - lastPlayed.getTime(); // Use getTime() for safe arithmetic
-    const hoursDifference = timeDifferenceMs / (1000 * 60 * 60);
-
-    return hoursDifference;
 };

@@ -1,5 +1,3 @@
-"use client";
-
 import { NextSeo } from "next-seo";
 
 import { GuessRow } from "@/app/components/GuessRow";
@@ -43,14 +41,12 @@ function Info() {
                 <h2 className={Text.fd_text_2_title}>How to play?</h2>
                 <p className={Text.fd_text_2_def}>
                     In <span className={Text.fd_text_2_link}>Daily</span> mode
-                    you have to guess today&apos;s warframe and in{" "}
-                    <span className={Text.fd_text_2_link}>Ability</span> mode
-                    you will have to guess today&apos;s ability of a certain
-                    warframe from Digital Extreme&apos;s game
-                    &quot;Warframe&quot;. It changes every 24h.
+                    you have to guess today&apos;s warframe from Digital
+                    Extreme&apos;s game &quot;Warframe&quot;. It changes every
+                    24h. For Daily mode you also need an internet connection.
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    Next warframe / ability in: <TimerComponent />
+                    Next warframe in: <TimerComponent />
                 </p>
                 <p className={Text.fd_text_2_def}>
                     While in{" "}
@@ -68,33 +64,17 @@ function Info() {
                     close your guess was to the warframe to find.
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--green)" }}
-                    >
-                        Green
-                    </span>{" "}
-                    indicates the property is an exact match.
+                    <span className="info-text blue-text">Green</span> indicates
+                    the property is an exact match.
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--orange)" }}
-                    >
-                        Orange
-                    </span>{" "}
-                    indicates the property is a partial match, one or two
-                    elements overlapping.
+                    <span className="info-text red-text">Red</span> indicates
+                    there is no overlap between your guess and the property.
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--red)" }}
-                    >
-                        Red
-                    </span>{" "}
-                    indicates there is no overlap between your guess and the
-                    property.
+                    <span className="info-text orange-text">Orange</span>{" "}
+                    indicates there is a partial match between your guess and
+                    the property.
                 </p>
                 <p className={Text.fd_text_2_def}>
                     ⬇️ ⬆️ With arrows, it also indicates if the answer property
@@ -106,27 +86,23 @@ function Info() {
                     Here is the details of each of the properties columns:
                 </p>
 
-                <p className={Text.fd_text_2_link}>Gender</p>
+                <p className="info-textLabel">Gender</p>
                 <p className={Text.fd_text_2_def}>
                     Possible Values: Male, Female, Non Binary
                 </p>
-                <p className={Text.fd_text_2_link}>Variant</p>
+                <p className="info-textLabel">Variant</p>
                 <p className={Text.fd_text_2_def}>
                     Possible Values: Standard, Prime, Umbra
                 </p>
-                <p className={Text.fd_text_2_link}>Aura Polarity</p>
+                <p className="info-textLabel">Aura Polarity</p>
                 <p className={Text.fd_text_2_def}>
                     Possible Values: Madurai, Vazarin, Naramon, etc...
                 </p>
-                <p className={Text.fd_text_2_link}>Playstyle</p>
-                <p className={Text.fd_text_2_def}>
-                    Possible Values: Damage, Stealth, Crowd Control etc...
-                </p>
-                <p className={Text.fd_text_2_link}>Progenitor Element</p>
+                <p className="info-textLabel">Progenitor Element</p>
                 <p className={Text.fd_text_2_def}>
                     Possible Values: Impact, Radiation, Cold, etc...
                 </p>
-                <p className={Text.fd_text_2_link}>Release Year</p>
+                <p className="info-textLabel">Release Year</p>
                 <p className={Text.fd_text_2_def}>
                     When the champion was released to be played.
                 </p>
@@ -134,116 +110,77 @@ function Info() {
                 <p className={Text.fd_text_2_title}>Example</p>
                 <p className={Text.fd_text_2_def}>
                     Consider the correct answer is{" "}
-                    <span className={Text.fd_text_2_link}>Trinity</span>. If you
-                    enter{" "}
-                    <span className={Text.fd_text_2_link}>Gara Prime</span>{" "}
-                    these properties will appear:
+                    <span className={Text.fd_text_2_link}>Excalibur Prime</span>
+                    . If you enter{" "}
+                    <span className={Text.fd_text_2_link}>Qorvex</span> these
+                    properties will appear:
                 </p>
-                <div className={Container.fd_container_6}>
+                <div className="info-scroller">
                     <GuessRow
                         warframeGuess={
                             initialWarframes.find(
-                                (item) => "Gara Prime" === item.name
+                                (item) => "Qorvex" === item.name
                             ) as Warframe
                         }
                         todayWarframe={
                             initialWarframes.find(
-                                (item) => "Trinity" === item.name
+                                (item) => "Excalibur Prime" === item.name
                             ) as Warframe
                         }
                     />
                 </div>
 
-                <p className={Text.fd_text_2_link}>
-                    Gender:{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--green)" }}
-                    >
-                        Green
-                    </span>{" "}
+                <p className="info-textLabel">
+                    Gender: <span className="info-text blue-text">Green</span>
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    It is an exact match, they are both female.
+                    It is an exact match, they are both male.
                 </p>
-                <p className={Text.fd_text_2_link}>
-                    Variant:{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--red)" }}
-                    >
-                        Red
-                    </span>{" "}
+                <p className="info-textLabel">
+                    Prime / Umbra:{" "}
+                    <span className="info-text red-text">Red</span>
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    It is not a match since Trinity is a Standard variant.
+                    It is not a match since Excalibur Prime is a Prime variant.
                 </p>
-                <p className={Text.fd_text_2_link}>
+                <p className="info-textLabel">
                     Aura Polarity:{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--green)" }}
-                    >
-                        Green
-                    </span>{" "}
+                    <span className="info-text red-text">Red</span>
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    It is a match, they both have Vazarin aura polarity.
+                    It is not a match since Excalibur Prime&apos;s aura polarity
+                    is Madurai.
                 </p>
-                <p className={Text.fd_text_2_link}>
-                    Playstyle:{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--orange)" }}
-                    >
-                        Orange
-                    </span>{" "}
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    It is a partial match, they both have Survival playstyle,
-                    but Trinity is also Support, while Gara Prime is Damage and
-                    Crowd Control as well
-                </p>
-                <p className={Text.fd_text_2_link}>
+                <p className="info-textLabel">
                     Progenitor Element:{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--green)" }}
-                    >
-                        Green
-                    </span>{" "}
+                    <span className="info-text red-text">Red</span>
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    It is a match, they both have Cold progrnitor element
+                    It is not a match since Excalibur Prime&apos;s progenitor
+                    element is Electricity.
                 </p>
-                <p className={Text.fd_text_2_link}>
+                <p className="info-textLabel">
                     Release Year:{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--red)" }}
-                    >
-                        Red
-                    </span>{" "}
-                    and down arrow
+                    <span className="info-text red-text">Red</span> and down
+                    arrow
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    Trinity&apos;s Release year is before 2012, while Gara Prime
-                    was released in 2021
+                    Excalibur Prime&apos;s Release year is before 2023
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    If you enter Trinity, here is what would come up:
+                    If you enter Excalibur Prime, here is what would come up:
                 </p>
 
-                <div className={Container.fd_container_6}>
+                <div className="info-scroller">
                     <GuessRow
                         warframeGuess={
                             initialWarframes.find(
-                                (item) => "Trinity" === item.name
+                                (item) => "Excalibur Prime" === item.name
                             ) as Warframe
                         }
                         todayWarframe={
                             initialWarframes.find(
-                                (item) => "Trinity" === item.name
+                                (item) => "Excalibur Prime" === item.name
                             ) as Warframe
                         }
                     />

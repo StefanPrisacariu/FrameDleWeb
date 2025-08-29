@@ -9,12 +9,6 @@
         filter: drop-shadow(0 0 3px #000000ba);
     }
 
-    &_2 {
-        position: absolute;
-        z-index: 3;
-        right: 20px;
-    }
-
     &_p_3 {
         padding: 3px;
     }
@@ -25,17 +19,5 @@
 
     &_reverse {
         transform: rotate(180deg);
-    }
-
-    &_3 {
-        width: 20px;
-        height: 20px;
-        filter: drop-shadow(0 0 3px #000000ba);
-    }
-
-    &_4 {
-        width: 18px;
-        height: 18px;
-        filter: drop-shadow(0 0 3px #000000ba);
     }
 }

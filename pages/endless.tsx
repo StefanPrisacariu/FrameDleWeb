@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useCallback } from "react";
 import { NextSeo } from "next-seo";
 import Image from "next/image";

@@ -1,20 +1,18 @@
-import { safeGetItem, safeSetItem } from "@/app/helpers/safeStorage";
-
-export const storeIndicatorToggle = (data: boolean) => {
+export const storeIndicatorToggle = async (data: boolean) => {
     try {
         const jsonValue = JSON.stringify(data);
-        safeSetItem("FD_INDICATOR", jsonValue);
+        await localStorage.setItem('FD_INDICATOR', jsonValue);
     } catch (e) {
-        console.error("Error storing indicator:", e);
+        console.error('Error storing indicator:', e);
     }
 };
 
-export const getIndicatorToggle = () => {
+export const getIndicatorToggle = async () => {
     try {
-        const jsonValue = safeGetItem("FD_INDICATOR");
+        const jsonValue = await localStorage.getItem('FD_INDICATOR');
         return jsonValue != null ? (JSON.parse(jsonValue) as boolean) : true;
     } catch (e) {
-        console.error("Error reading indicator:", e);
+        console.error('Error reading indicator:', e);
         return true;
     }
 };

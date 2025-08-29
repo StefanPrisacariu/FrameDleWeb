@@ -26,7 +26,6 @@ import Image from "next/image";
 import ArcaneOn from "@/assets/png/icons/arcaneOn.webp";
 import ArcaneOff from "@/assets/png/icons/arcaneOff.webp";
 import Mission from "@/assets/png/icons/IconMissionMarkerExtraction.webp";
-import Focus from "@/assets/png/icons/focus.png";
 import Utility from "@/assets/png/icons/IconUtility.webp";
 import Quest from "@/assets/png/icons/IconQuest.webp";
 import Feedback from "@/assets/png/icons/Chem_w.webp";
@@ -189,35 +188,6 @@ export const CustomNavigator = () => {
                                                 )}
                                             >
                                                 Home
-                                            </span>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        className={Group.fd_group_1_button}
-                                        href="/ability"
-                                    >
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
-                                        >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Focus}
-                                                alt="Ability"
-                                            />
-                                            <span
-                                                className={clsx(
-                                                    Group.fd_group_1_button_text,
-                                                    {
-                                                        [Group.fd_group_1_button_selected]:
-                                                            descriptor ===
-                                                            "/ability",
-                                                    }
-                                                )}
-                                            >
-                                                Ability
                                             </span>
                                         </div>
                                     </Link>

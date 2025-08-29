@@ -2,11 +2,6 @@ export type Styles = {
   'fd_imgstyle_0': string;
   'fd_imgstyle_0_guessed': string;
   'fd_imgstyle_0_hidden': string;
-  'fd_imgstyle_1': string;
-  'fd_imgstyle_1_guessed': string;
-  'fd_imgstyle_1_hidden_wrap': string;
-  'fd_imgstyle_1_hidden_wrap_hidden': string;
-  'fd_imgstyle_1_hidden_wrap_visible': string;
   'fd_imgstyle_discord': string;
   'fd_imgstyle_google': string;
 };

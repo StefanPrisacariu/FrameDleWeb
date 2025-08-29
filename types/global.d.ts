@@ -1,4 +1,4 @@
-declare module "*.module.scss" {
+declare module '*.module.scss' {
     const classes: { readonly [key: string]: string };
     export default classes;
 }
@@ -16,69 +16,32 @@ declare namespace NodeJS {
     }
 }
 
-declare type Polarities =
-    | "none"
-    | "madurai"
-    | "naramon"
-    | "vazarin"
-    | "zenurik"
-    | "unairu"
-    | "umbra"
-    | "universal";
+declare type Polarities = 'none' | 'madurai' | 'naramon' | 'vazarin' | 'zenurik' | 'unairu' | 'umbra' | 'universal';
 
-declare type Elements =
-    | "impact"
-    | "heat"
-    | "cold"
-    | "electricity"
-    | "toxin"
-    | "magnetic"
-    | "radiation";
+declare type Elements = 'impact' | 'heat' | 'cold' | 'electricity' | 'toxin' | 'magnetic' | 'radiation';
 
-declare type Playstyle =
-    | "damage"
-    | "stealth"
-    | "crowd-control"
-    | "support"
-    | "survival";
+declare type Playstyle = 'damage' | 'stealth' | 'crowd-control' | 'support' | 'survival';
 
 declare type Ability = {
     shortcut: 1 | 2 | 3 | 4;
     abilityName: string | string[];
-    icon: string | string[];
+    icon: string;
 };
 
 declare type Warframe = {
     name: string;
     gender: string;
-    primeUmbra: "standard" | "prime" | "umbra";
+    primeUmbra: 'standard' | 'prime' | 'umbra';
     auraPolarity: Polarities[];
     progenitorElement: Elements;
     releaseYear: number;
     image: string;
-    playstyle: Playstyle[];
-};
-
-declare type WarframeWithImage = Warframe & { image: string };
-
-declare type ProcessedAbility = {
-    warframeName: string;
-    abilityName: string;
-    icon: string;
-};
-
-declare type AbilityToday = {
-    ability: number;
-    variant: number;
-    warframe: number;
-};
-
-declare type AbilityYesterday = {
-    warframe: number;
+    // playstyle: Playstyle[];
 };
 
 declare type WarframeAbility = {
     warframeName: string;
     abilities: Ability[];
-    image: string;
 };
+
+declare type WarframeWithImage = Warframe & { image: string };

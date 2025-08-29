@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useCallback } from "react";
 import { NextSeo } from "next-seo";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
@@ -56,10 +54,6 @@ export default function Home() {
     } = useQuery({
         queryKey: ["today"],
         queryFn: fetchTodaysWarframe,
-        staleTime: 0,
-        refetchOnMount: true,
-        refetchOnWindowFocus: true,
-        gcTime: 0,
     });
 
     const {
@@ -69,10 +63,6 @@ export default function Home() {
     } = useQuery({
         queryKey: ["yesterday"],
         queryFn: fetchYesterdayWarframe,
-        staleTime: 0,
-        refetchOnMount: true,
-        refetchOnWindowFocus: true,
-        gcTime: 0,
     });
 
     // Resize listener
@@ -103,7 +93,7 @@ export default function Home() {
 
     const initializeGame = async () => {
         try {
-            const resetTime = await checkResetNeeded("FD_DAILY_STREAK_TIME");
+            const resetTime = await checkResetNeeded();
 
             if (resetTime >= 48) {
                 setDailyStreak(0);

@@ -22,7 +22,6 @@ const nextConfig: NextConfig = {
             },
         ],
         unoptimized: true,
-        domains: ["wiki.warframe.com", "framedle.org"],
     },
 };
 
