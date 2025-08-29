@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+    compress: false,
     reactStrictMode: true,
     output: "export",
     webpack(config) {

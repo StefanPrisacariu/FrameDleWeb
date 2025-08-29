@@ -424,22 +424,22 @@ export default function Home() {
     );
 }
 
-export async function getStaticProps() {
-    const queryClient = new QueryClient();
+// export async function getStaticProps() {
+//     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery({
-        queryKey: ["today"],
-        queryFn: fetchTodaysWarframe,
-    });
+//     await queryClient.prefetchQuery({
+//         queryKey: ["today"],
+//         queryFn: fetchTodaysWarframe,
+//     });
 
-    await queryClient.prefetchQuery({
-        queryKey: ["yesterday"],
-        queryFn: fetchYesterdayWarframe,
-    });
+//     await queryClient.prefetchQuery({
+//         queryKey: ["yesterday"],
+//         queryFn: fetchYesterdayWarframe,
+//     });
 
-    return {
-        props: {
-            dehydratedState: dehydrate(queryClient),
-        },
-    };
-}
+//     return {
+//         props: {
+//             dehydratedState: dehydrate(queryClient),
+//         },
+//     };
+// }
