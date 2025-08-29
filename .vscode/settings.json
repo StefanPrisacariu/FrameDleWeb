@@ -1,15 +1,20 @@
 {
-    // Kotlin
-    "kotlin.debugAdapter.enabled": false,
-    "kotlin.languageServer.enabled": false,
+    // Stylelint
+    "stylelint.snippet": ["css", "scss"],
+    "stylelint.validate": ["css", "scss"],
 
     // Path Intellisense
     "path-intellisense.mappings": {
-        "@app": "${workspaceFolder}/src"
+        "@/app": "${workspaceFolder}/src",
+        "@/styles": "${workspaceFolder}/styles",
+        "@/clients": "${workspaceFolder}/clients",
+        "@/fonts": "${workspaceFolder}/assets/fonts",
+        "@/images": "${workspaceFolder}/assets/images"
     },
 
     // Code Spell Checker
-    "cSpell.files": ["**/.*.json", "**/*.{js,jsx,ts,tsx,json}"],
+    "cSpell.useLocallyInstalledCSpellDictionaries": true,
+    "cSpell.files": ["**/.*.json", "**/*.{js,jsx,ts,tsx,json,css,scss}"],
 
     // General
     "editor.formatOnSave": true,
@@ -18,7 +23,8 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "always"
+        "source.fixAll.eslint": "always",
+        "source.fixAll.stylelint": "always"
     },
     "javascript.suggest.paths": false,
     "typescript.suggest.paths": false,
@@ -29,6 +35,8 @@
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.tsdk": "node_modules/typescript/lib",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "typescript.preferences.importModuleSpecifierEnding": "auto",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
 
     // Trailing Spaces
     "trailing-spaces.highlightCurrentLine": false,
@@ -36,7 +44,12 @@
     "trailing-spaces.borderColor": "rgba(255, 100, 100, 0.15)",
 
     // ESLint
-    "eslint.codeActionsOnSave.rules": ["!/*", "import/*", "react-hooks/*", "sort-exports/*"],
+    "eslint.codeActionsOnSave.rules": [
+        "!/*",
+        "import/*",
+        "react-hooks/*",
+        "sort-exports/*"
+    ],
 
     // Error Lens
     "errorLens.margin": "25px",
@@ -50,5 +63,20 @@
     "errorLens.statusBarIconsPriority": 90000,
     "errorLens.messageBackgroundMode": "message",
     "errorLens.statusBarMessagePriority": -100000,
-    "errorLens.enabledDiagnosticLevels": ["error", "warning" /* "info", "hint" */]
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning" /* "info", "hint" */
+    ],
+
+    // Run It
+    "run-it.commands": [
+        {
+            "delay": 4000,
+            "commands": ["eslint.restart"],
+            "files": ["**/clients/**/*.ts", "**/styles/**/*.d.ts"]
+        }
+    ],
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    }
 }

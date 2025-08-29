@@ -1,3 +1,11 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /health-check
+Disallow: /api
+
+# Host
+Host: https://framedle.org
+
+# Sitemaps
+Sitemap: https://framedle.org/sitemap.xml

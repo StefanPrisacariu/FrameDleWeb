@@ -1,0 +1,178 @@
+.fd_container {
+    $cont: &;
+
+    &_0 {
+        position: relative;
+
+        overflow-x: hidden;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        width: 100%;
+        max-width: 800px;
+        min-height: 100vh;
+
+        // background-image: url('/assets/png/wp5835539.png');
+        background-image: url("../../assets/png/wp5835539.png");
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    &_1 {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: flex-end;
+        justify-content: center;
+
+        width: calc(100% - 20px);
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        @media only screen and (max-width: 600px) {
+            margin-top: 5px;
+        }
+    }
+
+    &_2 {
+        width: 100%;
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+
+    &_3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        margin-bottom: 80px;
+
+        @media only screen and (max-width: 445px) {
+            overflow-x: scroll;
+            align-items: flex-start;
+        }
+    }
+
+    &_4 {
+        position: fixed;
+        z-index: 1000;
+        bottom: 75px;
+
+        align-self: center;
+
+        width: 300px;
+        max-width: 450px;
+        padding: 10px 20px;
+        border: solid;
+        border-color: var(--gold);
+        border-width: 3px;
+        border-radius: 25px;
+
+        background-color: var(--primary);
+        #{$cont}_button {
+            position: absolute;
+            z-index: 11;
+            right: 10px;
+
+            align-content: last baseline;
+            justify-content: center;
+
+            padding-right: 5px;
+            padding-left: 5px;
+            border: 0;
+            border-color: var(--gold);
+
+            color: #fff;
+
+            background-color: transparent;
+
+            div {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
+        }
+
+        &_title {
+            margin: 0;
+            margin-bottom: 20px;
+            margin-bottom: 20px;
+
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 18px;
+            color: var(--light);
+            text-align: center;
+        }
+
+        &_indicators {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #{$cont}_item {
+            align-items: center;
+
+            &_box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 40px;
+                height: 40px;
+                margin-bottom: 5px;
+            }
+
+            &_text {
+                font-size: 12px;
+                line-height: 14px;
+                color: var(--light);
+                text-align: center;
+            }
+        }
+    }
+
+    &_5 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        width: calc(100% - 20px);
+        margin-top: 20px;
+        margin-bottom: 80px;
+    }
+
+    &_6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        margin-bottom: 80px;
+
+        div {
+            padding: 0;
+        }
+
+        @media only screen and (max-width: 445px) {
+            overflow-x: scroll;
+            align-items: flex-start;
+        }
+    }
+
+    &_7 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        margin-bottom: 80px;
+    }
+}

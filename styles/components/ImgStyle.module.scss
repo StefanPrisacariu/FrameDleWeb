@@ -1,0 +1,97 @@
+.fd_imgstyle {
+    &_0 {
+        position: relative;
+
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+
+        width: 120px;
+        height: 120px;
+        border: 3px solid var(--gold);
+        border-radius: 50%;
+
+        background-color: var(--primary);
+
+        &_guessed {
+            width: 130px;
+            height: 130px;
+            border-radius: 25px;
+        }
+
+        &_hidden {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            width: 94px;
+            height: 94px;
+
+            &_guessed {
+                width: 94px;
+                height: 94px;
+            }
+        }
+    }
+
+    &_google {
+        width: 200px;
+        margin: 0 -13px;
+    }
+
+    &_discord {
+        height: 70px;
+    }
+
+    &_1 {
+        position: relative;
+
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+
+        width: 139px;
+        height: 139px;
+        border: 3px solid var(--gold);
+        border-radius: 5px;
+
+        background-color: var(--primary);
+
+        &_guessed {
+            width: 139px;
+            height: 139px;
+            border-radius: 2px;
+        }
+
+        &_hidden_wrap {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            width: 138px;
+            height: 138px;
+
+            &_hidden {
+                width: calc(50% - 2px);
+                height: calc(50% - 2px);
+                border: 1px solid var(--primary);
+                background-color: var(--red);
+            }
+
+            &_visible {
+                width: calc(50% - 2px);
+                height: calc(50% - 2px);
+                border: 1px solid var(--none);
+            }
+        }
+    }
+}

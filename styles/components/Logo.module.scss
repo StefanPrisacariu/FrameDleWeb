@@ -1,0 +1,20 @@
+.fd_logo {
+    &_0 {
+        aspect-ratio: 335 / 46;
+        object-fit: contain;
+
+        @media only screen and (max-width: 600px) {
+            width: 200px;
+        }
+
+        @media only screen and (max-width: 768px) and (min-width: 601px) {
+            width: 300px;
+        }
+    }
+
+    &_1 {
+        aspect-ratio: 335 / 46;
+        width: 100%;
+        max-width: 270px;
+    }
+}

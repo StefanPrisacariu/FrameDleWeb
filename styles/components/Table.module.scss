@@ -1,0 +1,31 @@
+.fd_table {
+    $tab: &;
+
+    &_0 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0 10px;
+
+        #{$tab}_section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 61px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            margin-left: 5px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--light);
+        }
+        #{$tab}_text {
+            margin: 1px;
+
+            font-size: 14px;
+            line-height: 16px;
+            color: var(--light);
+            text-align: center;
+        }
+    }
+}
