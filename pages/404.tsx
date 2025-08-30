@@ -1,24 +1,26 @@
-import Error from 'next/error';
-import ErrorStyle from '@/styles/components/Error.module.scss';
+"use client";
+
+import Error from "next/error";
+import ErrorStyle from "@/styles/components/Error.module.scss";
 
 export default function Custom404() {
     return (
         <>
             <style jsx global>
                 {`
-                    div[style^='font'] h1 {
+                    div[style^="font"] h1 {
                         font-weight: 700 !important;
                         color: #fff;
                         font-style: normal;
                     }
 
-                    div[style^='font'] h2 {
+                    div[style^="font"] h2 {
                         font-weight: 400 !important;
                         color: #fff;
                         font-style: normal;
                     }
 
-                    div[style^='font'] {
+                    div[style^="font"] {
                         flex: 1;
                         height: auto !important;
                         font-family: var(--unify-sans) !important;
