@@ -167,73 +167,78 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                     )}
                 </div>
 
-                {/* BLYAAAAAAAAA */}
-                <div
-                    className={clsx(GR.fd_gr_0_box, {
-                        [`${handleColorblind("correct")}`]:
-                            true ===
+                {warframeGuess.playstyle !== undefined &&
+                    todayWarframe.playstyle !== undefined && (
+                        <div
+                            className={clsx(GR.fd_gr_0_box, {
+                                [`${handleColorblind("correct")}`]:
+                                    true ===
+                                    compareArrays(
+                                        warframeGuess.playstyle,
+                                        todayWarframe.playstyle
+                                    ),
+                                [`${handleColorblind("incorrect")}`]:
+                                    false ===
+                                    compareArrays(
+                                        warframeGuess.playstyle,
+                                        todayWarframe.playstyle
+                                    ),
+                                [`${handleColorblind("partial")}`]:
+                                    "partial" ===
+                                    compareArrays(
+                                        warframeGuess.playstyle,
+                                        todayWarframe.playstyle
+                                    ),
+                            })}
+                        >
+                            {false ===
                             compareArrays(
                                 warframeGuess.playstyle,
                                 todayWarframe.playstyle
-                            ),
-                        [`${handleColorblind("incorrect")}`]:
-                            false ===
-                            compareArrays(
-                                warframeGuess.playstyle,
-                                todayWarframe.playstyle
-                            ),
-                        [`${handleColorblind("partial")}`]:
-                            "partial" ===
-                            compareArrays(
-                                warframeGuess.playstyle,
-                                todayWarframe.playstyle
-                            ),
-                    })}
-                >
-                    {false ===
-                    compareArrays(
-                        warframeGuess.playstyle,
-                        todayWarframe.playstyle
-                    )
-                        ? handleIcon("incorrect")
-                        : true ===
-                          compareArrays(
-                              warframeGuess.playstyle,
-                              todayWarframe.playstyle
-                          )
-                        ? handleIcon("correct")
-                        : handleIcon("partial")}
-                    {warframeGuess.playstyle && (
-                        <>
-                            <div className={GR.fd_gr_0_multiple}>
-                                {warframeGuess.playstyle.map((item, index) =>
-                                    PlaystyleIcon(
-                                        item,
-                                        warframeGuess.playstyle.length,
-                                        index
-                                    )
-                                )}
-                            </div>
-                            {warframeGuess.playstyle.length < 3 &&
-                                warframeGuess.playstyle.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className={GR.fd_gr_0_text}
-                                    >
-                                        {removeDash(item)}
+                            )
+                                ? handleIcon("incorrect")
+                                : true ===
+                                  compareArrays(
+                                      warframeGuess.playstyle,
+                                      todayWarframe.playstyle
+                                  )
+                                ? handleIcon("correct")
+                                : handleIcon("partial")}
+                            {warframeGuess.playstyle && (
+                                <>
+                                    <div className={GR.fd_gr_0_multiple}>
+                                        {warframeGuess.playstyle.map(
+                                            (item, index) =>
+                                                PlaystyleIcon(
+                                                    item,
+                                                    warframeGuess.playstyle
+                                                        .length,
+                                                    index
+                                                )
+                                        )}
                                     </div>
-                                ))}
-                            {warframeGuess.playstyle.length >= 3 && (
-                                <p className={GR.fd_gr_0_text}>
-                                    {getPlaystylesShortLabels(
-                                        warframeGuess.playstyle
+                                    {warframeGuess.playstyle.length < 3 &&
+                                        warframeGuess.playstyle.map(
+                                            (item, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={GR.fd_gr_0_text}
+                                                >
+                                                    {removeDash(item)}
+                                                </div>
+                                            )
+                                        )}
+                                    {warframeGuess.playstyle.length >= 3 && (
+                                        <p className={GR.fd_gr_0_text}>
+                                            {getPlaystylesShortLabels(
+                                                warframeGuess.playstyle
+                                            )}
+                                        </p>
                                     )}
-                                </p>
+                                </>
                             )}
-                        </>
+                        </div>
                     )}
-                </div>
-                {/* BLYAAAAAAAAA */}
 
                 <div
                     className={clsx(GR.fd_gr_0_box, {
