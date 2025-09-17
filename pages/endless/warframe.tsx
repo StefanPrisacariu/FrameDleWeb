@@ -97,20 +97,20 @@ function Endless() {
     return (
         <>
             <NextSeo
-                title="FrameDle - Endless Mode | Practice & Train Anytime"
-                description="Play FrameDle's Endless Mode! Guess as many Warframes as you like without affecting your daily streak. Perfect for training and passing time."
-                canonical="https://framedle.org/endless"
+                title="FrameDle - Endless Warframe | Practice & Train Anytime"
+                description="Play FrameDle's Endless Warframe Mode! Guess as many Warframes as you like without affecting your daily streak. Perfect for training and passing time."
+                canonical="https://framedle.org/endless/warframe"
                 openGraph={{
-                    url: "https://framedle.org/endless",
-                    title: "FrameDle - Endless Mode | Practice & Train Anytime",
+                    url: "https://framedle.org/endless/warframe",
+                    title: "FrameDle - Endless Warframe | Practice & Train Anytime",
                     description:
-                        "Play FrameDle's Endless Mode! Guess as many Warframes as you like without affecting your daily streak.",
+                        "Play FrameDle's Endless Warframe Mode! Guess as many Warframes as you like without affecting your daily streak.",
                     images: [
                         {
                             url: "https://framedle.org/thumbnail.png",
                             width: 1200,
                             height: 630,
-                            alt: "FrameDle Endless Mode Thumbnail",
+                            alt: "FrameDle Endless Warframe Mode Thumbnail",
                         },
                     ],
                     site_name: "FrameDle",
@@ -118,8 +118,17 @@ function Endless() {
                 twitter={{
                     cardType: "summary_large_image",
                 }}
+                additionalMetaTags={[
+                    {
+                        name: "keywords",
+                        content:
+                            "warframe, warframe game, endless warframe, framedle endless warframe, practice warframe guessing, unlimited warframe quiz, framedle endless mode, warframe training, endless warframe challenge, guess unlimited warframes",
+                    },
+                ]}
             />
-            <h1>Endless Mode</h1>
+
+            <h1>Welcome to FrameDle!</h1>
+            <h2 className="dont">Endless Warframe Mode</h2>
             {todaysWf && (
                 <>
                     {isGuessed && (
@@ -212,38 +221,55 @@ function Endless() {
                                     </button>
                                 </div>
                             )}
-                            {visible && (
-                                <div className={Dropdown.fd_dropdown_0}>
-                                    {filteredWarframes.map((item) => (
-                                        <button
-                                            key={item.name}
-                                            onClick={() =>
-                                                warframeSelected(item)
-                                            }
-                                            className={
-                                                Dropdown.fd_dropdown_0_item
-                                            }
-                                        >
-                                            <Image
-                                                width={40}
-                                                height={40}
-                                                src={item.image}
-                                                className={
-                                                    Dropdown.fd_dropdown_0_item_image
+                            <AnimatePresence>
+                                {visible && (
+                                    <motion.div
+                                        initial={{
+                                            height: 0,
+                                        }}
+                                        animate={{
+                                            height: 201,
+                                        }}
+                                        exit={{
+                                            height: 0,
+                                        }}
+                                        transition={{
+                                            duration: 0.4,
+                                            ease: "easeOut",
+                                        }}
+                                        className={Dropdown.fd_dropdown_0}
+                                    >
+                                        {filteredWarframes.map((item) => (
+                                            <button
+                                                key={item.name}
+                                                onClick={() =>
+                                                    warframeSelected(item)
                                                 }
-                                                alt={item.name}
-                                            />
-                                            <span
                                                 className={
-                                                    Dropdown.fd_dropdown_0_item_text
+                                                    Dropdown.fd_dropdown_0_item
                                                 }
                                             >
-                                                {item.name}
-                                            </span>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
+                                                <Image
+                                                    width={40}
+                                                    height={40}
+                                                    src={item.image}
+                                                    className={
+                                                        Dropdown.fd_dropdown_0_item_image
+                                                    }
+                                                    alt={item.name}
+                                                />
+                                                <span
+                                                    className={
+                                                        Dropdown.fd_dropdown_0_item_text
+                                                    }
+                                                >
+                                                    {item.name}
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                         <h4 className={Text.fd_text_1}>
                             Attempts

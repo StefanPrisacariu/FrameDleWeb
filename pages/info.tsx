@@ -37,8 +37,17 @@ function Info() {
                 twitter={{
                     cardType: "summary_large_image",
                 }}
+                additionalMetaTags={[
+                    {
+                        name: "keywords",
+                        content:
+                            "framedle info, how to play framedle, framedle tutorial, framedle rules, framedle tips, warframe guessing game help, framedle disclaimers, warframe puzzle guide",
+                    },
+                ]}
             />
-            <h1>How to Play</h1>
+
+            <h1>Welcome to FrameDle!</h1>
+            <h2 className="dont">How to Play & Disclaimers</h2>
             <div className={Container.fd_container_5}>
                 <h2 className={Text.fd_text_2_title}>How to play?</h2>
                 <p className={Text.fd_text_2_def}>
