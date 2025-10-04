@@ -191,10 +191,11 @@ export default function Home() {
                     {
                         name: "keywords",
                         content:
-                            "warframe, warframe game, warframe guessing game, framedle, tenno, warframe challenge, daily warframe puzzle, warframedle, warframe wordle, tenno warframe wordle, tennodle",
+                            "warframe, warframe game, warframe guessing game, framedle, tenno, warframe challenge, daily warframe puzzle, warframedle, warframe wordle, tenno warframe wordle, tennodle, warframe quiz, guess the warframe, daily warframe challenge",
                     },
                 ]}
             />
+
             <h1>Welcome to FrameDle!</h1>
             <h2 className="dont">Daily Mode</h2>
 
@@ -316,38 +317,55 @@ export default function Home() {
                                     </button>
                                 </div>
                             )}
-                            {visible && (
-                                <div className={Dropdown.fd_dropdown_0}>
-                                    {filteredWarframes.map((item) => (
-                                        <button
-                                            key={item.name}
-                                            onClick={() =>
-                                                warframeSelected(item)
-                                            }
-                                            className={
-                                                Dropdown.fd_dropdown_0_item
-                                            }
-                                        >
-                                            <Image
-                                                width={40}
-                                                height={40}
-                                                src={item.image}
-                                                className={
-                                                    Dropdown.fd_dropdown_0_item_image
+                            <AnimatePresence>
+                                {visible && (
+                                    <motion.div
+                                        initial={{
+                                            height: 0,
+                                        }}
+                                        animate={{
+                                            height: 201,
+                                        }}
+                                        exit={{
+                                            height: 0,
+                                        }}
+                                        transition={{
+                                            duration: 0.4,
+                                            ease: "easeOut",
+                                        }}
+                                        className={Dropdown.fd_dropdown_0}
+                                    >
+                                        {filteredWarframes.map((item) => (
+                                            <button
+                                                key={item.name}
+                                                onClick={() =>
+                                                    warframeSelected(item)
                                                 }
-                                                alt={item.name}
-                                            />
-                                            <span
                                                 className={
-                                                    Dropdown.fd_dropdown_0_item_text
+                                                    Dropdown.fd_dropdown_0_item
                                                 }
                                             >
-                                                {item.name}
-                                            </span>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
+                                                <Image
+                                                    width={40}
+                                                    height={40}
+                                                    src={item.image}
+                                                    className={
+                                                        Dropdown.fd_dropdown_0_item_image
+                                                    }
+                                                    alt={item.name}
+                                                />
+                                                <span
+                                                    className={
+                                                        Dropdown.fd_dropdown_0_item_text
+                                                    }
+                                                >
+                                                    {item.name}
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                         <h4 className={Text.fd_text_1}>
                             Attempts

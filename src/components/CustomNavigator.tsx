@@ -14,6 +14,7 @@ import {
     storeColorblindMode,
 } from "@/app/helpers/colorblindStore";
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownArrowWhite from "@/assets/svg/arrow-down-white.svg";
 import { useRouter } from "next/router";
 import Button from "@/styles/components/Button.module.scss";
 import Nav from "@/styles/components/Navigation.module.scss";
@@ -33,6 +34,7 @@ import Feedback from "@/assets/png/icons/Chem_w.webp";
 import Colorblind from "@/assets/png/icons/Ionic_w.webp";
 import Google from "@/assets/png/google-play.png";
 import Discord from "@/assets/png/discord-icon.png";
+import { AnimatePresence, motion } from "framer-motion";
 
 type ColorblindMode =
     | "Disabled"
@@ -55,6 +57,8 @@ export const CustomNavigator = () => {
     const [colorblind, setColorblind] = useState<ColorblindMode>(
         getColorblindMode() as ColorblindMode
     );
+
+    const [endlessModes, setEndlessModes] = useState(false);
 
     useEffect(() => {
         const fetchToggle = async () => {
@@ -143,360 +147,529 @@ export const CustomNavigator = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (
+            descriptor !== "/endless/warframe" &&
+            descriptor !== "/endless/ability"
+        ) {
+            setEndlessModes(false);
+        }
+    }, [descriptor]);
+
     return (
         <>
             {visible && "/info" !== descriptor && (
                 <ColorIndicators visible={visible} setVisible={setVisible} />
             )}
-            {isMobileNavVisible ? (
-                <div className={Nav.fd_nav_0}>
-                    <div className={Nav.fd_nav_0_wrap}>
-                        <div ref={mobileRef} className={Nav.fd_nav_content}>
-                            <div className={Nav.fd_nav_container}>
-                                <LogoBaban className={Logo.fd_logo_1} />
-                                <button
-                                    onClick={() => {
-                                        setIsMobileNavVisible(false);
-                                        setColorblindMenu(false);
-                                    }}
-                                    className={Nav.fd_nav_button}
-                                >
-                                    <Close width={20} height={20} />
-                                </button>
-                                <div className={Group.fd_group_1}>
-                                    <Link
-                                        className={Group.fd_group_1_button}
-                                        href="/"
+            <AnimatePresence>
+                {isMobileNavVisible && (
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            x: -200,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            x: 0,
+                        }}
+                        exit={{
+                            opacity: 0,
+                            x: -200,
+                        }}
+                        transition={{
+                            duration: 0.4,
+                            ease: "easeInOut",
+                        }}
+                        className={Nav.fd_nav_0}
+                    >
+                        <div className={Nav.fd_nav_0_wrap}>
+                            <div ref={mobileRef} className={Nav.fd_nav_content}>
+                                <div className={Nav.fd_nav_container}>
+                                    <LogoBaban className={Logo.fd_logo_1} />
+                                    <button
+                                        onClick={() => {
+                                            setIsMobileNavVisible(false);
+                                            setColorblindMenu(false);
+                                        }}
+                                        className={Nav.fd_nav_button}
                                     >
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
+                                        <Close width={20} height={20} />
+                                    </button>
+                                    <div className={Group.fd_group_1}>
+                                        <Link
+                                            className={Group.fd_group_1_button}
+                                            href="/"
                                         >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Mission}
-                                                alt="Home"
-                                            />
-                                            <span
-                                                className={clsx(
-                                                    Group.fd_group_1_button_text,
-                                                    {
-                                                        [Group.fd_group_1_button_selected]:
-                                                            descriptor === "/",
-                                                    }
-                                                )}
-                                            >
-                                                Home
-                                            </span>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        className={Group.fd_group_1_button}
-                                        href="/ability"
-                                    >
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
-                                        >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Focus}
-                                                alt="Ability"
-                                            />
-                                            <span
-                                                className={clsx(
-                                                    Group.fd_group_1_button_text,
-                                                    {
-                                                        [Group.fd_group_1_button_selected]:
-                                                            descriptor ===
-                                                            "/ability",
-                                                    }
-                                                )}
-                                            >
-                                                Ability
-                                            </span>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        className={Group.fd_group_1_button}
-                                        href="/endless"
-                                    >
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
-                                        >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Utility}
-                                                alt="Endless"
-                                            />
-                                            <span
-                                                className={clsx(
-                                                    Group.fd_group_1_button_text,
-                                                    {
-                                                        [Group.fd_group_1_button_selected]:
-                                                            descriptor ===
-                                                            "/endless",
-                                                    }
-                                                )}
-                                            >
-                                                Endless
-                                            </span>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        className={Group.fd_group_1_button}
-                                        href="/info"
-                                    >
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
-                                        >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Quest}
-                                                alt="Info"
-                                            />
-                                            <span
-                                                className={clsx(
-                                                    Group.fd_group_1_button_text,
-                                                    {
-                                                        [Group.fd_group_1_button_selected]:
-                                                            descriptor ===
-                                                            "/info",
-                                                    }
-                                                )}
-                                            >
-                                                Tutorial
-                                            </span>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        className={Group.fd_group_1_button}
-                                        href="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
-                                        target="_blank"
-                                    >
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
-                                        >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Feedback}
-                                                alt="Feedback"
-                                            />
-                                            <span
-                                                className={
-                                                    Button.fd_button_3_text
-                                                }
-                                            >
-                                                Feedback
-                                            </span>
-                                        </div>
-                                    </Link>
-                                    <div className={Group.fd_group_1_button}>
-                                        <div
-                                            className={
-                                                Group.fd_group_1_button_content
-                                            }
-                                        >
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={Colorblind}
-                                                alt="Colorblind"
-                                            />
-                                            <span
-                                                className={
-                                                    Button.fd_button_3_text
-                                                }
-                                            >
-                                                Colorblind Mode
-                                            </span>
-                                        </div>
-                                        <div className={Dropdown.fd_dropdown_1}>
                                             <div
-                                                onClick={() =>
-                                                    setColorblindMenu(
-                                                        !colorblindMenu
-                                                    )
-                                                }
                                                 className={
-                                                    Dropdown.fd_dropdown_1_wrap
+                                                    Group.fd_group_1_button_content
                                                 }
                                             >
+                                                <Image
+                                                    width={30}
+                                                    height={30}
+                                                    src={Mission}
+                                                    alt="Home"
+                                                />
+                                                <span
+                                                    className={clsx(
+                                                        Group.fd_group_1_button_text,
+                                                        {
+                                                            [Group.fd_group_1_button_selected]:
+                                                                descriptor ===
+                                                                "/",
+                                                        }
+                                                    )}
+                                                >
+                                                    Home
+                                                </span>
+                                            </div>
+                                        </Link>
+                                        <Link
+                                            className={Group.fd_group_1_button}
+                                            href="/ability"
+                                        >
+                                            <div
+                                                className={
+                                                    Group.fd_group_1_button_content
+                                                }
+                                            >
+                                                <Image
+                                                    width={30}
+                                                    height={30}
+                                                    src={Focus}
+                                                    alt="Ability"
+                                                />
+                                                <span
+                                                    className={clsx(
+                                                        Group.fd_group_1_button_text,
+                                                        {
+                                                            [Group.fd_group_1_button_selected]:
+                                                                descriptor ===
+                                                                "/ability",
+                                                        }
+                                                    )}
+                                                >
+                                                    Ability
+                                                </span>
+                                            </div>
+                                        </Link>
+
+                                        <button
+                                            className={Group.fd_group_1_button}
+                                            onClick={() => {
+                                                setEndlessModes(!endlessModes);
+                                            }}
+                                        >
+                                            <div
+                                                className={
+                                                    Group.fd_group_1_button_content
+                                                }
+                                            >
+                                                <Image
+                                                    width={30}
+                                                    height={30}
+                                                    src={Utility}
+                                                    alt="Endless"
+                                                />
+                                                <span
+                                                    className={clsx(
+                                                        Group.fd_group_1_button_text,
+                                                        {
+                                                            [Group.fd_group_1_button_selected]:
+                                                                descriptor ===
+                                                                    "/endless/warframe" ||
+                                                                descriptor ===
+                                                                    "/endless/ability",
+                                                        }
+                                                    )}
+                                                >
+                                                    Endless Modes
+                                                </span>
+                                                <AnimatePresence>
+                                                    <motion.div
+                                                        initial={{
+                                                            rotateZ: 0,
+                                                        }}
+                                                        animate={{
+                                                            rotateZ:
+                                                                endlessModes
+                                                                    ? 180
+                                                                    : 0,
+                                                            transformOrigin:
+                                                                "50% 40%",
+                                                        }}
+                                                        exit={{
+                                                            rotateZ: 0,
+                                                        }}
+                                                        transition={{
+                                                            duration: 0.4,
+                                                            ease: "easeOut",
+                                                        }}
+                                                    >
+                                                        <DropdownArrowWhite
+                                                            width={15}
+                                                            height={15}
+                                                        />
+                                                    </motion.div>
+                                                </AnimatePresence>
+                                            </div>
+                                        </button>
+                                        <AnimatePresence>
+                                            {endlessModes && (
+                                                <motion.div
+                                                    initial={{
+                                                        height: 0,
+                                                    }}
+                                                    animate={{
+                                                        height: 100,
+                                                    }}
+                                                    exit={{
+                                                        height: 0,
+                                                    }}
+                                                    transition={{
+                                                        duration: 0.4,
+                                                        ease: "easeOut",
+                                                    }}
+                                                    className={
+                                                        Group.fd_group_1_accordion
+                                                    }
+                                                >
+                                                    <Link
+                                                        className={
+                                                            Group.fd_group_1_button_2
+                                                        }
+                                                        href="/endless/warframe"
+                                                    >
+                                                        <div
+                                                            className={
+                                                                Group.fd_group_1_button_2_content
+                                                            }
+                                                        >
+                                                            <Image
+                                                                width={30}
+                                                                height={30}
+                                                                src={Mission}
+                                                                alt="Endless"
+                                                            />
+                                                            <span
+                                                                className={clsx(
+                                                                    Group.fd_group_1_button_2_text,
+                                                                    {
+                                                                        [Group.fd_group_1_button_2_selected]:
+                                                                            descriptor ===
+                                                                            "/endless/warframe",
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Warframe
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                    <Link
+                                                        className={
+                                                            Group.fd_group_1_button_2
+                                                        }
+                                                        href="/endless/ability"
+                                                    >
+                                                        <div
+                                                            className={
+                                                                Group.fd_group_1_button_2_content
+                                                            }
+                                                        >
+                                                            <Image
+                                                                width={30}
+                                                                height={30}
+                                                                src={Focus}
+                                                                alt="Endless"
+                                                            />
+                                                            <span
+                                                                className={clsx(
+                                                                    Group.fd_group_1_button_2_text,
+                                                                    {
+                                                                        [Group.fd_group_1_button_2_selected]:
+                                                                            descriptor ===
+                                                                            "/endless/ability",
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Ability
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                        <Link
+                                            className={Group.fd_group_1_button}
+                                            href="/info"
+                                        >
+                                            <div
+                                                className={
+                                                    Group.fd_group_1_button_content
+                                                }
+                                            >
+                                                <Image
+                                                    width={30}
+                                                    height={30}
+                                                    src={Quest}
+                                                    alt="Info"
+                                                />
+                                                <span
+                                                    className={clsx(
+                                                        Group.fd_group_1_button_text,
+                                                        {
+                                                            [Group.fd_group_1_button_selected]:
+                                                                descriptor ===
+                                                                "/info",
+                                                        }
+                                                    )}
+                                                >
+                                                    Tutorial
+                                                </span>
+                                            </div>
+                                        </Link>
+                                        <Link
+                                            className={Group.fd_group_1_button}
+                                            href="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
+                                            target="_blank"
+                                        >
+                                            <div
+                                                className={
+                                                    Group.fd_group_1_button_content
+                                                }
+                                            >
+                                                <Image
+                                                    width={30}
+                                                    height={30}
+                                                    src={Feedback}
+                                                    alt="Feedback"
+                                                />
                                                 <span
                                                     className={
                                                         Button.fd_button_3_text
                                                     }
                                                 >
-                                                    {colorblind}
+                                                    Feedback
                                                 </span>
                                             </div>
-                                            <button
+                                        </Link>
+                                        <div
+                                            className={Group.fd_group_1_button}
+                                        >
+                                            <div
                                                 className={
-                                                    Dropdown.fd_dropdown_1_button
+                                                    Group.fd_group_1_button_content
                                                 }
-                                                onClick={() =>
-                                                    setColorblindMenu(
-                                                        !colorblindMenu
-                                                    )
+                                            >
+                                                <Image
+                                                    width={30}
+                                                    height={30}
+                                                    src={Colorblind}
+                                                    alt="Colorblind"
+                                                />
+                                                <span
+                                                    className={
+                                                        Button.fd_button_3_text
+                                                    }
+                                                >
+                                                    Colorblind Mode
+                                                </span>
+                                            </div>
+                                            <div
+                                                className={
+                                                    Dropdown.fd_dropdown_1
                                                 }
                                             >
                                                 <div
+                                                    onClick={() =>
+                                                        setColorblindMenu(
+                                                            !colorblindMenu
+                                                        )
+                                                    }
                                                     className={
-                                                        Dropdown.fd_dropdown_1_button_content
+                                                        Dropdown.fd_dropdown_1_wrap
                                                     }
                                                 >
-                                                    <DropdownArrow
-                                                        width={15}
-                                                        height={15}
+                                                    <span
+                                                        className={
+                                                            Button.fd_button_3_text
+                                                        }
+                                                    >
+                                                        {colorblind}
+                                                    </span>
+                                                </div>
+                                                <button
+                                                    className={
+                                                        Dropdown.fd_dropdown_1_button
+                                                    }
+                                                    onClick={() =>
+                                                        setColorblindMenu(
+                                                            !colorblindMenu
+                                                        )
+                                                    }
+                                                >
+                                                    <div
+                                                        className={
+                                                            Dropdown.fd_dropdown_1_button_content
+                                                        }
+                                                    >
+                                                        <DropdownArrow
+                                                            width={15}
+                                                            height={15}
+                                                        />
+                                                    </div>
+                                                </button>
+                                                <AnimatePresence>
+                                                    {colorblindMenu && (
+                                                        <motion.div
+                                                            initial={{
+                                                                height: 0,
+                                                            }}
+                                                            animate={{
+                                                                height: 185,
+                                                            }}
+                                                            exit={{
+                                                                height: 0,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.4,
+                                                                ease: "easeOut",
+                                                            }}
+                                                            className={
+                                                                Dropdown.fd_dropdown_1_menu
+                                                            }
+                                                        >
+                                                            <span
+                                                                onClick={() =>
+                                                                    handleColorblind(
+                                                                        "Disabled"
+                                                                    )
+                                                                }
+                                                                className={clsx(
+                                                                    Dropdown.fd_dropdown_1_menu_item,
+                                                                    {
+                                                                        [Dropdown.fd_dropdown_1_menu_selected]:
+                                                                            "Disabled" ===
+                                                                            colorblind,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Disabled
+                                                            </span>
+                                                            <span
+                                                                onClick={() =>
+                                                                    handleColorblind(
+                                                                        "Protanopia"
+                                                                    )
+                                                                }
+                                                                className={clsx(
+                                                                    Dropdown.fd_dropdown_1_menu_item,
+                                                                    {
+                                                                        [Dropdown.fd_dropdown_1_menu_selected]:
+                                                                            "Protanopia" ===
+                                                                            colorblind,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Protanopia
+                                                            </span>
+                                                            <span
+                                                                onClick={() =>
+                                                                    handleColorblind(
+                                                                        "Deuteranopia"
+                                                                    )
+                                                                }
+                                                                className={clsx(
+                                                                    Dropdown.fd_dropdown_1_menu_item,
+                                                                    {
+                                                                        [Dropdown.fd_dropdown_1_menu_selected]:
+                                                                            "Deuteranopia" ===
+                                                                            colorblind,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Deuteranopia
+                                                            </span>
+                                                            <span
+                                                                onClick={() =>
+                                                                    handleColorblind(
+                                                                        "Tritanopia"
+                                                                    )
+                                                                }
+                                                                className={clsx(
+                                                                    Dropdown.fd_dropdown_1_menu_item,
+                                                                    {
+                                                                        [Dropdown.fd_dropdown_1_menu_selected]:
+                                                                            "Tritanopia" ===
+                                                                            colorblind,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Tritanopia
+                                                            </span>
+                                                            <span
+                                                                onClick={() =>
+                                                                    handleColorblind(
+                                                                        "Achromatopsia"
+                                                                    )
+                                                                }
+                                                                className={clsx(
+                                                                    Dropdown.fd_dropdown_1_menu_item,
+                                                                    {
+                                                                        [Dropdown.fd_dropdown_1_menu_selected]:
+                                                                            "Achromatopsia" ===
+                                                                            colorblind,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Achromatopsia
+                                                            </span>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </div>
+                                        </div>
+                                        <div className={Group.fd_group_2}>
+                                            <Link
+                                                href="https://play.google.com/store/apps/details?id=com.framedle"
+                                                target="_blank"
+                                            >
+                                                <div>
+                                                    <Image
+                                                        width={200}
+                                                        className={
+                                                            ImgStyle.fd_imgstyle_google
+                                                        }
+                                                        src={Google}
+                                                        alt="Info"
                                                     />
                                                 </div>
-                                            </button>
-                                            {colorblindMenu && (
-                                                <div
-                                                    className={
-                                                        Dropdown.fd_dropdown_1_menu
-                                                    }
-                                                >
-                                                    <span
-                                                        onClick={() =>
-                                                            handleColorblind(
-                                                                "Disabled"
-                                                            )
+                                            </Link>
+                                            <Link
+                                                href="https://discord.gg/qqmr3Uz32f"
+                                                target="_blank"
+                                            >
+                                                <div>
+                                                    <Image
+                                                        height={70}
+                                                        className={
+                                                            ImgStyle.fd_imgstyle_discord
                                                         }
-                                                        className={clsx(
-                                                            Dropdown.fd_dropdown_1_menu_item,
-                                                            {
-                                                                [Dropdown.fd_dropdown_1_menu_selected]:
-                                                                    "Disabled" ===
-                                                                    colorblind,
-                                                            }
-                                                        )}
-                                                    >
-                                                        Disabled
-                                                    </span>
-                                                    <span
-                                                        onClick={() =>
-                                                            handleColorblind(
-                                                                "Protanopia"
-                                                            )
-                                                        }
-                                                        className={clsx(
-                                                            Dropdown.fd_dropdown_1_menu_item,
-                                                            {
-                                                                [Dropdown.fd_dropdown_1_menu_selected]:
-                                                                    "Protanopia" ===
-                                                                    colorblind,
-                                                            }
-                                                        )}
-                                                    >
-                                                        Protanopia
-                                                    </span>
-                                                    <span
-                                                        onClick={() =>
-                                                            handleColorblind(
-                                                                "Deuteranopia"
-                                                            )
-                                                        }
-                                                        className={clsx(
-                                                            Dropdown.fd_dropdown_1_menu_item,
-                                                            {
-                                                                [Dropdown.fd_dropdown_1_menu_selected]:
-                                                                    "Deuteranopia" ===
-                                                                    colorblind,
-                                                            }
-                                                        )}
-                                                    >
-                                                        Deuteranopia
-                                                    </span>
-                                                    <span
-                                                        onClick={() =>
-                                                            handleColorblind(
-                                                                "Tritanopia"
-                                                            )
-                                                        }
-                                                        className={clsx(
-                                                            Dropdown.fd_dropdown_1_menu_item,
-                                                            {
-                                                                [Dropdown.fd_dropdown_1_menu_selected]:
-                                                                    "Tritanopia" ===
-                                                                    colorblind,
-                                                            }
-                                                        )}
-                                                    >
-                                                        Tritanopia
-                                                    </span>
-                                                    <span
-                                                        onClick={() =>
-                                                            handleColorblind(
-                                                                "Achromatopsia"
-                                                            )
-                                                        }
-                                                        className={clsx(
-                                                            Dropdown.fd_dropdown_1_menu_item,
-                                                            {
-                                                                [Dropdown.fd_dropdown_1_menu_selected]:
-                                                                    "Achromatopsia" ===
-                                                                    colorblind,
-                                                            }
-                                                        )}
-                                                    >
-                                                        Achromatopsia
-                                                    </span>
+                                                        src={Discord}
+                                                        alt="Info"
+                                                    />
                                                 </div>
-                                            )}
+                                            </Link>
                                         </div>
-                                    </div>
-                                    <div className={Group.fd_group_2}>
-                                        <Link
-                                            href="https://play.google.com/store/apps/details?id=com.framedle"
-                                            target="_blank"
-                                        >
-                                            <div>
-                                                <Image
-                                                    width={200}
-                                                    className={
-                                                        ImgStyle.fd_imgstyle_google
-                                                    }
-                                                    src={Google}
-                                                    alt="Info"
-                                                />
-                                            </div>
-                                        </Link>
-                                        <Link
-                                            href="https://discord.gg/qqmr3Uz32f"
-                                            target="_blank"
-                                        >
-                                            <div>
-                                                <Image
-                                                    height={70}
-                                                    className={
-                                                        ImgStyle.fd_imgstyle_discord
-                                                    }
-                                                    src={Discord}
-                                                    alt="Info"
-                                                />
-                                            </div>
-                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            ) : (
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            {!isMobileNavVisible && (
                 <>
                     <button
                         onClick={() => setIsMobileNavVisible(true)}
