@@ -349,7 +349,7 @@ export const CustomNavigator = () => {
                                                             <Image
                                                                 width={30}
                                                                 height={30}
-                                                                src={Utility}
+                                                                src={Mission}
                                                                 alt="Endless"
                                                             />
                                                             <span
@@ -380,7 +380,7 @@ export const CustomNavigator = () => {
                                                             <Image
                                                                 width={30}
                                                                 height={30}
-                                                                src={Utility}
+                                                                src={Focus}
                                                                 alt="Endless"
                                                             />
                                                             <span
