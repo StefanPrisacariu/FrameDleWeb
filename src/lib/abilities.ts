@@ -858,6 +858,32 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nidus.webp",
     },
     {
+        warframeName: "Nokko",
+        abilities: [
+            {
+                shortcut: 1,
+                abilityName: "Stinkbrain",
+                icon: "Stinkbrain.png",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Brightbonnet",
+                icon: "Brightbonnet.png",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Reroot",
+                icon: "Reroot.png",
+            },
+            {
+                shortcut: 4,
+                abilityName: "Sporespring",
+                icon: "Sporespring.png",
+            },
+        ],
+        image: "/warframe_portraits/nokko.webp",
+    },
+    {
         warframeName: "Nova",
         abilities: [
             {

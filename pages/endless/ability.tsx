@@ -43,6 +43,17 @@ export default function AbilityEndless() {
         generateNewAbility() as ProcessedAbility
     );
 
+    //FORCE ABILITY
+    // const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
+    //     getProcessedAbility({
+    //         ability: 4,
+    //         variant: 1,
+    //         warframe: initialAbilities.findIndex(
+    //             (item) => item.warframeName === "Nokko"
+    //         ),
+    //     }) as ProcessedAbility
+    // );
+
     useEffect(() => {
         const updateDimensions = () => setWidth(window.innerWidth);
         updateDimensions();

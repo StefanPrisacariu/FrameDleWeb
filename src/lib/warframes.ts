@@ -506,7 +506,7 @@ export const initialWarframes: Warframe[] = [
         auraPolarity: ["naramon"],
         progenitorElement: "magnetic",
         releaseYear: 2025,
-        image: "/warframe_portraits/lavos_prime.webp",
+        image: "/warframe_portraits/lavos-prime.webp",
         playstyle: ["damage"],
     },
     {
@@ -668,6 +668,16 @@ export const initialWarframes: Warframe[] = [
         releaseYear: 2021,
         image: "/warframe_portraits/nidus-prime.webp",
         playstyle: ["damage", "survival", "crowd-control"],
+    },
+    {
+        name: "Nokko",
+        gender: "male",
+        primeUmbra: "standard",
+        auraPolarity: ["madurai"],
+        progenitorElement: "toxin",
+        releaseYear: 2025,
+        image: "/warframe_portraits/nokko.webp",
+        playstyle: ["damage", "crowd-control"],
     },
     {
         name: "Nova",
