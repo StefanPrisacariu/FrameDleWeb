@@ -9,7 +9,6 @@ import { OrbitProgress } from "react-loading-indicators";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Lock from "@/assets/svg/lock-solid.svg";
-import Share from "@/assets/svg/share-solid.svg";
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
 import { TableHeader } from "@/app/components/TableHeader";
@@ -21,7 +20,6 @@ import Container from "@/styles/components/Container.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import ImgStyle from "@/styles/components/ImgStyle.module.scss";
 import Text from "@/styles/components/Text.module.scss";
-import Button from "@/styles/components/Button.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import {
@@ -45,7 +43,6 @@ export default function Home() {
     const [filteredWarframes, setFilteredWarframes] =
         useState(initialWarframes);
     const [width, setWidth] = useState<number>();
-    const [modalToggle, setModalToggle] = useState(false);
     const [netError, setNetError] = useState(false);
 
     // Fetch Warframe data using TanStack Query
@@ -94,6 +91,7 @@ export default function Home() {
     useEffect(() => {
         if (
             todaysWf &&
+            guesses !== null &&
             guesses.length > 0 &&
             guesses[guesses.length - 1]?.name === todaysWf.name
         ) {
@@ -153,7 +151,6 @@ export default function Home() {
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
                 await storeDailyStreak(String(newStreak));
-                setTimeout(() => setModalToggle(true), 3000);
             }
         },
         [guesses, todaysWf, dailyStreak]
@@ -257,14 +254,11 @@ export default function Home() {
                     <span className={Text.fd_text_0}>
                         <TimerComponent />
                     </span>
-                    {isGuessed && (
-                        <button
-                            onClick={() => setModalToggle(!modalToggle)}
-                            className={Button.fd_button_0}
-                        >
-                            <Share width={20} height={20} />
-                            <span>Share</span>
-                        </button>
+                    {isGuessed && guesses.length > 0 && todaysWf && (
+                        <Modal
+                            todaysWf={todaysWf}
+                            guesses={[...guesses].reverse()}
+                        />
                     )}
                     <div className={Container.fd_container_2}>
                         <div className={Input.fd_input_0}>
@@ -378,7 +372,9 @@ export default function Home() {
                         <div className={Container.fd_container_3}>
                             <TableHeader />
                             <AnimatePresence>
-                                {todaysWf && guesses.length > 0
+                                {todaysWf &&
+                                guesses !== null &&
+                                guesses.length > 0
                                     ? [...guesses]
                                           .map((item, index) => (
                                               <motion.div
@@ -407,7 +403,8 @@ export default function Home() {
                                               </motion.div>
                                           ))
                                           .reverse()
-                                    : guesses.length !== 0 && (
+                                    : guesses &&
+                                      guesses.length !== 0 && (
                                           <OrbitProgress
                                               size="medium"
                                               color={"#FFFFFF"}
@@ -430,13 +427,6 @@ export default function Home() {
                     <p className="networkError">There was a server error</p>
                     <p className="networkError">Try again later</p>
                 </div>
-            )}
-            {guesses.length > 0 && todaysWf && modalToggle && (
-                <Modal
-                    todaysWf={todaysWf}
-                    guesses={[...guesses].reverse()}
-                    onClick={() => setModalToggle(false)}
-                />
             )}
         </>
     );

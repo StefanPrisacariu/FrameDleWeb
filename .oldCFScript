@@ -1,0 +1,94 @@
+export default {
+    async scheduled(event, env, ctx) {
+        const BASE_URL_WARFRAME =
+            "https://framedle-default-rtdb.firebaseio.com/warframeOfTheDay";
+        const BASE_URL_ABILITY =
+            "https://framedle-default-rtdb.firebaseio.com/abilityOfTheDay";
+
+        const TODAY_WARFRAME_URL = `${BASE_URL_WARFRAME}/today.json`;
+        const YESTERDAY_WARFRAME_URL = `${BASE_URL_WARFRAME}/yesterday.json`;
+
+        const TODAY_ABILITY_URL = `${BASE_URL_ABILITY}/today.json`;
+        const YESTERDAY_ABILITY_URL = `${BASE_URL_ABILITY}/yesterday.json`;
+
+        try {
+            // -----------------------------
+            // 1️⃣ Handle Warframe of the Day
+            // -----------------------------
+            const todayWarframeResponse = await fetch(TODAY_WARFRAME_URL);
+            const todayWarframeData = await todayWarframeResponse.json();
+
+            if (todayWarframeData) {
+                await fetch(YESTERDAY_WARFRAME_URL, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(todayWarframeData),
+                });
+                console.log("✅ Moved today's Warframe to yesterday.");
+            }
+
+            const newWarframe = {
+                number: Math.floor(Math.random() * 110),
+                timestamp: new Date().toISOString(),
+            };
+
+            const updateWarframeResponse = await fetch(TODAY_WARFRAME_URL, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newWarframe),
+            });
+
+            if (updateWarframeResponse.ok) {
+                console.log("✅ Warframe of the Day updated successfully!");
+            } else {
+                console.error(
+                    "❌ Failed to update Warframe of the Day:",
+                    await updateWarframeResponse.text()
+                );
+            }
+
+            // -----------------------------
+            // 2️⃣ Handle Ability of the Day
+            // -----------------------------
+            const todayAbilityResponse = await fetch(TODAY_ABILITY_URL);
+            const todayAbilityData = await todayAbilityResponse.json();
+
+            if (todayAbilityData && todayAbilityData.warframe !== undefined) {
+                // Move today's warframe to yesterday.warframe
+                await fetch(YESTERDAY_ABILITY_URL, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        warframe: todayAbilityData.warframe,
+                    }),
+                });
+                console.log("✅ Moved today's Ability Warframe to yesterday.");
+            }
+
+            // Generate new ability data
+            const newAbility = {
+                ability: Math.floor(Math.random() * 4) + 1,
+                variant: Math.floor(Math.random() * 2) + 1,
+                warframe: Math.floor(Math.random() * 62),
+                timestamp: new Date().toISOString(),
+            };
+
+            const updateAbilityResponse = await fetch(TODAY_ABILITY_URL, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newAbility),
+            });
+
+            if (updateAbilityResponse.ok) {
+                console.log("✅ Ability of the Day updated successfully!");
+            } else {
+                console.error(
+                    "❌ Failed to update Ability of the Day:",
+                    await updateAbilityResponse.text()
+                );
+            }
+        } catch (error) {
+            console.error("❌ Error in scheduled script:", error);
+        }
+    },
+};

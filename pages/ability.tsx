@@ -8,7 +8,6 @@ import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Share from "@/assets/svg/share-solid.svg";
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
 import { TimerComponent } from "@/app/components/TimeComponent";
@@ -16,7 +15,6 @@ import Container from "@/styles/components/Container.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import ImgStyle from "@/styles/components/ImgStyle.module.scss";
 import Text from "@/styles/components/Text.module.scss";
-import Button from "@/styles/components/Button.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import {
@@ -49,7 +47,6 @@ export default function Ability() {
     const [filteredWarframes, setFilteredWarframes] =
         useState(initialAbilities);
     const [width, setWidth] = useState<number>();
-    const [modalToggle, setModalToggle] = useState(false);
     const [netError, setNetError] = useState(false);
 
     // Fetch Warframe data using TanStack Query
@@ -151,16 +148,11 @@ export default function Ability() {
             setGuesses(newGuesses);
             await storeAbilityGuesses(newGuesses);
             await storeAbilityStreakTime();
-
-            // if (768 >= (width || 0)) {
-            //     document.getElementById("logo")?.scrollIntoView();
-            // }
             if (todaysWf && selectedWf.warframeName === todaysWf.warframeName) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
                 await storeDailyStreak(String(newStreak));
-                setTimeout(() => setModalToggle(true), 3000);
             }
         },
         [guesses, todaysWf, dailyStreak]
@@ -322,14 +314,8 @@ export default function Ability() {
                             </span>
                         )}
                     </>
-                    {isGuessed && (
-                        <button
-                            onClick={() => setModalToggle(!modalToggle)}
-                            className={Button.fd_button_0}
-                        >
-                            <Share width={20} height={20} />
-                            <span>Share</span>
-                        </button>
+                    {isGuessed && guesses.length > 0 && todaysWf && (
+                        <AbilityModal guesses={[...guesses].reverse()} />
                     )}
                     <div className={Container.fd_container_2}>
                         <div className={Input.fd_input_0}>
@@ -489,12 +475,6 @@ export default function Ability() {
                     <p className="networkError">There was a server error</p>
                     <p className="networkError">Try again later</p>
                 </div>
-            )}
-            {guesses.length > 0 && todaysWf && modalToggle && (
-                <AbilityModal
-                    guesses={[...guesses].reverse()}
-                    onClick={() => setModalToggle(false)}
-                />
             )}
         </>
     );
