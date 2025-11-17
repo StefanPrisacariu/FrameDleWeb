@@ -18,7 +18,7 @@ import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 
 import { initialAbilities } from "@/app/lib/abilities";
-import { GuessAbility } from "@/app/components/GuessAbiity";
+import { GuessAbility } from "@/app/components/GuessAbility";
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
 import clsx from "clsx";
 

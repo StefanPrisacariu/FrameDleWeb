@@ -10,7 +10,8 @@
         "scss:types:watch": "typed-scss-modules \"styles/components/**/*.module.scss\" --exportType default --nameFormat none --template .tsm-template.hbs --watch",
         "lint": "next lint",
         "lint:styles": "stylelint --allow-empty-input --report-needless-disables \"styles/**/*.{css,scss}\"",
-        "postbuild": "next-sitemap"
+        "postbuild": "next-sitemap",
+        "build:debug": "DEBUG_BUILD=true next build"
     },
     "dependencies": {
         "@tanstack/react-query": "^5.84.1",
