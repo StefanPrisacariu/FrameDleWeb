@@ -19,7 +19,6 @@ import {
     getAbilityStreak,
     storeAbilityStreak,
     storeAbilityStreakTime,
-    storeDailyStreak,
 } from "@/app/helpers/storeReadStreak";
 import {
     storeAbilityGuesses,
@@ -37,6 +36,7 @@ interface AbilityGame {
 }
 
 export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
+    const dayKey = todaysWf.warframeName;
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
@@ -46,7 +46,6 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
         useState(initialAbilities);
     const [width, setWidth] = useState<number>();
 
-    // Resize listener
     useEffect(() => {
         const updateDimensions = () => setWidth(window.innerWidth);
         updateDimensions();
@@ -54,44 +53,37 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
-    // Mark guessed if last guess matches today's WF
-    useEffect(() => {
-        if (
-            todaysWf &&
-            guesses.length > 0 &&
-            guesses[guesses.length - 1]?.warframeName === todaysWf.warframeName
-        ) {
-            setIsGuessed(true);
-        }
-    }, [todaysWf, guesses]);
+    const initializeGame = useCallback(async () => {
+        const needsReset = checkResetNeeded("FD_ABILITY_STREAK_TIME");
 
-    const initializeGame = async () => {
-        try {
-            const resetTime = await checkResetNeeded("FD_ABILITY_STREAK_TIME");
+        const streak = await getAbilityStreak();
+        setDailyStreak(streak);
 
-            if (resetTime >= 48) {
-                setDailyStreak(0);
-                await storeAbilityStreak(0);
-                setGuesses([]);
-                await storeAbilityGuesses([]);
-            } else if (resetTime >= 24) {
-                setGuesses([]);
-                await storeAbilityGuesses([]);
-                setDailyStreak(await getAbilityStreak());
-            } else {
-                setGuesses(await getAbilityGuesses());
-                setDailyStreak(await getAbilityStreak());
-            }
-        } catch (error) {
-            console.error("Initialization error:", error);
+        if (needsReset) {
+            setGuesses([]);
+            setIsGuessed(false);
+            await storeAbilityGuesses(dayKey, []);
+        } else {
+            const stored = await getAbilityGuesses(dayKey);
+            setGuesses(stored);
+            setIsGuessed(
+                stored.some((g) => g.warframeName === todaysWf.warframeName)
+            );
         }
-    };
+    }, [dayKey, todaysWf.warframeName]);
 
     useEffect(() => {
-        if (todaysWf && yesterdayWf) {
-            initializeGame();
-        }
-    }, [todaysWf, yesterdayWf]);
+        initializeGame();
+    }, [initializeGame]);
+
+    useEffect(() => {
+        setIsGuessed(false);
+        setGuesses([]);
+        setSearchText("");
+        setVisible(false);
+        setFilteredWarframes(initialAbilities);
+        initializeGame();
+    }, [dayKey, initializeGame]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -109,21 +101,23 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
 
     const warframeSelected = useCallback(
         async (selectedWf: WarframeAbility) => {
+            const updated = [...guesses, selectedWf];
+            setGuesses(updated);
             setSearchText("");
             setFilteredWarframes(initialAbilities);
             setVisible(false);
-            const newGuesses = [...guesses, selectedWf];
-            setGuesses(newGuesses);
-            await storeAbilityGuesses(newGuesses);
-            await storeAbilityStreakTime();
+
+            await storeAbilityGuesses(dayKey, updated);
+
             if (selectedWf.warframeName === todaysWf.warframeName) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
-                await storeDailyStreak(String(newStreak));
+                await storeAbilityStreak(newStreak);
+                await storeAbilityStreakTime();
             }
         },
-        [guesses, todaysWf, dailyStreak]
+        [guesses, dayKey, todaysWf.warframeName, dailyStreak]
     );
 
     return (

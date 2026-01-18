@@ -1,3 +1,4 @@
+/* stylelint-disable @stylistic/string-quotes */
 .fd_container {
     $cont: &;
 
@@ -15,7 +16,6 @@
         max-width: 800px;
         min-height: 100vh;
 
-        // background-image: url('/assets/png/wp5835539.png');
         background-image: url("../../assets/png/wp5835539.png");
         background-position: bottom;
         background-size: cover;
@@ -29,7 +29,6 @@
         justify-content: center;
 
         width: calc(100% - 20px);
-        margin-top: 20px;
         margin-bottom: 10px;
 
         @media only screen and (max-width: 600px) {
@@ -52,7 +51,7 @@
         width: 100%;
         margin-bottom: 80px;
 
-        @media only screen and (max-width: 445px) {
+        @media only screen and (max-width: 495px) {
             overflow-x: scroll;
             align-items: flex-start;
         }
@@ -160,7 +159,7 @@
             padding: 0;
         }
 
-        @media only screen and (max-width: 445px) {
+        @media only screen and (max-width: 495px) {
             overflow-x: scroll;
             align-items: flex-start;
         }

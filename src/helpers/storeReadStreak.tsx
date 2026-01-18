@@ -2,10 +2,9 @@ import { safeGetItem, safeSetItem } from "@/app/helpers/safeStorage";
 
 export const getDailyStreak = async (): Promise<number> => {
     try {
-        const jsonValue = safeGetItem("FD_DAILY_STREAK");
-        return jsonValue !== null ? (JSON.parse(jsonValue) as number) : 0;
-    } catch (e) {
-        console.error("Error reading streak:", e);
+        const value = safeGetItem("FD_DAILY_STREAK");
+        return value ? Number(value) : 0;
+    } catch {
         return 0;
     }
 };
@@ -20,20 +19,12 @@ export const getDailyStreakTime = async (): Promise<string> => {
     }
 };
 
-export const storeDailyStreak = async (data: string): Promise<void> => {
-    try {
-        safeSetItem("FD_DAILY_STREAK", data);
-    } catch (e) {
-        console.error("Error storing streak:", e);
-    }
+export const storeDailyStreak = async (value: number): Promise<void> => {
+    safeSetItem("FD_DAILY_STREAK", value.toString());
 };
 
 export const storeDailyStreakTime = async (): Promise<void> => {
-    try {
-        safeSetItem("FD_DAILY_STREAK_TIME", new Date().toISOString());
-    } catch (e) {
-        console.error("Error storing guess time:", e);
-    }
+    safeSetItem("FD_DAILY_STREAK_TIME", new Date().toISOString());
 };
 
 //ABILITY

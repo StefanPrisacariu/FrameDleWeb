@@ -273,7 +273,7 @@ function Endless() {
                         </div>
                         <h4 className={Text.fd_text_1}>
                             Attempts
-                            {445 >= (width || 0) && (
+                            {495 >= (width || 0) && (
                                 <span
                                     className={Text.fd_text_1_info}
                                 >{`<- Scroll for more info ->`}</span>

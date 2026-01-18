@@ -166,7 +166,7 @@ export const CustomNavigator = () => {
                     <motion.div
                         initial={{
                             opacity: 0,
-                            x: -200,
+                            x: 200,
                         }}
                         animate={{
                             opacity: 1,
@@ -174,7 +174,7 @@ export const CustomNavigator = () => {
                         }}
                         exit={{
                             opacity: 0,
-                            x: -200,
+                            x: 200,
                         }}
                         transition={{
                             duration: 0.4,

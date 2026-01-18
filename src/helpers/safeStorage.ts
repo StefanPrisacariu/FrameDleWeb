@@ -1,41 +1,22 @@
-export function safeSetItem(key: string, value: string) {
-    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-        try {
-            localStorage.setItem(key, value);
-        } catch (err) {
-            console.error("localStorage.setItem failed:", err);
-        }
-    }
-}
+import { decodeStorage, encodeStorage } from "@/app/helpers/encoder";
 
-export function safeGetItem(key: string): string | null {
-    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-        try {
-            return localStorage.getItem(key);
-        } catch (err) {
-            console.error("localStorage.getItem failed:", err);
-            return null;
-        }
+export const safeSetItem = (
+    key: string,
+    value: object | string | number
+): void => {
+    try {
+        localStorage.setItem(key, encodeStorage(value));
+    } catch (e) {
+        console.error("Error storing:", e);
     }
-    return null;
-}
+};
 
-export function safeRemoveItem(key: string) {
-    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-        try {
-            localStorage.removeItem(key);
-        } catch (err) {
-            console.error("localStorage.removeItem failed:", err);
-        }
+export const safeGetItem = <T = string>(key: string): T | null => {
+    try {
+        const value = localStorage.getItem(key);
+        return value ? decodeStorage<T>(value) : null;
+    } catch (e) {
+        console.error("Error reading:", e);
+        return null;
     }
-}
-
-export function safeClear() {
-    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-        try {
-            localStorage.clear();
-        } catch (err) {
-            console.error("localStorage.clear failed:", err);
-        }
-    }
-}
+};

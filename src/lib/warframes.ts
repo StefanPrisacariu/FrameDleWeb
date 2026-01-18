@@ -340,6 +340,16 @@ export const initialWarframes: Warframe[] = [
         playstyle: ["crowd-control"],
     },
     {
+        name: "Gyre Prime",
+        gender: "female",
+        primeUmbra: "prime",
+        auraPolarity: ["naramon"],
+        progenitorElement: "electricity",
+        releaseYear: 2025,
+        image: "/warframe_portraits/gyre-prime.webp",
+        playstyle: ["crowd-control"],
+    },
+    {
         name: "Harrow",
         gender: "male",
         primeUmbra: "standard",
@@ -938,6 +948,16 @@ export const initialWarframes: Warframe[] = [
         releaseYear: 2015,
         image: "/warframe_portraits/trinity-prime.webp",
         playstyle: ["survival", "support"],
+    },
+    {
+        name: "Uriel",
+        gender: "male",
+        primeUmbra: "standard",
+        auraPolarity: ["madurai"],
+        progenitorElement: "heat",
+        releaseYear: 2025,
+        image: "/warframe_portraits/uriel.webp",
+        playstyle: ["damage", "crowd-control"],
     },
     {
         name: "Valkyr",

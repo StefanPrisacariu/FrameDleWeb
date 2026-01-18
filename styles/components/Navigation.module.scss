@@ -5,7 +5,7 @@
         position: fixed;
         z-index: 1000;
         top: 0;
-        left: 0;
+        right: 0;
 
         overflow-x: hidden;
         display: flex;
@@ -27,9 +27,12 @@
         }
 
         #{$nav}_content {
+            float: right;
+
             width: 100%;
             max-width: 600px;
             height: 100%;
+
             background-color: var(--primary);
         }
         #{$nav}_container {
@@ -44,8 +47,8 @@
         #{$nav}_button {
             position: absolute;
             z-index: 2000;
-            top: 20px;
-            right: 20px;
+            top: 21px;
+            right: 23px;
 
             margin: 0;
             padding: 0;

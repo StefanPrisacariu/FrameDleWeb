@@ -26,6 +26,7 @@ import {
 } from "@/app/helpers/storeReadStreak";
 import { storeGuesses, getGuesses } from "@/app/helpers/storeReadGuesses";
 import { checkResetNeeded } from "@/app/helpers/resetCheck";
+import { scrollToId } from "@/app/helpers/scrollToId";
 
 interface MainGame {
     todaysWf: Warframe;
@@ -33,6 +34,7 @@ interface MainGame {
 }
 
 export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
+    const dayKey = todaysWf.name;
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
@@ -44,50 +46,43 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
 
     // Resize listener
     useEffect(() => {
-        const updateDimensions = () => setWidth(window.innerWidth);
-        updateDimensions();
-        window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
+        const resize = () => setWidth(window.innerWidth);
+        resize();
+        window.addEventListener("resize", resize);
+        return () => window.removeEventListener("resize", resize);
     }, []);
 
-    // Mark guessed if last guess matches today's WF
-    useEffect(() => {
-        if (
-            guesses !== null &&
-            guesses.length > 0 &&
-            guesses[guesses.length - 1]?.name === todaysWf.name
-        ) {
-            setIsGuessed(true);
-        }
-    }, [todaysWf, guesses]);
+    // // Mark guessed if last guess matches today's WF
 
-    const initializeGame = async () => {
-        try {
-            const resetTime = await checkResetNeeded("FD_DAILY_STREAK_TIME");
+    const initializeGame = useCallback(async () => {
+        const needsReset = checkResetNeeded("FD_DAILY_STREAK_TIME");
 
-            if (resetTime >= 48) {
-                setDailyStreak(0);
-                await storeDailyStreak(String(0));
-                setGuesses([]);
-                await storeGuesses([]);
-            } else if (resetTime >= 24) {
-                setGuesses([]);
-                await storeGuesses([]);
-                setDailyStreak(await getDailyStreak());
-            } else {
-                setGuesses(await getGuesses());
-                setDailyStreak(await getDailyStreak());
-            }
-        } catch (error) {
-            console.error("Initialization error:", error);
+        const streak = await getDailyStreak();
+        setDailyStreak(streak);
+
+        if (needsReset) {
+            setGuesses([]);
+            setIsGuessed(false);
+            await storeGuesses(dayKey, []);
+        } else {
+            const stored = await getGuesses(dayKey);
+            setGuesses(stored);
+            setIsGuessed(stored.some((g) => g.name === todaysWf.name));
         }
-    };
+    }, [dayKey, todaysWf.name]);
 
     useEffect(() => {
-        if (todaysWf && yesterdayWf) {
-            initializeGame();
-        }
-    }, [todaysWf, yesterdayWf]);
+        initializeGame();
+    }, [initializeGame]);
+
+    useEffect(() => {
+        setIsGuessed(false);
+        setGuesses([]);
+        setSearchText("");
+        setVisible(false);
+        setFilteredWarframes(initialWarframes);
+        initializeGame();
+    }, [dayKey, initializeGame]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,23 +99,24 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
     );
 
     const warframeSelected = useCallback(
-        async (selectedWf: Warframe) => {
+        async (wf: Warframe) => {
+            if (wf.name === todaysWf.name) scrollToId("logo");
+            const updated = [...guesses, wf];
+            setGuesses(updated);
             setSearchText("");
-            setFilteredWarframes(initialWarframes);
             setVisible(false);
-            const newGuesses = [...guesses, selectedWf];
-            setGuesses(newGuesses);
-            await storeGuesses(newGuesses);
-            await storeDailyStreakTime();
 
-            if (selectedWf.name === todaysWf.name) {
+            await storeGuesses(dayKey, updated);
+
+            if (wf.name === todaysWf.name) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
-                await storeDailyStreak(String(newStreak));
+                await storeDailyStreak(newStreak);
+                await storeDailyStreakTime();
             }
         },
-        [guesses, todaysWf, dailyStreak]
+        [guesses, dayKey, todaysWf.name, dailyStreak]
     );
 
     return (
@@ -131,6 +127,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                     duration={3000}
                     zIndex={100}
                     particleSize={10}
+                    height={"150vh"}
                 />
             )}
             <div className={Container.fd_container_1}>
@@ -177,7 +174,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                 <Modal todaysWf={todaysWf} guesses={[...guesses].reverse()} />
             )}
             <div className={Container.fd_container_2}>
-                <div className={Input.fd_input_0}>
+                <div className={Input.fd_input_0} id="warframe-input">
                     {!isGuessed && (
                         <div className={Input.fd_input_0_wrapper}>
                             <input
@@ -189,12 +186,9 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                                 onFocus={() => {
                                     setVisible(true);
                                     if (768 >= (width || 0)) {
-                                        document
-                                            .getElementById("warframe-input")
-                                            ?.scrollIntoView();
+                                        scrollToId("warframe-input");
                                     }
                                 }}
-                                id="warframe-input"
                             />
                             <button
                                 disabled={isGuessed}
@@ -271,7 +265,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                 </div>
                 <h4 className={Text.fd_text_1}>
                     Attempts
-                    {445 >= (width || 0) && (
+                    {495 >= (width || 0) && (
                         <span
                             className={Text.fd_text_1_info}
                         >{`<- Scroll for more info ->`}</span>

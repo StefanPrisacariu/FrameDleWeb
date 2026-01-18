@@ -1226,6 +1226,32 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/trinity.webp",
     },
     {
+        warframeName: "Uriel",
+        abilities: [
+            {
+                shortcut: 1,
+                abilityName: "Infernalis",
+                icon: "UrielInfernalis.png",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Remedium",
+                icon: "UrielRemedium.png",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Demonium",
+                icon: "UrielDemonium.png",
+            },
+            {
+                shortcut: 4,
+                abilityName: "Brimstone",
+                icon: "UrielBrimstone.png",
+            },
+        ],
+        image: "/warframe_portraits/uriel.webp",
+    },
+    {
         warframeName: "Valkyr",
         abilities: [
             {

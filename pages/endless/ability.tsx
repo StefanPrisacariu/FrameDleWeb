@@ -43,13 +43,13 @@ export default function AbilityEndless() {
         generateNewAbility() as ProcessedAbility
     );
 
-    //FORCE ABILITY
+    // FORCE ABILITY
     // const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
     //     getProcessedAbility({
     //         ability: 4,
     //         variant: 1,
     //         warframe: initialAbilities.findIndex(
-    //             (item) => item.warframeName === "Nokko"
+    //             (item) => item.warframeName === "Uriel"
     //         ),
     //     }) as ProcessedAbility
     // );

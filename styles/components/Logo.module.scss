@@ -1,6 +1,7 @@
 .fd_logo {
     &_0 {
         aspect-ratio: 335 / 46;
+        width: 300px;
         object-fit: contain;
 
         @media only screen and (max-width: 600px) {

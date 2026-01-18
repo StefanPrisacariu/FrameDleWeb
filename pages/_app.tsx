@@ -19,7 +19,10 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <QueryClientProviderWrapper>
             <HydrationBoundary state={pageProps.dehydratedState}>
-                <main className={clsx(variables)}>
+                <main
+                    className={clsx(variables)}
+                    style={{ scrollBehavior: "smooth" }}
+                >
                     <div className={Section.fd_section_0}>
                         <div className={Container.fd_container_0}>
                             <div id="logo" className={Header.fd_header_0}>
