@@ -55,7 +55,7 @@ export const CustomNavigator = () => {
 
     const [colorblindMenu, setColorblindMenu] = useState<boolean>(false);
     const [colorblind, setColorblind] = useState<ColorblindMode>(
-        getColorblindMode() as ColorblindMode
+        getColorblindMode() as ColorblindMode,
     );
 
     const [endlessModes, setEndlessModes] = useState(false);
@@ -137,12 +137,12 @@ export const CustomNavigator = () => {
             document.removeEventListener(
                 "click",
                 handleClickOutsideMobile,
-                true
+                true,
             );
             document.removeEventListener(
                 "touchend",
                 handleClickOutsideMobile,
-                true
+                true,
             );
         };
     }, []);
@@ -185,7 +185,7 @@ export const CustomNavigator = () => {
                         <div className={Nav.fd_nav_0_wrap}>
                             <div ref={mobileRef} className={Nav.fd_nav_content}>
                                 <div className={Nav.fd_nav_container}>
-                                    <LogoBaban className={Logo.fd_logo_1} />
+                                    <LogoBaban className={Logo.fd_logo_0} />
                                     <button
                                         onClick={() => {
                                             setIsMobileNavVisible(false);
@@ -218,7 +218,7 @@ export const CustomNavigator = () => {
                                                             [Group.fd_group_1_button_selected]:
                                                                 descriptor ===
                                                                 "/",
-                                                        }
+                                                        },
                                                     )}
                                                 >
                                                     Home
@@ -247,7 +247,7 @@ export const CustomNavigator = () => {
                                                             [Group.fd_group_1_button_selected]:
                                                                 descriptor ===
                                                                 "/ability",
-                                                        }
+                                                        },
                                                     )}
                                                 >
                                                     Ability
@@ -281,7 +281,7 @@ export const CustomNavigator = () => {
                                                                     "/endless/warframe" ||
                                                                 descriptor ===
                                                                     "/endless/ability",
-                                                        }
+                                                        },
                                                     )}
                                                 >
                                                     Endless Modes
@@ -359,7 +359,7 @@ export const CustomNavigator = () => {
                                                                         [Group.fd_group_1_button_2_selected]:
                                                                             descriptor ===
                                                                             "/endless/warframe",
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Warframe
@@ -390,7 +390,7 @@ export const CustomNavigator = () => {
                                                                         [Group.fd_group_1_button_2_selected]:
                                                                             descriptor ===
                                                                             "/endless/ability",
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Ability
@@ -422,13 +422,14 @@ export const CustomNavigator = () => {
                                                             [Group.fd_group_1_button_selected]:
                                                                 descriptor ===
                                                                 "/info",
-                                                        }
+                                                        },
                                                     )}
                                                 >
                                                     Tutorial
                                                 </span>
                                             </div>
                                         </Link>
+
                                         <Link
                                             className={Group.fd_group_1_button}
                                             href="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
@@ -484,7 +485,7 @@ export const CustomNavigator = () => {
                                                 <div
                                                     onClick={() =>
                                                         setColorblindMenu(
-                                                            !colorblindMenu
+                                                            !colorblindMenu,
                                                         )
                                                     }
                                                     className={
@@ -505,7 +506,7 @@ export const CustomNavigator = () => {
                                                     }
                                                     onClick={() =>
                                                         setColorblindMenu(
-                                                            !colorblindMenu
+                                                            !colorblindMenu,
                                                         )
                                                     }
                                                 >
@@ -543,7 +544,7 @@ export const CustomNavigator = () => {
                                                             <span
                                                                 onClick={() =>
                                                                     handleColorblind(
-                                                                        "Disabled"
+                                                                        "Disabled",
                                                                     )
                                                                 }
                                                                 className={clsx(
@@ -552,7 +553,7 @@ export const CustomNavigator = () => {
                                                                         [Dropdown.fd_dropdown_1_menu_selected]:
                                                                             "Disabled" ===
                                                                             colorblind,
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Disabled
@@ -560,7 +561,7 @@ export const CustomNavigator = () => {
                                                             <span
                                                                 onClick={() =>
                                                                     handleColorblind(
-                                                                        "Protanopia"
+                                                                        "Protanopia",
                                                                     )
                                                                 }
                                                                 className={clsx(
@@ -569,7 +570,7 @@ export const CustomNavigator = () => {
                                                                         [Dropdown.fd_dropdown_1_menu_selected]:
                                                                             "Protanopia" ===
                                                                             colorblind,
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Protanopia
@@ -577,7 +578,7 @@ export const CustomNavigator = () => {
                                                             <span
                                                                 onClick={() =>
                                                                     handleColorblind(
-                                                                        "Deuteranopia"
+                                                                        "Deuteranopia",
                                                                     )
                                                                 }
                                                                 className={clsx(
@@ -586,7 +587,7 @@ export const CustomNavigator = () => {
                                                                         [Dropdown.fd_dropdown_1_menu_selected]:
                                                                             "Deuteranopia" ===
                                                                             colorblind,
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Deuteranopia
@@ -594,7 +595,7 @@ export const CustomNavigator = () => {
                                                             <span
                                                                 onClick={() =>
                                                                     handleColorblind(
-                                                                        "Tritanopia"
+                                                                        "Tritanopia",
                                                                     )
                                                                 }
                                                                 className={clsx(
@@ -603,7 +604,7 @@ export const CustomNavigator = () => {
                                                                         [Dropdown.fd_dropdown_1_menu_selected]:
                                                                             "Tritanopia" ===
                                                                             colorblind,
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Tritanopia
@@ -611,7 +612,7 @@ export const CustomNavigator = () => {
                                                             <span
                                                                 onClick={() =>
                                                                     handleColorblind(
-                                                                        "Achromatopsia"
+                                                                        "Achromatopsia",
                                                                     )
                                                                 }
                                                                 className={clsx(
@@ -620,7 +621,7 @@ export const CustomNavigator = () => {
                                                                         [Dropdown.fd_dropdown_1_menu_selected]:
                                                                             "Achromatopsia" ===
                                                                             colorblind,
-                                                                    }
+                                                                    },
                                                                 )}
                                                             >
                                                                 Achromatopsia
@@ -634,6 +635,9 @@ export const CustomNavigator = () => {
                                             <Link
                                                 href="https://play.google.com/store/apps/details?id=com.framedle"
                                                 target="_blank"
+                                                className={
+                                                    Group.fd_group_visibility
+                                                }
                                             >
                                                 <div>
                                                     <Image

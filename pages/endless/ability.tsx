@@ -40,7 +40,7 @@ export default function AbilityEndless() {
         useState(initialAbilities);
     const [width, setWidth] = useState<number>();
     const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
-        generateNewAbility() as ProcessedAbility
+        generateNewAbility() as ProcessedAbility,
     );
 
     // FORCE ABILITY
@@ -78,11 +78,11 @@ export default function AbilityEndless() {
             setVisible(true);
             setFilteredWarframes(
                 initialAbilities.filter((wf) =>
-                    wf.warframeName.toLowerCase().includes(value.toLowerCase())
-                )
+                    wf.warframeName.toLowerCase().includes(value.toLowerCase()),
+                ),
             );
         },
-        []
+        [],
     );
 
     const warframeSelected = useCallback(
@@ -99,7 +99,7 @@ export default function AbilityEndless() {
                 }
             }
         },
-        [guesses, todaysWf]
+        [guesses, todaysWf],
     );
 
     const newWarframe = useCallback(() => {
@@ -179,8 +179,8 @@ export default function AbilityEndless() {
                                         isGuessed
                                             ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
                                             : guesses.length >= 1
-                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                            : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                              ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                              : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
                                     }
                                 />
                                 <div
@@ -188,8 +188,8 @@ export default function AbilityEndless() {
                                         isGuessed
                                             ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
                                             : guesses.length >= 2
-                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                            : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                              ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                              : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
                                     }
                                 />
                                 <div
@@ -197,8 +197,8 @@ export default function AbilityEndless() {
                                         isGuessed
                                             ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
                                             : guesses.length >= 3
-                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                            : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                              ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                              : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
                                     }
                                 />
                             </div>
@@ -209,7 +209,7 @@ export default function AbilityEndless() {
                         <h2
                             className={clsx(
                                 Group.fd_group_0_label,
-                                Group.fd_group_pb_10
+                                Group.fd_group_pb_10,
                             )}
                         >
                             <span className={Text.fd_text_0}>Endless</span>
@@ -247,7 +247,7 @@ export default function AbilityEndless() {
                                             if (768 >= (width || 0)) {
                                                 document
                                                     .getElementById(
-                                                        "warframe-input"
+                                                        "warframe-input",
                                                     )
                                                     ?.scrollIntoView();
                                             }

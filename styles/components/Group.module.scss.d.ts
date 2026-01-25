@@ -18,6 +18,7 @@ export type Styles = {
   'fd_group_1_section': string;
   'fd_group_2': string;
   'fd_group_pb_10': string;
+  'fd_group_visibility': string;
 };
 
 export type ClassNames = keyof Styles;

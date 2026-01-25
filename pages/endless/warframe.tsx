@@ -31,7 +31,7 @@ function Endless() {
     const [todaysWf, setTodaysWf] = useState<Warframe>(
         initialWarframes[
             Math.floor(Math.random() * (initialWarframes.length + 1))
-        ] as Warframe
+        ] as Warframe,
     );
     const [isGuessed, setIsGuessed] = useState(false);
     const [width, setWidth] = useState<number>();
@@ -60,11 +60,11 @@ function Endless() {
             setVisible(true);
             setFilteredWarframes(
                 initialWarframes.filter((wf) =>
-                    wf.name.toLowerCase().includes(value.toLowerCase())
-                )
+                    wf.name.toLowerCase().includes(value.toLowerCase()),
+                ),
             );
         },
-        []
+        [],
     );
 
     const warframeSelected = useCallback(
@@ -81,7 +81,7 @@ function Endless() {
                 }
             }
         },
-        [guesses, todaysWf]
+        [guesses, todaysWf],
     );
 
     const newWarframe = useCallback(() => {
@@ -90,7 +90,7 @@ function Endless() {
         setTodaysWf(
             initialWarframes[
                 Math.floor(Math.random() * (initialWarframes.length + 1))
-            ] as Warframe
+            ] as Warframe,
         );
     }, []);
 
@@ -159,7 +159,7 @@ function Endless() {
                     <h2
                         className={clsx(
                             Group.fd_group_0_label,
-                            Group.fd_group_pb_10
+                            Group.fd_group_pb_10,
                         )}
                     >
                         <span className={Text.fd_text_0}>Endless</span>
@@ -185,7 +185,7 @@ function Endless() {
                                             if (768 >= (width || 0)) {
                                                 document
                                                     .getElementById(
-                                                        "warframe-input"
+                                                        "warframe-input",
                                                     )
                                                     ?.scrollIntoView();
                                             }

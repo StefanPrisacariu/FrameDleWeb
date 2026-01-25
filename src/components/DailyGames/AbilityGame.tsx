@@ -29,6 +29,7 @@ import { checkResetNeeded } from "@/app/helpers/resetCheck";
 import { initialAbilities } from "@/app/lib/abilities";
 import { GuessAbility } from "@/app/components/GuessAbility";
 import { AbilityModal } from "@/app/components/AbilityModal";
+import { scrollToId } from "@/app/helpers/scrollToId";
 
 interface AbilityGame {
     todaysWf: ProcessedAbility;
@@ -67,7 +68,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
             const stored = await getAbilityGuesses(dayKey);
             setGuesses(stored);
             setIsGuessed(
-                stored.some((g) => g.warframeName === todaysWf.warframeName)
+                stored.some((g) => g.warframeName === todaysWf.warframeName),
             );
         }
     }, [dayKey, todaysWf.warframeName]);
@@ -92,15 +93,17 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
             setVisible(true);
             setFilteredWarframes(
                 initialAbilities.filter((wf) =>
-                    wf.warframeName.toLowerCase().includes(value.toLowerCase())
-                )
+                    wf.warframeName.toLowerCase().includes(value.toLowerCase()),
+                ),
             );
         },
-        []
+        [],
     );
 
     const warframeSelected = useCallback(
         async (selectedWf: WarframeAbility) => {
+            if (selectedWf.warframeName === todaysWf.warframeName)
+                scrollToId("logo");
             const updated = [...guesses, selectedWf];
             setGuesses(updated);
             setSearchText("");
@@ -117,7 +120,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                 await storeAbilityStreakTime();
             }
         },
-        [guesses, dayKey, todaysWf.warframeName, dailyStreak]
+        [guesses, dayKey, todaysWf.warframeName, dailyStreak],
     );
 
     return (
@@ -172,8 +175,8 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                                 isGuessed
                                     ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
                                     : guesses.length >= 1
-                                    ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                      ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                      : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
                             }
                         />
                         <div
@@ -181,8 +184,8 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                                 isGuessed
                                     ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
                                     : guesses.length >= 2
-                                    ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                      ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                      : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
                             }
                         />
                         <div
@@ -190,8 +193,8 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                                 isGuessed
                                     ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
                                     : guesses.length >= 3
-                                    ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
+                                      ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
+                                      : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
                             }
                         />
                     </div>
@@ -206,7 +209,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                     </div>
                 </div>
             </div>
-            <span className={Text.fd_text_0}>
+            <span className={Text.fd_text_0} id="warframe-input">
                 <TimerComponent />
             </span>
             <>
@@ -238,12 +241,9 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                                 onFocus={() => {
                                     setVisible(true);
                                     if (768 >= (width || 0)) {
-                                        document
-                                            .getElementById("warframe-input")
-                                            ?.scrollIntoView();
+                                        scrollToId("warframe-input");
                                     }
                                 }}
-                                id="warframe-input"
                             />
                             <button
                                 disabled={isGuessed}

@@ -2,7 +2,7 @@ import { decodeStorage, encodeStorage } from "@/app/helpers/encoder";
 
 export const safeSetItem = (
     key: string,
-    value: object | string | number
+    value: object | string | number,
 ): void => {
     try {
         localStorage.setItem(key, encodeStorage(value));
@@ -12,6 +12,9 @@ export const safeSetItem = (
 };
 
 export const safeGetItem = <T = string>(key: string): T | null => {
+    if (typeof window === "undefined") {
+        return null;
+    }
     try {
         const value = localStorage.getItem(key);
         return value ? decodeStorage<T>(value) : null;

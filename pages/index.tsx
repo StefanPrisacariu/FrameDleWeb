@@ -43,14 +43,14 @@ export default function Home() {
     return (
         <>
             <NextSeo
-                title="FrameDle - The Ultimate Warframe Guessing Game for True Tenno"
-                description="Think you know Warframe? Guess the Warframe of the day using clues like gender, aura polarity, and unique traits. Challenge your Tenno knowledge daily!"
+                title="FrameDle – Daily Warframe Guessing Game for Tenno"
+                description="Think you know Warframe? Guess the Warframe of the day using clues like abilities, gender, aura polarity, and unique traits. Test your Tenno knowledge daily!"
                 canonical="https://framedle.org/"
                 openGraph={{
                     url: "https://framedle.org/",
-                    title: "FrameDle - The Ultimate Warframe Guessing Game for True Tenno",
+                    title: "FrameDle – Daily Warframe Guessing Game for Tenno",
                     description:
-                        "Think you know Warframe? Guess the Warframe of the day using clues like gender, aura polarity, and unique traits. Challenge your Tenno knowledge daily!",
+                        "Guess the Warframe of the day using in-game clues. A daily challenge for true Tenno.",
                     site_name: "FrameDle",
                     type: "website",
                     images: [
@@ -58,7 +58,7 @@ export default function Home() {
                             url: "https://framedle.org/thumbnail.png",
                             width: 1200,
                             height: 630,
-                            alt: "FrameDle - Warframe Guessing Game",
+                            alt: "FrameDle – Daily Warframe Guessing Game",
                         },
                     ],
                 }}
@@ -66,6 +66,10 @@ export default function Home() {
                     cardType: "summary_large_image",
                 }}
                 additionalMetaTags={[
+                    {
+                        name: "robots",
+                        content: "index, follow",
+                    },
                     {
                         name: "keywords",
                         content:

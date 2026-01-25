@@ -175,6 +175,10 @@
         padding-top: 40px;
     }
 
+    &_visibility {
+        display: var(--display-google-button, block);
+    }
+
     &_pb_10 {
         padding-bottom: 10px;
     }

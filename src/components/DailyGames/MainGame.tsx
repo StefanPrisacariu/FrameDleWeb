@@ -91,11 +91,11 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
             setVisible(true);
             setFilteredWarframes(
                 initialWarframes.filter((wf) =>
-                    wf.name.toLowerCase().includes(value.toLowerCase())
-                )
+                    wf.name.toLowerCase().includes(value.toLowerCase()),
+                ),
             );
         },
-        []
+        [],
     );
 
     const warframeSelected = useCallback(
@@ -116,7 +116,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                 await storeDailyStreakTime();
             }
         },
-        [guesses, dayKey, todaysWf.name, dailyStreak]
+        [guesses, dayKey, todaysWf.name, dailyStreak],
     );
 
     return (
@@ -143,7 +143,6 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                         />
                     </div>
                 </div>
-
                 <div className={ImgStyle.fd_imgstyle_0}>
                     {isGuessed ? (
                         <Image
@@ -167,14 +166,14 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                     </div>
                 </div>
             </div>
-            <span className={Text.fd_text_0}>
+            <span className={Text.fd_text_0} id="warframe-input">
                 <TimerComponent />
             </span>
             {isGuessed && guesses.length > 0 && (
                 <Modal todaysWf={todaysWf} guesses={[...guesses].reverse()} />
             )}
             <div className={Container.fd_container_2}>
-                <div className={Input.fd_input_0} id="warframe-input">
+                <div className={Input.fd_input_0}>
                     {!isGuessed && (
                         <div className={Input.fd_input_0_wrapper}>
                             <input

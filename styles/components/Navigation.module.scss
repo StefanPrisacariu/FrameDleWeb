@@ -43,11 +43,12 @@
 
             height: 100%;
             padding: 20px;
+            padding-top: calc(20px + var(--native-safe-top, 0px));
         }
         #{$nav}_button {
             position: absolute;
             z-index: 2000;
-            top: 21px;
+            top: calc(21px + var(--native-safe-top, 0px));
             right: 23px;
 
             margin: 0;

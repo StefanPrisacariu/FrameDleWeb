@@ -9,6 +9,7 @@
         width: calc(100% - 30px);
         margin-top: 10px;
         margin-bottom: 10px;
+        padding-top: var(--native-safe-top, 0) !important;
         padding-right: 15px !important;
         padding-left: 15px !important;
 
