@@ -1,0 +1,57 @@
+.fd_progress {
+    $prog: &;
+
+    &_0 {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 10px;
+
+        &_wrap {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        &_bar {
+            position: absolute;
+            z-index: 1;
+
+            width: calc(100% + 40px);
+            height: 20px;
+            border: 3px solid var(--gold);
+            border-radius: 30px;
+
+            background-color: var(--primary);
+        }
+
+        #{$prog}_image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 5px;
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+
+            background-color: var(--primary);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+
+            &_check {
+                position: absolute;
+                right: -5px;
+                bottom: -5px;
+
+                border-radius: 50%;
+
+                background-color: var(--light);
+            }
+        }
+    }
+}

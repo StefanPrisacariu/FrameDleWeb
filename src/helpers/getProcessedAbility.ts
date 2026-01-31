@@ -1,42 +1,36 @@
 import { abilityIcon } from "@/app/helpers/abilityIcon";
 import { initialAbilities } from "@/app/lib/abilities";
 
-export function getProcessedAbility(
-    api: AbilityToday
-): ProcessedAbility | null {
-    const today = initialAbilities[api.warframe];
-    if (!today) {
-        return null;
-    }
+const FALLBACK_WARFRAME = "Unknown Warframe";
+const FALLBACK_ABILITY = "Unknown Ability";
+const FALLBACK_ICON = abilityIcon("default");
 
-    const ability = today.abilities.find(
-        (a) => a.shortcut === api.ability
-    ) as Ability;
-    if (!ability) {
-        return null;
-    }
+export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
+    const today = initialAbilities[api.warframe] ?? {
+        warframeName: FALLBACK_WARFRAME,
+        abilities: [],
+    };
 
-    let abilityName: string;
-    let icon: string;
+    const ability = today.abilities.find((a) => a.shortcut === api.ability) ?? {
+        abilityName: FALLBACK_ABILITY,
+        icon: "default",
+    };
 
-    if (Array.isArray(ability.abilityName) && Array.isArray(ability.icon)) {
-        const idx = Math.max(0, api.variant - 1);
-        abilityName =
-            ability.abilityName[idx] ?? (ability.abilityName[0] as string);
-        icon = abilityIcon(ability.icon[idx] ?? (ability.icon[0] as string));
-    } else if (
-        typeof ability.abilityName === "string" &&
-        typeof ability.icon === "string"
-    ) {
-        abilityName = ability.abilityName;
-        icon = abilityIcon(ability.icon);
-    } else {
-        return null;
-    }
+    const idx = Math.max(0, (api.variant || 1) - 1);
+
+    const abilityName = Array.isArray(ability.abilityName)
+        ? (ability.abilityName[idx] ??
+          ability.abilityName[0] ??
+          FALLBACK_ABILITY)
+        : (ability.abilityName ?? FALLBACK_ABILITY);
+
+    const iconKey = Array.isArray(ability.icon)
+        ? (ability.icon[idx] ?? ability.icon[0] ?? "default")
+        : (ability.icon ?? "default");
 
     return {
-        warframeName: today.warframeName,
+        warframeName: today.warframeName ?? FALLBACK_WARFRAME,
         abilityName,
-        icon,
+        icon: abilityIcon(iconKey) ?? FALLBACK_ICON,
     };
 }

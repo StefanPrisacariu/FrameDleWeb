@@ -30,10 +30,12 @@ import { initialAbilities } from "@/app/lib/abilities";
 import { GuessAbility } from "@/app/components/GuessAbility";
 import { AbilityModal } from "@/app/components/AbilityModal";
 import { scrollToId } from "@/app/helpers/scrollToId";
+import { useTags } from "@/app/context/TagsContext";
+import { StreakProgress } from "@/app/components/StreakProgress";
 
 interface AbilityGame {
     todaysWf: ProcessedAbility;
-    yesterdayWf: AbilityYesterday;
+    yesterdayWf: number;
 }
 
 export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
@@ -46,6 +48,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
     const [filteredWarframes, setFilteredWarframes] =
         useState(initialAbilities);
     const [width, setWidth] = useState<number>();
+    const { state, updateState } = useTags();
 
     useEffect(() => {
         const updateDimensions = () => setWidth(window.innerWidth);
@@ -54,37 +57,51 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
-    const initializeGame = useCallback(async () => {
-        const needsReset = checkResetNeeded("FD_ABILITY_STREAK_TIME");
-
-        const streak = await getAbilityStreak();
-        setDailyStreak(streak);
-
-        if (needsReset) {
-            setGuesses([]);
-            setIsGuessed(false);
-            await storeAbilityGuesses(dayKey, []);
-        } else {
-            const stored = await getAbilityGuesses(dayKey);
-            setGuesses(stored);
-            setIsGuessed(
-                stored.some((g) => g.warframeName === todaysWf.warframeName),
-            );
-        }
-    }, [dayKey, todaysWf.warframeName]);
-
-    useEffect(() => {
-        initializeGame();
-    }, [initializeGame]);
-
     useEffect(() => {
         setIsGuessed(false);
         setGuesses([]);
         setSearchText("");
         setVisible(false);
         setFilteredWarframes(initialAbilities);
-        initializeGame();
-    }, [dayKey, initializeGame]);
+
+        const resetTime = checkResetNeeded("FD_ABILITY_STREAK_TIME");
+        const streak = getAbilityStreak();
+        const tempGuesses = getAbilityGuesses(dayKey);
+
+        switch (true) {
+            case resetTime >= 48: {
+                setDailyStreak(0);
+                storeAbilityStreak(0);
+
+                setGuesses([]);
+                storeAbilityGuesses(dayKey, []);
+
+                setIsGuessed(false);
+                break;
+            }
+
+            case resetTime >= 24 && resetTime < 48: {
+                setGuesses([]);
+                storeAbilityGuesses(dayKey, []);
+
+                setDailyStreak(streak);
+                setIsGuessed(false);
+                break;
+            }
+
+            case resetTime < 24: {
+                setGuesses(tempGuesses);
+                setDailyStreak(streak);
+
+                const lastGuess =
+                    tempGuesses?.[tempGuesses.length - 1]?.warframeName;
+
+                setIsGuessed(lastGuess === todaysWf.warframeName);
+
+                break;
+            }
+        }
+    }, [dayKey, todaysWf.warframeName]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,8 +117,14 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
         [],
     );
 
+    useEffect(() => {
+        if (state.ability !== isGuessed) {
+            updateState("ability", isGuessed);
+        }
+    }, [isGuessed, state.ability, updateState]);
+
     const warframeSelected = useCallback(
-        async (selectedWf: WarframeAbility) => {
+        (selectedWf: WarframeAbility) => {
             if (selectedWf.warframeName === todaysWf.warframeName)
                 scrollToId("logo");
             const updated = [...guesses, selectedWf];
@@ -110,14 +133,14 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
             setFilteredWarframes(initialAbilities);
             setVisible(false);
 
-            await storeAbilityGuesses(dayKey, updated);
+            storeAbilityGuesses(dayKey, updated);
 
             if (selectedWf.warframeName === todaysWf.warframeName) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
-                await storeAbilityStreak(newStreak);
-                await storeAbilityStreakTime();
+                storeAbilityStreak(newStreak);
+                storeAbilityStreakTime();
             }
         },
         [guesses, dayKey, todaysWf.warframeName, dailyStreak],
@@ -141,12 +164,9 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                             width={50}
                             height={50}
                             className={Group.fd_group_0_wrap_image}
-                            src={
-                                initialAbilities[yesterdayWf.warframe]
-                                    ?.image as string
-                            }
+                            src={initialAbilities[yesterdayWf]?.image as string}
                             alt={
-                                initialAbilities[yesterdayWf.warframe]
+                                initialAbilities[yesterdayWf]
                                     ?.warframeName as string
                             }
                         />
@@ -200,14 +220,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                     </div>
                 </div>
 
-                <div className={Group.fd_group_0}>
-                    <h3 className={Group.fd_group_0_label}>Daily</h3>
-                    <div className={Group.fd_group_0_wrap_2}>
-                        <span className={Group.fd_group_0_wrap_2_streak}>
-                            {dailyStreak || "0"}
-                        </span>
-                    </div>
-                </div>
+                <StreakProgress streak={dailyStreak} />
             </div>
             <span className={Text.fd_text_0} id="warframe-input">
                 <TimerComponent />

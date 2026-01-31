@@ -1,49 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import { NextSeo } from "next-seo";
 import { useQuery } from "@tanstack/react-query";
 import { OrbitProgress } from "react-loading-indicators";
 
 import Loader from "@/styles/components/Loader.module.scss";
-import {
-    fetchTodaysAbility,
-    fetchYesterdayAbility,
-} from "@/app/lib/queries/warframe";
+
 import { AbilityGame } from "@/app/components/DailyGames/AbilityGame";
+import { getAbilityOfTheDay } from "@/app/lib/queries/apiQuery";
+import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
 
 export default function Ability() {
-    const [netError] = useState(false);
-
-    // Fetch Warframe data using TanStack Query
-    const {
-        data: todaysWf,
-        isLoading: todayLoading,
-        isError: todayError,
-    } = useQuery({
-        queryKey: ["todayAbility"],
-        queryFn: fetchTodaysAbility,
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["ability"],
+        queryFn: getAbilityOfTheDay,
         staleTime: 0,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
         gcTime: 0,
     });
-
-    const {
-        data: yesterdayWf,
-        isLoading: yesterdayLoading,
-        isError: yesterdayError,
-    } = useQuery({
-        queryKey: ["yesterdayAbility"],
-        queryFn: fetchYesterdayAbility,
-        staleTime: 0,
-        refetchOnMount: true,
-        refetchOnWindowFocus: true,
-        gcTime: 0,
-    });
-
-    const loading = todayLoading || yesterdayLoading;
-    const error = todayError || yesterdayError || netError;
 
     return (
         <>
@@ -82,12 +57,12 @@ export default function Ability() {
             <h1>Welcome to FrameDle!</h1>
             <h2 className="dont">Ability Mode</h2>
 
-            {loading && (
+            {isLoading && (
                 <div className={Loader.fd_loader_0}>
                     <OrbitProgress size="medium" color={"#FFFFFF"} />
                 </div>
             )}
-            {error && (
+            {isError && (
                 <div className={Loader.fd_loader_0}>
                     <p className="networkError" style={{ textAlign: "center" }}>
                         There was a server error
@@ -97,8 +72,11 @@ export default function Ability() {
                     </p>
                 </div>
             )}
-            {todaysWf && yesterdayWf && (
-                <AbilityGame todaysWf={todaysWf} yesterdayWf={yesterdayWf} />
+            {data && (
+                <AbilityGame
+                    todaysWf={getProcessedAbility(data.today)}
+                    yesterdayWf={data.yesterday}
+                />
             )}
         </>
     );

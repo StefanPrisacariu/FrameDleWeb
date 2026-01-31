@@ -13,27 +13,32 @@ import Header from "@/styles/components/Header.module.scss";
 import Logo from "@/styles/components/Logo.module.scss";
 import LogoBaban from "@/assets/svg/title-logo.svg";
 import { CustomNavigator } from "@/app/components/CustomNavigator";
+import { TagsProvider } from "@/app/context/TagsContext";
+import { DailyProgress } from "@/app/components/DailyProgress";
 
 export default function App({ Component, pageProps }: AppProps) {
     const { variables } = useLocalFonts();
     return (
-        <QueryClientProviderWrapper>
-            <HydrationBoundary state={pageProps.dehydratedState}>
-                <main
-                    className={clsx(variables)}
-                    style={{ scrollBehavior: "smooth" }}
-                >
-                    <div className={Section.fd_section_0}>
-                        <div className={Container.fd_container_0}>
-                            <div id="logo" className={Header.fd_header_0}>
-                                <LogoBaban className={Logo.fd_logo_0} />
+        <TagsProvider>
+            <QueryClientProviderWrapper>
+                <HydrationBoundary state={pageProps.dehydratedState}>
+                    <main
+                        className={clsx(variables)}
+                        style={{ scrollBehavior: "smooth" }}
+                    >
+                        <div className={Section.fd_section_0}>
+                            <div className={Container.fd_container_0}>
+                                <div id="logo" className={Header.fd_header_0}>
+                                    <LogoBaban className={Logo.fd_logo_0} />
+                                    <DailyProgress />
+                                </div>
+                                <Component {...pageProps} />
+                                <CustomNavigator />
                             </div>
-                            <Component {...pageProps} />
-                            <CustomNavigator />
                         </div>
-                    </div>
-                </main>
-            </HydrationBoundary>
-        </QueryClientProviderWrapper>
+                    </main>
+                </HydrationBoundary>
+            </QueryClientProviderWrapper>
+        </TagsProvider>
     );
 }

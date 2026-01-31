@@ -27,6 +27,8 @@ import {
 import { storeGuesses, getGuesses } from "@/app/helpers/storeReadGuesses";
 import { checkResetNeeded } from "@/app/helpers/resetCheck";
 import { scrollToId } from "@/app/helpers/scrollToId";
+import { useTags } from "@/app/context/TagsContext";
+import { StreakProgress } from "@/app/components/StreakProgress";
 
 interface MainGame {
     todaysWf: Warframe;
@@ -44,6 +46,8 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
         useState(initialWarframes);
     const [width, setWidth] = useState<number>();
 
+    const { state, updateState } = useTags();
+
     // Resize listener
     useEffect(() => {
         const resize = () => setWidth(window.innerWidth);
@@ -52,37 +56,50 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
         return () => window.removeEventListener("resize", resize);
     }, []);
 
-    // // Mark guessed if last guess matches today's WF
-
-    const initializeGame = useCallback(async () => {
-        const needsReset = checkResetNeeded("FD_DAILY_STREAK_TIME");
-
-        const streak = await getDailyStreak();
-        setDailyStreak(streak);
-
-        if (needsReset) {
-            setGuesses([]);
-            setIsGuessed(false);
-            await storeGuesses(dayKey, []);
-        } else {
-            const stored = await getGuesses(dayKey);
-            setGuesses(stored);
-            setIsGuessed(stored.some((g) => g.name === todaysWf.name));
-        }
-    }, [dayKey, todaysWf.name]);
-
-    useEffect(() => {
-        initializeGame();
-    }, [initializeGame]);
-
     useEffect(() => {
         setIsGuessed(false);
         setGuesses([]);
         setSearchText("");
         setVisible(false);
         setFilteredWarframes(initialWarframes);
-        initializeGame();
-    }, [dayKey, initializeGame]);
+
+        const resetTime = checkResetNeeded("FD_DAILY_STREAK_TIME");
+        const streak = getDailyStreak();
+        const tempGuesses = getGuesses(dayKey);
+
+        switch (true) {
+            case resetTime >= 48: {
+                setDailyStreak(0);
+                storeDailyStreak(0);
+
+                setGuesses([]);
+                storeGuesses(dayKey, []);
+
+                setIsGuessed(false);
+                break;
+            }
+
+            case resetTime >= 24 && resetTime < 48: {
+                setGuesses([]);
+                storeGuesses(dayKey, []);
+
+                setDailyStreak(streak);
+                setIsGuessed(false);
+                break;
+            }
+
+            case resetTime < 24: {
+                setGuesses(tempGuesses);
+                setDailyStreak(streak);
+
+                const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
+
+                setIsGuessed(lastGuess === todaysWf.name);
+
+                break;
+            }
+        }
+    }, [dayKey, todaysWf.name]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,22 +115,28 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
         [],
     );
 
+    useEffect(() => {
+        if (state.daily !== isGuessed) {
+            updateState("daily", isGuessed);
+        }
+    }, [isGuessed, state.daily, updateState]);
+
     const warframeSelected = useCallback(
-        async (wf: Warframe) => {
+        (wf: Warframe) => {
             if (wf.name === todaysWf.name) scrollToId("logo");
             const updated = [...guesses, wf];
             setGuesses(updated);
             setSearchText("");
             setVisible(false);
 
-            await storeGuesses(dayKey, updated);
+            storeGuesses(dayKey, updated);
 
             if (wf.name === todaysWf.name) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
-                await storeDailyStreak(newStreak);
-                await storeDailyStreakTime();
+                storeDailyStreak(newStreak);
+                storeDailyStreakTime();
             }
         },
         [guesses, dayKey, todaysWf.name, dailyStreak],
@@ -143,6 +166,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                         />
                     </div>
                 </div>
+
                 <div className={ImgStyle.fd_imgstyle_0}>
                     {isGuessed ? (
                         <Image
@@ -157,14 +181,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                     )}
                 </div>
 
-                <div className={Group.fd_group_0}>
-                    <h3 className={Group.fd_group_0_label}>Daily</h3>
-                    <div className={Group.fd_group_0_wrap_2}>
-                        <span className={Group.fd_group_0_wrap_2_streak}>
-                            {dailyStreak || "0"}
-                        </span>
-                    </div>
-                </div>
+                <StreakProgress streak={dailyStreak} />
             </div>
             <span className={Text.fd_text_0} id="warframe-input">
                 <TimerComponent />

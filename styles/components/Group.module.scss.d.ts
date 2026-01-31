@@ -17,8 +17,17 @@ export type Styles = {
   'fd_group_1_button_text': string;
   'fd_group_1_section': string;
   'fd_group_2': string;
+  'fd_group_3': string;
+  'fd_group_3_label': string;
+  'fd_group_3_wrap': string;
+  'fd_group_3_wrap__streak_bronze': string;
+  'fd_group_3_wrap__streak_gold': string;
+  'fd_group_3_wrap__streak_orokin': string;
+  'fd_group_3_wrap__streak_silver': string;
+  'fd_group_3_wrap_streak': string;
   'fd_group_pb_10': string;
   'fd_group_visibility': string;
+  'orokinGlow': string;
 };
 
 export type ClassNames = keyof Styles;

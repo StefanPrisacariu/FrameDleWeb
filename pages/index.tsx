@@ -4,41 +4,20 @@ import { NextSeo } from "next-seo";
 import { useQuery } from "@tanstack/react-query";
 import { OrbitProgress } from "react-loading-indicators";
 import Loader from "@/styles/components/Loader.module.scss";
-import {
-    fetchTodaysWarframe,
-    fetchYesterdayWarframe,
-} from "@/app/lib/queries/warframe";
+
 import { MainGame } from "@/app/components/DailyGames/MainGame";
+import { getWarframeOfTheDay } from "@/app/lib/queries/apiQuery";
+import { initialWarframes } from "@/app/lib/warframes";
 
 export default function Home() {
-    const {
-        data: todaysWf,
-        isLoading: todayLoading,
-        isError: todayError,
-    } = useQuery({
-        queryKey: ["today"],
-        queryFn: fetchTodaysWarframe,
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["warframe"],
+        queryFn: getWarframeOfTheDay,
         staleTime: 0,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
         gcTime: 0,
     });
-
-    const {
-        data: yesterdayWf,
-        isLoading: yesterdayLoading,
-        isError: yesterdayError,
-    } = useQuery({
-        queryKey: ["yesterday"],
-        queryFn: fetchYesterdayWarframe,
-        staleTime: 0,
-        refetchOnMount: true,
-        refetchOnWindowFocus: true,
-        gcTime: 0,
-    });
-
-    const loading = todayLoading || yesterdayLoading;
-    const error = todayError || yesterdayError;
 
     return (
         <>
@@ -80,12 +59,12 @@ export default function Home() {
 
             <h1>Welcome to FrameDle!</h1>
             <h2 className="dont">Daily Mode</h2>
-            {loading && (
+            {isLoading && (
                 <div className={Loader.fd_loader_0}>
                     <OrbitProgress size="medium" color={"#FFFFFF"} />
                 </div>
             )}
-            {error && (
+            {isError && (
                 <div className={Loader.fd_loader_0}>
                     <p className="networkError" style={{ textAlign: "center" }}>
                         There was a server error
@@ -95,8 +74,13 @@ export default function Home() {
                     </p>
                 </div>
             )}
-            {todaysWf && yesterdayWf && (
-                <MainGame todaysWf={todaysWf} yesterdayWf={yesterdayWf} />
+            {data && (
+                <MainGame
+                    todaysWf={
+                        initialWarframes[data.today as number] as Warframe
+                    }
+                    yesterdayWf={initialWarframes[data.yesterday] as Warframe}
+                />
             )}
         </>
     );

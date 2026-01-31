@@ -82,3 +82,17 @@ declare type WarframeAbility = {
     abilities: Ability[];
     image: string;
 };
+
+declare type WarframeOfTheDayResponse = {
+    today: number;
+    yesterday: number;
+};
+
+declare type AbilityOfTheDayResponse = {
+    today: {
+        warframe: number;
+        ability: number;
+        variant: number;
+    };
+    yesterday: number;
+};

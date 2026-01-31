@@ -26,8 +26,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import ArcaneOn from "@/assets/png/icons/arcaneOn.webp";
 import ArcaneOff from "@/assets/png/icons/arcaneOff.webp";
-import Mission from "@/assets/png/icons/IconMissionMarkerExtraction.webp";
-import Focus from "@/assets/png/icons/focus.png";
+import Mission from "/public/game_progress/warframe.webp";
+import Focus from "/public/game_progress/ability.webp";
 import Utility from "@/assets/png/icons/IconUtility.webp";
 import Quest from "@/assets/png/icons/IconQuest.webp";
 import Feedback from "@/assets/png/icons/Chem_w.webp";
@@ -61,8 +61,8 @@ export const CustomNavigator = () => {
     const [endlessModes, setEndlessModes] = useState(false);
 
     useEffect(() => {
-        const fetchToggle = async () => {
-            const storedToggle: boolean = await getIndicatorToggle();
+        const fetchToggle = () => {
+            const storedToggle: boolean = getIndicatorToggle();
             setVisible(storedToggle);
         };
         fetchToggle();
@@ -80,11 +80,11 @@ export const CustomNavigator = () => {
     };
 
     useEffect(() => {
-        const handleNavigate = async () => {
+        const handleNavigate = () => {
             if (descriptor === "/info") {
                 setVisible(false);
             } else {
-                const storedToggle: boolean = await getIndicatorToggle();
+                const storedToggle: boolean = getIndicatorToggle();
                 setVisible(storedToggle);
             }
         };
