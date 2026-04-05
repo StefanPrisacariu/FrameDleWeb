@@ -21,6 +21,7 @@ import { initialAbilities } from "@/app/lib/abilities";
 import { GuessAbility } from "@/app/components/GuessAbility";
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
 import clsx from "clsx";
+import { abilityIcon } from "@/app/helpers/abilityIcon";
 
 function generateNewAbility(): ProcessedAbility | null {
     const asd = {
@@ -86,18 +87,17 @@ export default function AbilityEndless() {
     );
 
     const warframeSelected = useCallback(
-        async (selectedWf: WarframeAbility) => {
-            setFilteredWarframes(initialAbilities);
+        (selectedWf: WarframeAbility) => {
             setVisible(false);
             if (todaysWf !== null) {
                 setSearchText("");
 
-                setFilteredWarframes(initialAbilities);
                 setGuesses([...guesses, selectedWf]);
                 if (selectedWf.warframeName === todaysWf.warframeName) {
                     setIsGuessed(true);
                 }
             }
+            setFilteredWarframes(initialAbilities);
         },
         [guesses, todaysWf],
     );
@@ -107,6 +107,42 @@ export default function AbilityEndless() {
         setGuesses([]);
         setTodaysWf(generateNewAbility() as ProcessedAbility);
     }, []);
+
+    // const fullList = initialAbilities.map((item) => (
+    //     <div
+    //         key={item.warframeName}
+    //         style={{
+    //             display: "flex",
+    //             flexDirection: "row",
+    //         }}
+    //     >
+    //         <Image
+    //             width={50}
+    //             height={50}
+    //             src={item.image}
+    //             alt={"hidden"}
+    //             placeholder="blur"
+    //             blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+    //             loading="eager"
+    //         />
+    //         {item.abilities.map((ability) => (
+    //             <Image
+    //                 key={ability.shortcut}
+    //                 width={50}
+    //                 height={50}
+    //                 src={
+    //                     typeof ability.icon === "string"
+    //                         ? abilityIcon(ability.icon)
+    //                         : abilityIcon(ability.icon[1])
+    //                 }
+    //                 alt={"hidden"}
+    //                 placeholder="blur"
+    //                 blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+    //                 loading="eager"
+    //             />
+    //         ))}
+    //     </div>
+    // ));
 
     return (
         <>
@@ -334,6 +370,7 @@ export default function AbilityEndless() {
                             </AnimatePresence>
                         </div>
                         <h4 className={Text.fd_text_1}>Attempts</h4>
+
                         <div className={Container.fd_container_7}>
                             <AnimatePresence>
                                 {todaysWf && guesses.length > 0

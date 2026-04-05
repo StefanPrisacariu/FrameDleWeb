@@ -123,6 +123,9 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
 
     const warframeSelected = useCallback(
         (wf: Warframe) => {
+            if (guesses.length === 0) {
+                storeDailyStreakTime();
+            }
             if (wf.name === todaysWf.name) scrollToId("logo");
             const updated = [...guesses, wf];
             setGuesses(updated);
@@ -138,6 +141,7 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                 storeDailyStreak(newStreak);
                 storeDailyStreakTime();
             }
+            setFilteredWarframes(initialWarframes);
         },
         [guesses, dayKey, todaysWf.name, dailyStreak],
     );

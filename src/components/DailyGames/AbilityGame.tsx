@@ -130,7 +130,6 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
             const updated = [...guesses, selectedWf];
             setGuesses(updated);
             setSearchText("");
-            setFilteredWarframes(initialAbilities);
             setVisible(false);
 
             storeAbilityGuesses(dayKey, updated);
@@ -140,6 +139,10 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
                 storeAbilityStreak(newStreak);
+                storeAbilityStreakTime();
+            }
+            setFilteredWarframes(initialAbilities);
+            if (guesses.length === 0) {
                 storeAbilityStreakTime();
             }
         },

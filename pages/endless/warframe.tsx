@@ -68,18 +68,17 @@ function Endless() {
     );
 
     const warframeSelected = useCallback(
-        async (selectedWf: Warframe) => {
-            setFilteredWarframes(initialWarframes);
+        (selectedWf: Warframe) => {
             setVisible(false);
             if (todaysWf !== null) {
                 setSearchText("");
 
-                setFilteredWarframes(initialWarframes);
                 setGuesses([...guesses, selectedWf]);
                 if (selectedWf.name === todaysWf.name) {
                     setIsGuessed(true);
                 }
             }
+            setFilteredWarframes(initialWarframes);
         },
         [guesses, todaysWf],
     );

@@ -8,6 +8,7 @@ import React, {
     useMemo,
     ReactNode,
 } from "react";
+import { checkResetNeeded } from "@/app/helpers/resetCheck";
 
 type TagMode = "daily" | "ability";
 
@@ -23,20 +24,49 @@ type TagsContextType = {
 
 const TagsContext = createContext<TagsContextType | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY = "tagsState";
+const LOCAL_STORAGE_KEY = "FD_TAGS_STATE";
 
 export const TagsProvider = ({ children }: { children: ReactNode }) => {
     const [state, setState] = useState<TagsState>(() => {
         if (typeof window !== "undefined") {
             try {
                 const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-                return saved
-                    ? (JSON.parse(saved) as TagsState)
-                    : { daily: false, ability: false };
+
+                let parsed: TagsState = { daily: false, ability: false };
+
+                if (saved) {
+                    try {
+                        const temp = JSON.parse(saved);
+
+                        if (
+                            typeof temp === "object" &&
+                            temp !== null &&
+                            "daily" in temp &&
+                            "ability" in temp &&
+                            typeof temp.daily === "boolean" &&
+                            typeof temp.ability === "boolean"
+                        ) {
+                            parsed = temp as TagsState;
+                        }
+                    } catch {
+                        // ignore bad JSON
+                    }
+                }
+
+                const resetTimeDaily = checkResetNeeded("FD_DAILY_STREAK_TIME");
+                const resetTimeAbility = checkResetNeeded(
+                    "FD_ABILITY_STREAK_TIME",
+                );
+
+                return {
+                    daily: resetTimeDaily >= 24 ? false : parsed.daily,
+                    ability: resetTimeAbility >= 24 ? false : parsed.ability,
+                };
             } catch {
                 return { daily: false, ability: false };
             }
         }
+
         return { daily: false, ability: false };
     });
 

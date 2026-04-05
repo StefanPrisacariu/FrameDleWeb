@@ -6,7 +6,7 @@ export const checkResetNeeded = (storage: string) => {
     if (!storedTime) {
         console.log("No stored time found, returning 0 hours.");
 
-        return 0; // Default case if no time was previously stored
+        return 1; // Default case if no time was previously stored
     }
 
     const lastPlayed = new Date(storedTime); // Ensure storedTime is a valid string before using Date constructor
@@ -16,6 +16,7 @@ export const checkResetNeeded = (storage: string) => {
 
     const timeDifferenceMs = now.getTime() - lastPlayed.getTime(); // Use getTime() for safe arithmetic
     const hoursDifference = timeDifferenceMs / (1000 * 60 * 60);
+    // const hoursDifference = 2;
 
     return hoursDifference;
 };

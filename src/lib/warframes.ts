@@ -230,6 +230,16 @@ export const initialWarframes: Warframe[] = [
         playstyle: ["damage"],
     },
     {
+        name: "Follie",
+        gender: "female",
+        primeUmbra: "standard",
+        auraPolarity: ["vazarin"],
+        progenitorElement: "electricity",
+        releaseYear: 2026,
+        image: "/warframe_portraits/follie.webp",
+        playstyle: ["damage", "crowd-control"],
+    },
+    {
         name: "Frost",
         gender: "male",
         primeUmbra: "standard",
