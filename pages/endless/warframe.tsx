@@ -11,7 +11,7 @@ import Lock from "@/assets/svg/lock-solid.svg";
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
 import { TableHeader } from "@/app/components/TableHeader";
-import { GuessRow } from "@/app/components/GuessRow";
+import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
 import { initialWarframes } from "@/app/lib/warframes";
 import Container from "@/styles/components/Container.module.scss";
 import Group from "@/styles/components/Group.module.scss";
@@ -22,7 +22,7 @@ import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import clsx from "clsx";
 
-function Endless() {
+function WarframeEndless() {
     const [visible, setVisible] = useState(false);
     const [searchText, setSearchText] = useState("");
     const [guesses, setGuesses] = useState<Warframe[]>([]);
@@ -33,6 +33,7 @@ function Endless() {
             Math.floor(Math.random() * (initialWarframes.length + 1))
         ] as Warframe,
     );
+
     const [isGuessed, setIsGuessed] = useState(false);
     const [width, setWidth] = useState<number>();
 
@@ -55,35 +56,47 @@ function Endless() {
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
+            const temp = initialWarframes.filter(
+                (item) => !guesses.includes(item),
+            );
             const value = e.target.value;
             setSearchText(value);
             setVisible(true);
-            setFilteredWarframes(
-                initialWarframes.filter((wf) =>
-                    wf.name.toLowerCase().includes(value.toLowerCase()),
-                ),
-            );
+
+            if (value.length === 0) {
+                setFilteredWarframes(temp);
+            } else {
+                setFilteredWarframes(
+                    temp.filter((wf) =>
+                        wf.name.toLowerCase().includes(value.toLowerCase()),
+                    ),
+                );
+            }
         },
-        [],
+        [guesses],
     );
 
     const warframeSelected = useCallback(
         (selectedWf: Warframe) => {
             setVisible(false);
+            const temp = [...guesses, selectedWf];
             if (todaysWf !== null) {
                 setSearchText("");
 
-                setGuesses([...guesses, selectedWf]);
+                setGuesses(temp);
                 if (selectedWf.name === todaysWf.name) {
                     setIsGuessed(true);
                 }
             }
-            setFilteredWarframes(initialWarframes);
+            setFilteredWarframes(
+                initialWarframes.filter((item) => !temp.includes(item)),
+            );
         },
         [guesses, todaysWf],
     );
 
     const newWarframe = useCallback(() => {
+        setFilteredWarframes(initialWarframes);
         setIsGuessed(false);
         setGuesses([]);
         setTodaysWf(
@@ -106,7 +119,7 @@ function Endless() {
                         "Play FrameDle's Endless Warframe Mode! Guess as many Warframes as you like without affecting your daily streak.",
                     images: [
                         {
-                            url: "https://framedle.org/thumbnail.png",
+                            url: "https://framedle.org/thumbnail.webp",
                             width: 1200,
                             height: 630,
                             alt: "FrameDle Endless Warframe Mode Thumbnail",
@@ -307,7 +320,7 @@ function Endless() {
                                     : guesses.length !== 0 && (
                                           <OrbitProgress
                                               size="medium"
-                                              color={"#FFFFFF"}
+                                              color={"#f1f1f1"}
                                           />
                                       )}
                             </AnimatePresence>
@@ -319,4 +332,4 @@ function Endless() {
     );
 }
 
-export default Endless;
+export default WarframeEndless;

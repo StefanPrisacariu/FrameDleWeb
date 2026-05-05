@@ -35,10 +35,10 @@ export default function Ability() {
                     type: "website",
                     images: [
                         {
-                            url: "https://framedle.org/ability-thumbnail.png",
+                            url: "https://framedle.org/thumbnail.webp",
                             width: 1200,
                             height: 630,
-                            alt: "FrameDle Ability Mode - Warframe Ability Guessing Game",
+                            alt: "FrameDle Emoji Mode - Warframe Emoji Guessing Game",
                         },
                     ],
                 }}
@@ -49,17 +49,17 @@ export default function Ability() {
                     {
                         name: "keywords",
                         content:
-                            "warframe, warframe game, warframe ability, warframe ability guessing game, framedle ability mode, daily warframe ability puzzle, tenno challenge, warframe wordle ability, tennodle abilities, guess warframe ability, warframe daily ability quiz, frame guessing",
+                            "warframe, warframe game, warframe emoji, warframe emoji guessing game, framedle emoji mode, daily warframe emoji puzzle, tenno challenge, warframe wordle emoji, tennodle abilities, guess warframe emoji, warframe daily emoji quiz, frame guessing",
                     },
                 ]}
             />
 
             <h1>Welcome to FrameDle!</h1>
-            <h2 className="dont">Ability Mode</h2>
+            <h2 className="dont">Emoji Mode</h2>
 
             {isLoading && (
                 <div className={Loader.fd_loader_0}>
-                    <OrbitProgress size="medium" color={"#FFFFFF"} />
+                    <OrbitProgress size="medium" color={"#f1f1f1"} />
                 </div>
             )}
             {isError && (

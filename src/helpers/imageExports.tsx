@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Universal from "@/assets/png/polarities/Aura_Pol.png";
-import Madurai from "@/assets/png/polarities/Madurai_Pol.png";
-import Naramon from "@/assets/png/polarities/Naramon_Pol.png";
-import Unairu from "@/assets/png/polarities/Unairu_Pol.png";
-import Vazarin from "@/assets/png/polarities/Vazarin_Pol.png";
-import Zenurik from "@/assets/png/polarities/Zenurik_Pol.png";
+import Universal from "@/assets/png/polarities/Aura_Pol.webp";
+import Madurai from "@/assets/png/polarities/Madurai_Pol.webp";
+import Naramon from "@/assets/png/polarities/Naramon_Pol.webp";
+import Unairu from "@/assets/png/polarities/Unairu_Pol.webp";
+import Vazarin from "@/assets/png/polarities/Vazarin_Pol.webp";
+import Zenurik from "@/assets/png/polarities/Zenurik_Pol.webp";
 
 import Damage from "@/assets/png/playstyle_icons/damage.webp";
 import Survival from "@/assets/png/playstyle_icons/survival.webp";

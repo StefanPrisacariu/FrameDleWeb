@@ -1,24 +1,9 @@
 "use client";
 
+import { MainMenu } from "@/app/components/MainMenu";
 import { NextSeo } from "next-seo";
-import { useQuery } from "@tanstack/react-query";
-import { OrbitProgress } from "react-loading-indicators";
-import Loader from "@/styles/components/Loader.module.scss";
 
-import { MainGame } from "@/app/components/DailyGames/MainGame";
-import { getWarframeOfTheDay } from "@/app/lib/queries/apiQuery";
-import { initialWarframes } from "@/app/lib/warframes";
-
-export default function Home() {
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ["warframe"],
-        queryFn: getWarframeOfTheDay,
-        staleTime: 0,
-        refetchOnMount: true,
-        refetchOnWindowFocus: true,
-        gcTime: 0,
-    });
-
+export default function Menu() {
     return (
         <>
             <NextSeo
@@ -34,7 +19,7 @@ export default function Home() {
                     type: "website",
                     images: [
                         {
-                            url: "https://framedle.org/thumbnail.png",
+                            url: "https://framedle.org/thumbnail.webp",
                             width: 1200,
                             height: 630,
                             alt: "FrameDle – Daily Warframe Guessing Game",
@@ -58,30 +43,8 @@ export default function Home() {
             />
 
             <h1>Welcome to FrameDle!</h1>
-            <h2 className="dont">Daily Mode</h2>
-            {isLoading && (
-                <div className={Loader.fd_loader_0}>
-                    <OrbitProgress size="medium" color={"#FFFFFF"} />
-                </div>
-            )}
-            {isError && (
-                <div className={Loader.fd_loader_0}>
-                    <p className="networkError" style={{ textAlign: "center" }}>
-                        There was a server error
-                    </p>
-                    <p className="networkError" style={{ textAlign: "center" }}>
-                        Refresh the window or try again later
-                    </p>
-                </div>
-            )}
-            {data && (
-                <MainGame
-                    todaysWf={
-                        initialWarframes[data.today as number] as Warframe
-                    }
-                    yesterdayWf={initialWarframes[data.yesterday] as Warframe}
-                />
-            )}
+            <h2 className="dont">Menu</h2>
+            <MainMenu />
         </>
     );
 }

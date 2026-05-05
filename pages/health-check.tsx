@@ -20,7 +20,7 @@ export default function HealthCheck() {
             >
                 <p
                     style={{
-                        color: "#fff",
+                        color: "#f1f1f1",
                     }}
                 >
                     Everything is working as expected

@@ -7,7 +7,7 @@ const FALLBACK_ICON = abilityIcon("default");
 
 export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
     const today = initialAbilities[api.warframe] ?? {
-        warframeName: FALLBACK_WARFRAME,
+        name: FALLBACK_WARFRAME,
         abilities: [],
     };
 
@@ -29,7 +29,7 @@ export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
         : (ability.icon ?? "default");
 
     return {
-        warframeName: today.warframeName ?? FALLBACK_WARFRAME,
+        name: today.name ?? FALLBACK_WARFRAME,
         abilityName,
         icon: abilityIcon(iconKey) ?? FALLBACK_ICON,
     };

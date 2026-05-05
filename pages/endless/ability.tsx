@@ -18,10 +18,9 @@ import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 
 import { initialAbilities } from "@/app/lib/abilities";
-import { GuessAbility } from "@/app/components/GuessAbility";
+import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
 import clsx from "clsx";
-import { abilityIcon } from "@/app/helpers/abilityIcon";
 
 function generateNewAbility(): ProcessedAbility | null {
     const asd = {
@@ -50,7 +49,7 @@ export default function AbilityEndless() {
     //         ability: 4,
     //         variant: 1,
     //         warframe: initialAbilities.findIndex(
-    //             (item) => item.warframeName === "Uriel"
+    //             (item) => item.name === "Uriel"
     //         ),
     //     }) as ProcessedAbility
     // );
@@ -66,7 +65,7 @@ export default function AbilityEndless() {
         if (
             todaysWf &&
             guesses.length > 0 &&
-            guesses[guesses.length - 1]?.warframeName === todaysWf.warframeName
+            guesses[guesses.length - 1]?.name === todaysWf.name
         ) {
             setIsGuessed(true);
         }
@@ -74,30 +73,40 @@ export default function AbilityEndless() {
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
+            const temp = initialAbilities.filter(
+                (item) => !guesses.includes(item),
+            );
             const value = e.target.value;
             setSearchText(value);
             setVisible(true);
-            setFilteredWarframes(
-                initialAbilities.filter((wf) =>
-                    wf.warframeName.toLowerCase().includes(value.toLowerCase()),
-                ),
-            );
+            if (value.length === 0) {
+                setFilteredWarframes(temp);
+            } else {
+                setFilteredWarframes(
+                    temp.filter((wf) =>
+                        wf.name.toLowerCase().includes(value.toLowerCase()),
+                    ),
+                );
+            }
         },
-        [],
+        [guesses],
     );
 
     const warframeSelected = useCallback(
         (selectedWf: WarframeAbility) => {
             setVisible(false);
+            const temp = [...guesses, selectedWf];
             if (todaysWf !== null) {
                 setSearchText("");
 
-                setGuesses([...guesses, selectedWf]);
-                if (selectedWf.warframeName === todaysWf.warframeName) {
+                setGuesses(temp);
+                if (selectedWf.name === todaysWf.name) {
                     setIsGuessed(true);
                 }
             }
-            setFilteredWarframes(initialAbilities);
+            setFilteredWarframes(
+                initialAbilities.filter((item) => !temp.includes(item)),
+            );
         },
         [guesses, todaysWf],
     );
@@ -110,7 +119,7 @@ export default function AbilityEndless() {
 
     // const fullList = initialAbilities.map((item) => (
     //     <div
-    //         key={item.warframeName}
+    //         key={item.name}
     //         style={{
     //             display: "flex",
     //             flexDirection: "row",
@@ -159,7 +168,7 @@ export default function AbilityEndless() {
                     type: "website",
                     images: [
                         {
-                            url: "https://framedle.org/ability-thumbnail.png",
+                            url: "https://framedle.org/ability-thumbnail.webp",
                             width: 1200,
                             height: 630,
                             alt: "FrameDle Endless Ability Mode - Unlimited Warframe Ability Guessing",
@@ -339,7 +348,7 @@ export default function AbilityEndless() {
                                     >
                                         {filteredWarframes.map((item) => (
                                             <button
-                                                key={item.warframeName}
+                                                key={item.name}
                                                 onClick={() =>
                                                     warframeSelected(item)
                                                 }
@@ -354,14 +363,14 @@ export default function AbilityEndless() {
                                                     className={
                                                         Dropdown.fd_dropdown_0_item_image
                                                     }
-                                                    alt={item.warframeName}
+                                                    alt={item.name}
                                                 />
                                                 <span
                                                     className={
                                                         Dropdown.fd_dropdown_0_item_text
                                                     }
                                                 >
-                                                    {item.warframeName}
+                                                    {item.name}
                                                 </span>
                                             </button>
                                         ))}
@@ -377,9 +386,7 @@ export default function AbilityEndless() {
                                     ? [...guesses]
                                           .map((item, index) => (
                                               <motion.div
-                                                  key={
-                                                      item.warframeName + index
-                                                  }
+                                                  key={item.name + index}
                                                   initial={{
                                                       opacity: 0,
                                                       x: 100,
@@ -407,7 +414,7 @@ export default function AbilityEndless() {
                                     : guesses.length !== 0 && (
                                           <OrbitProgress
                                               size="medium"
-                                              color={"#FFFFFF"}
+                                              color={"#f1f1f1"}
                                           />
                                       )}
                             </AnimatePresence>

@@ -13,3 +13,8 @@ export const getAbilityOfTheDay =
         const res = await axios.get(`${API_BASE}/api/abilityOfTheDay`);
         return res.data;
     };
+
+export const getEmojiOfTheDay = async (): Promise<EmojiOfTheDayResponse> => {
+    const res = await axios.get(`${API_BASE}/api/emojiOfTheDay`);
+    return res.data;
+};

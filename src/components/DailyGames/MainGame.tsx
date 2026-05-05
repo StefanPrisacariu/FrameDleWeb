@@ -9,10 +9,10 @@ import Lock from "@/assets/svg/lock-solid.svg";
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
 import { TableHeader } from "@/app/components/TableHeader";
-import { GuessRow } from "@/app/components/GuessRow";
+import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
 import { initialWarframes } from "@/app/lib/warframes";
 import { TimerComponent } from "@/app/components/TimeComponent";
-import { Modal } from "@/app/components/Modal";
+import { Modal } from "@/app/components/Modals/Modal";
 import Container from "@/styles/components/Container.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import ImgStyle from "@/styles/components/ImgStyle.module.scss";
@@ -103,16 +103,23 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
+            const temp = initialWarframes.filter(
+                (item) => !guesses.includes(item),
+            );
             const value = e.target.value;
             setSearchText(value);
             setVisible(true);
-            setFilteredWarframes(
-                initialWarframes.filter((wf) =>
-                    wf.name.toLowerCase().includes(value.toLowerCase()),
-                ),
-            );
+            if (value.length === 0) {
+                setFilteredWarframes(temp);
+            } else {
+                setFilteredWarframes(
+                    temp.filter((wf) =>
+                        wf.name.toLowerCase().includes(value.toLowerCase()),
+                    ),
+                );
+            }
         },
-        [],
+        [guesses],
     );
 
     useEffect(() => {
@@ -141,7 +148,9 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                 storeDailyStreak(newStreak);
                 storeDailyStreakTime();
             }
-            setFilteredWarframes(initialWarframes);
+            setFilteredWarframes(
+                initialWarframes.filter((item) => !updated.includes(item)),
+            );
         },
         [guesses, dayKey, todaysWf.name, dailyStreak],
     );

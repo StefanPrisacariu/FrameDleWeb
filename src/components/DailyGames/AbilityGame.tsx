@@ -27,8 +27,8 @@ import {
 import { checkResetNeeded } from "@/app/helpers/resetCheck";
 
 import { initialAbilities } from "@/app/lib/abilities";
-import { GuessAbility } from "@/app/components/GuessAbility";
-import { AbilityModal } from "@/app/components/AbilityModal";
+import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
+import { AbilityModal } from "@/app/components/Modals/AbilityModal";
 import { scrollToId } from "@/app/helpers/scrollToId";
 import { useTags } from "@/app/context/TagsContext";
 import { StreakProgress } from "@/app/components/StreakProgress";
@@ -39,7 +39,7 @@ interface AbilityGame {
 }
 
 export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
-    const dayKey = todaysWf.warframeName;
+    const dayKey = todaysWf.name;
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
@@ -93,28 +93,34 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                 setGuesses(tempGuesses);
                 setDailyStreak(streak);
 
-                const lastGuess =
-                    tempGuesses?.[tempGuesses.length - 1]?.warframeName;
+                const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
 
-                setIsGuessed(lastGuess === todaysWf.warframeName);
+                setIsGuessed(lastGuess === todaysWf.name);
 
                 break;
             }
         }
-    }, [dayKey, todaysWf.warframeName]);
+    }, [dayKey, todaysWf.name]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
+            const temp = initialAbilities.filter(
+                (item) => !guesses.includes(item),
+            );
             const value = e.target.value;
             setSearchText(value);
             setVisible(true);
-            setFilteredWarframes(
-                initialAbilities.filter((wf) =>
-                    wf.warframeName.toLowerCase().includes(value.toLowerCase()),
-                ),
-            );
+            if (value.length === 0) {
+                setFilteredWarframes(temp);
+            } else {
+                setFilteredWarframes(
+                    temp.filter((wf) =>
+                        wf.name.toLowerCase().includes(value.toLowerCase()),
+                    ),
+                );
+            }
         },
-        [],
+        [guesses],
     );
 
     useEffect(() => {
@@ -125,8 +131,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
 
     const warframeSelected = useCallback(
         (selectedWf: WarframeAbility) => {
-            if (selectedWf.warframeName === todaysWf.warframeName)
-                scrollToId("logo");
+            if (selectedWf.name === todaysWf.name) scrollToId("logo");
             const updated = [...guesses, selectedWf];
             setGuesses(updated);
             setSearchText("");
@@ -134,19 +139,21 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
 
             storeAbilityGuesses(dayKey, updated);
 
-            if (selectedWf.warframeName === todaysWf.warframeName) {
+            if (selectedWf.name === todaysWf.name) {
                 setIsGuessed(true);
                 const newStreak = dailyStreak + 1;
                 setDailyStreak(newStreak);
                 storeAbilityStreak(newStreak);
                 storeAbilityStreakTime();
             }
-            setFilteredWarframes(initialAbilities);
+            setFilteredWarframes(
+                initialAbilities.filter((item) => !updated.includes(item)),
+            );
             if (guesses.length === 0) {
                 storeAbilityStreakTime();
             }
         },
-        [guesses, dayKey, todaysWf.warframeName, dailyStreak],
+        [guesses, dayKey, todaysWf.name, dailyStreak],
     );
 
     return (
@@ -168,10 +175,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                             height={50}
                             className={Group.fd_group_0_wrap_image}
                             src={initialAbilities[yesterdayWf]?.image as string}
-                            alt={
-                                initialAbilities[yesterdayWf]
-                                    ?.warframeName as string
-                            }
+                            alt={initialAbilities[yesterdayWf]?.name as string}
                         />
                     </div>
                 </div>
@@ -308,7 +312,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                             >
                                 {filteredWarframes.map((item) => (
                                     <button
-                                        key={item.warframeName}
+                                        key={item.name}
                                         onClick={() => warframeSelected(item)}
                                         className={Dropdown.fd_dropdown_0_item}
                                     >
@@ -319,14 +323,14 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                                             className={
                                                 Dropdown.fd_dropdown_0_item_image
                                             }
-                                            alt={item.warframeName}
+                                            alt={item.name}
                                         />
                                         <span
                                             className={
                                                 Dropdown.fd_dropdown_0_item_text
                                             }
                                         >
-                                            {item.warframeName}
+                                            {item.name}
                                         </span>
                                     </button>
                                 ))}
@@ -341,7 +345,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                             ? [...guesses]
                                   .map((item, index) => (
                                       <motion.div
-                                          key={item.warframeName + index}
+                                          key={item.name + index}
                                           initial={{
                                               opacity: 0,
                                               x: 100,
@@ -369,7 +373,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                             : guesses.length !== 0 && (
                                   <OrbitProgress
                                       size="medium"
-                                      color={"#FFFFFF"}
+                                      color={"#f1f1f1"}
                                   />
                               )}
                     </AnimatePresence>

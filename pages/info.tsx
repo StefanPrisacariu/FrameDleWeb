@@ -2,15 +2,11 @@
 
 import { NextSeo } from "next-seo";
 
-import { GuessRow } from "@/app/components/GuessRow";
+import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
 import { initialWarframes } from "@/app/lib/warframes";
 import Container from "@/styles/components/Container.module.scss";
 import Text from "@/styles/components/Text.module.scss";
-import Button from "@/styles/components/Button.module.scss";
 import { TimerComponent } from "@/app/components/TimeComponent";
-
-import KoFi from "@/assets/png/logo_white_stroke_small.webp";
-import Image from "next/image";
 
 function Info() {
     return (
@@ -26,7 +22,7 @@ function Info() {
                         "Learn how to play FrameDle! Get useful information, tips, and disclaimers to master the Warframe guessing game.",
                     images: [
                         {
-                            url: "https://framedle.org/thumbnail.png",
+                            url: "https://framedle.org/thumbnail.webp",
                             width: 1200,
                             height: 630,
                             alt: "FrameDle Info Page Thumbnail",
@@ -152,12 +148,12 @@ function Info() {
                     <GuessRow
                         warframeGuess={
                             initialWarframes.find(
-                                (item) => "Gara Prime" === item.name
+                                (item) => "Gara Prime" === item.name,
                             ) as Warframe
                         }
                         todayWarframe={
                             initialWarframes.find(
-                                (item) => "Trinity" === item.name
+                                (item) => "Trinity" === item.name,
                             ) as Warframe
                         }
                     />
@@ -247,12 +243,12 @@ function Info() {
                     <GuessRow
                         warframeGuess={
                             initialWarframes.find(
-                                (item) => "Trinity" === item.name
+                                (item) => "Trinity" === item.name,
                             ) as Warframe
                         }
                         todayWarframe={
                             initialWarframes.find(
-                                (item) => "Trinity" === item.name
+                                (item) => "Trinity" === item.name,
                             ) as Warframe
                         }
                     />
@@ -293,7 +289,7 @@ function Info() {
                         className={Text.fd_text_2_link}
                         onClick={() =>
                             window.open(
-                                "https://sites.google.com/view/framedle/terms-of-service?authuser=0"
+                                "https://sites.google.com/view/framedle/terms-of-service?authuser=0",
                             )
                         }
                     >
@@ -304,7 +300,7 @@ function Info() {
                         className={Text.fd_text_2_link}
                         onClick={() =>
                             window.open(
-                                "https://sites.google.com/view/framedle/privacy-policy?authuser=0"
+                                "https://sites.google.com/view/framedle/privacy-policy?authuser=0",
                             )
                         }
                     >
@@ -322,7 +318,7 @@ function Info() {
                         className={Text.fd_text_2_link}
                         onClick={() =>
                             window.open(
-                                "https://www.reddit.com/r/Warframe/comments/8xsta2/warframe_fortuna_mobile_wallpaper_i_made_thought/"
+                                "https://www.reddit.com/r/Warframe/comments/8xsta2/warframe_fortuna_mobile_wallpaper_i_made_thought/",
                             )
                         }
                     >
@@ -347,14 +343,6 @@ function Info() {
                     FrameDle for the Warframe community. Thank you for being a
                     part of the FrameDle journey!
                 </p>
-                <button
-                    className={Button.fd_button_6}
-                    onClick={() =>
-                        window.open("https://ko-fi.com/leokaiskarri")
-                    }
-                >
-                    <Image width={200} src={KoFi} alt="kofi_logo" />
-                </button>
             </div>
         </>
     );

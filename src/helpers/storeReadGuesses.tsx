@@ -10,6 +10,12 @@ type StoredAbilityGuesses = {
     guesses: WarframeAbility[];
 };
 
+type StoredEmojiGuesses = {
+    dayKey: string;
+    guesses: WarframeEmojis[];
+};
+
+// MAIN
 export const storeGuesses = (dk: string, guesses: Warframe[]) => {
     const dayKey = encodeStorage(dk);
     localStorage.setItem(
@@ -31,6 +37,7 @@ export const getGuesses = (dk: string) => {
     }
 };
 
+// ABILITY
 export const storeAbilityGuesses = (dk: string, guesses: WarframeAbility[]) => {
     const dayKey = encodeStorage(dk);
     localStorage.setItem(
@@ -45,6 +52,28 @@ export const getAbilityGuesses = (dk: string) => {
         if (!raw) return [];
 
         const parsed = JSON.parse(raw) as StoredAbilityGuesses;
+        const dayKey = decodeStorage(parsed.dayKey);
+        return dayKey === dk ? parsed.guesses : [];
+    } catch {
+        return [];
+    }
+};
+
+// EMOJI
+export const storeEmojiGuesses = (dk: string, guesses: WarframeEmojis[]) => {
+    const dayKey = encodeStorage(dk);
+    localStorage.setItem(
+        "FD_EMOJI_GUESSES",
+        JSON.stringify({ dayKey, guesses }),
+    );
+};
+
+export const getEmojiGuesses = (dk: string) => {
+    try {
+        const raw = localStorage.getItem("FD_EMOJI_GUESSES");
+        if (!raw) return [];
+
+        const parsed = JSON.parse(raw) as StoredEmojiGuesses;
         const dayKey = decodeStorage(parsed.dayKey);
         return dayKey === dk ? parsed.guesses : [];
     } catch {

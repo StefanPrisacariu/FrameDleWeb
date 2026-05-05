@@ -10,11 +10,12 @@ import React, {
 } from "react";
 import { checkResetNeeded } from "@/app/helpers/resetCheck";
 
-type TagMode = "daily" | "ability";
+type TagMode = "daily" | "ability" | "emoji";
 
 type TagsState = {
     daily: boolean;
     ability: boolean;
+    emoji: boolean;
 };
 
 type TagsContextType = {
@@ -32,7 +33,11 @@ export const TagsProvider = ({ children }: { children: ReactNode }) => {
             try {
                 const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-                let parsed: TagsState = { daily: false, ability: false };
+                let parsed: TagsState = {
+                    daily: false,
+                    ability: false,
+                    emoji: false,
+                };
 
                 if (saved) {
                     try {
@@ -43,8 +48,10 @@ export const TagsProvider = ({ children }: { children: ReactNode }) => {
                             temp !== null &&
                             "daily" in temp &&
                             "ability" in temp &&
+                            "emoji" in temp &&
                             typeof temp.daily === "boolean" &&
-                            typeof temp.ability === "boolean"
+                            typeof temp.ability === "boolean" &&
+                            typeof temp.emoji === "boolean"
                         ) {
                             parsed = temp as TagsState;
                         }
@@ -57,17 +64,19 @@ export const TagsProvider = ({ children }: { children: ReactNode }) => {
                 const resetTimeAbility = checkResetNeeded(
                     "FD_ABILITY_STREAK_TIME",
                 );
+                const resetTimeEmoji = checkResetNeeded("FD_EMOJI_STREAK_TIME");
 
                 return {
                     daily: resetTimeDaily >= 24 ? false : parsed.daily,
                     ability: resetTimeAbility >= 24 ? false : parsed.ability,
+                    emoji: resetTimeEmoji >= 24 ? false : parsed.emoji,
                 };
             } catch {
-                return { daily: false, ability: false };
+                return { daily: false, ability: false, emoji: false };
             }
         }
 
-        return { daily: false, ability: false };
+        return { daily: false, ability: false, emoji: false };
     });
 
     useEffect(() => {

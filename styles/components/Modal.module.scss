@@ -117,4 +117,54 @@
             }
         }
     }
+
+    &_2 {
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0.6);
+
+        &_card {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 330px;
+            padding: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+
+            background-color: var(--primary);
+
+            &_title {
+                padding-bottom: 10px;
+
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 20px;
+                text-align: center;
+            }
+
+            &_close {
+                align-self: center;
+
+                width: 100px;
+                margin-top: auto;
+                padding: 7px 10px;
+                border: 2px solid var(--gold);
+                border-radius: 150px;
+
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 16px;
+                color: var(--light);
+
+                background-color: var(--primary);
+            }
+        }
+    }
 }

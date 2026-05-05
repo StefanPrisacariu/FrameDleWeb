@@ -19,7 +19,7 @@ export const DailyProgress = () => {
         <div className={Prog.fd_progress_0}>
             <div className={Prog.fd_progress_0_bar} />
             <div className={Prog.fd_progress_0_wrap}>
-                <Link href="/" className={Prog.fd_progress_image}>
+                <Link href="/warframe" className={Prog.fd_progress_image}>
                     <Image
                         width={30}
                         height={30}
@@ -43,6 +43,21 @@ export const DailyProgress = () => {
                         alt="Progress Ability"
                     />
                     {state.ability && (
+                        <Checkmark
+                            className={Prog.fd_progress_image_check}
+                            width={20}
+                            height={20}
+                        />
+                    )}
+                </Link>
+                <Link href="/emoji" className={Prog.fd_progress_image}>
+                    <Image
+                        width={30}
+                        height={30}
+                        src="/game_progress/emoji.webp"
+                        alt="Progress Emoji"
+                    />
+                    {state.emoji && (
                         <Checkmark
                             className={Prog.fd_progress_image_check}
                             width={20}

@@ -7,6 +7,7 @@ export type Styles = {
   'fd_text_2_link': string;
   'fd_text_2_title': string;
   'fd_text_3': string;
+  'fd_text_4': string;
 };
 
 export type ClassNames = keyof Styles;

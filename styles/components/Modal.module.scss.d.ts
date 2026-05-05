@@ -9,6 +9,10 @@ export type Styles = {
   'fd_modal_1_mod_content': string;
   'fd_modal_1_mod_content_guesses': string;
   'fd_modal_1_mod_content_guesses_guess': string;
+  'fd_modal_2': string;
+  'fd_modal_2_card': string;
+  'fd_modal_2_card_close': string;
+  'fd_modal_2_card_title': string;
 };
 
 export type ClassNames = keyof Styles;

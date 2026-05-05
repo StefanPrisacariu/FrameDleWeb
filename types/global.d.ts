@@ -62,7 +62,7 @@ declare type Warframe = {
 declare type WarframeWithImage = Warframe & { image: string };
 
 declare type ProcessedAbility = {
-    warframeName: string;
+    name: string;
     abilityName: string;
     icon: string;
 };
@@ -78,7 +78,7 @@ declare type AbilityYesterday = {
 };
 
 declare type WarframeAbility = {
-    warframeName: string;
+    name: string;
     abilities: Ability[];
     image: string;
 };
@@ -96,3 +96,21 @@ declare type AbilityOfTheDayResponse = {
     };
     yesterday: number;
 };
+
+declare type EmojiOfTheDayResponse = {
+    today: number;
+    yesterday: number;
+};
+
+declare type WarframeEmojis = {
+    name: string;
+    emojis: string[];
+    image: string;
+};
+
+declare type ColorblindMode =
+    | "Disabled"
+    | "Protanopia"
+    | "Deuteranopia"
+    | "Tritanopia"
+    | "Achromatopsia";

@@ -10,13 +10,13 @@ export default function Custom404() {
                 {`
                     div[style^="font"] h1 {
                         font-weight: 700 !important;
-                        color: #fff;
+                        color: #f1f1f1;
                         font-style: normal;
                     }
 
                     div[style^="font"] h2 {
                         font-weight: 400 !important;
-                        color: #fff;
+                        color: #f1f1f1;
                         font-style: normal;
                     }
 
@@ -24,7 +24,7 @@ export default function Custom404() {
                         flex: 1;
                         height: auto !important;
                         font-family: var(--unify-sans) !important;
-                        color: #fff;
+                        color: #f1f1f1;
                     }
                 `}
             </style>

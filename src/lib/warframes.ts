@@ -1040,6 +1040,16 @@ export const initialWarframes: Warframe[] = [
         playstyle: ["damage", "stealth"],
     },
     {
+        name: "Voruna Prime",
+        gender: "female",
+        primeUmbra: "prime",
+        auraPolarity: ["vazarin"],
+        progenitorElement: "radiation",
+        releaseYear: 2026,
+        image: "/warframe_portraits/voruna-prime.webp",
+        playstyle: ["damage", "stealth"],
+    },
+    {
         name: "Wisp",
         gender: "female",
         primeUmbra: "standard",

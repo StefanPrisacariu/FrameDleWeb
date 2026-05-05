@@ -1,12 +1,18 @@
+/* stylelint-disable @stylistic/string-quotes */
 .fd_text {
     &_0 {
+        width: 100px;
         margin-top: 0;
         margin-bottom: 0;
 
+        font-family: monospace;
         font-size: 18px;
+        font-feature-settings: "tnum";
         font-weight: 700;
+        font-variant-numeric: tabular-nums;
         line-height: 24px;
         color: var(--light);
+        text-align: center;
         text-align: center;
         text-shadow: 0 0 5px var(--dark);
     }
@@ -78,6 +84,20 @@
         margin-bottom: 10px;
 
         font-size: 16px;
+        font-weight: 700;
+        line-height: 18px;
+        color: var(--light);
+        text-align: center;
+        text-shadow: 0 0 5px #000;
+    }
+
+    &_4 {
+        cursor: default;
+
+        margin-top: 0;
+        margin-bottom: 20px;
+
+        font-size: 18px;
         font-weight: 700;
         line-height: 18px;
         color: var(--light);

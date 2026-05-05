@@ -37,3 +37,23 @@ export const storeAbilityStreak = (data: number) => {
 export const storeAbilityStreakTime = () => {
     safeSetItem("FD_ABILITY_STREAK_TIME", new Date().toISOString());
 };
+
+//EMOJI
+
+export const getEmojiStreak = () => {
+    const jsonValue = safeGetItem("FD_EMOJI_STREAK");
+    return jsonValue != null ? Number(jsonValue) : 0;
+};
+
+export const getEmojiStreakTime = () => {
+    const jsonValue = safeGetItem("FD_EMOJI_STREAK_TIME");
+    return jsonValue !== null ? jsonValue : "";
+};
+
+export const storeEmojiStreak = (data: number) => {
+    safeSetItem("FD_EMOJI_STREAK", data.toString());
+};
+
+export const storeEmojiStreakTime = () => {
+    safeSetItem("FD_EMOJI_STREAK_TIME", new Date().toISOString());
+};

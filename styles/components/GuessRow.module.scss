@@ -50,74 +50,16 @@
     }
 
     &_colors {
-        &_std {
-            &_correct {
-                background-color: var(--green);
-            }
-
-            &_incorrect {
-                background-color: var(--red);
-            }
-
-            &_partial {
-                background-color: var(--orange);
-            }
+        &_correct {
+            background-color: var(--green);
         }
 
-        &_pro {
-            &_correct {
-                background-color: var(--pro-green);
-            }
-
-            &_incorrect {
-                background-color: var(--pro-red);
-            }
-
-            &_partial {
-                background-color: var(--pro-orange);
-            }
+        &_incorrect {
+            background-color: var(--red);
         }
 
-        &_deu {
-            &_correct {
-                background-color: var(--deu-green);
-            }
-
-            &_incorrect {
-                background-color: var(--deu-red);
-            }
-
-            &_partial {
-                background-color: var(--deu-orange);
-            }
-        }
-
-        &_tri {
-            &_correct {
-                background-color: var(--tri-green);
-            }
-
-            &_incorrect {
-                background-color: var(--tri-red);
-            }
-
-            &_partial {
-                background-color: var(--tri-orange);
-            }
-        }
-
-        &_acro {
-            &_correct {
-                background-color: var(--acro-green);
-            }
-
-            &_incorrect {
-                background-color: var(--acro-red);
-            }
-
-            &_partial {
-                background-color: var(--acro-orange);
-            }
+        &_partial {
+            background-color: var(--orange);
         }
     }
 }

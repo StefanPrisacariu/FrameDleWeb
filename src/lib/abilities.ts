@@ -1,6 +1,6 @@
 export const initialAbilities: WarframeAbility[] = [
     {
-        warframeName: "Ash",
+        name: "Ash",
         abilities: [
             {
                 shortcut: 1,
@@ -26,7 +26,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/ash.webp",
     },
     {
-        warframeName: "Atlas",
+        name: "Atlas",
         abilities: [
             {
                 shortcut: 1,
@@ -52,7 +52,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/atlas.webp",
     },
     {
-        warframeName: "Banshee",
+        name: "Banshee",
         abilities: [
             {
                 shortcut: 1,
@@ -78,7 +78,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/banshee.webp",
     },
     {
-        warframeName: "Baruuk",
+        name: "Baruuk",
         abilities: [
             {
                 shortcut: 1,
@@ -104,7 +104,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/baruuk.webp",
     },
     {
-        warframeName: "Caliban",
+        name: "Caliban",
         abilities: [
             {
                 shortcut: 1,
@@ -130,7 +130,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/caliban.webp",
     },
     {
-        warframeName: "Chroma",
+        name: "Chroma",
         abilities: [
             {
                 shortcut: 1,
@@ -156,7 +156,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/chroma.webp",
     },
     {
-        warframeName: "Citrine",
+        name: "Citrine",
         abilities: [
             {
                 shortcut: 1,
@@ -182,7 +182,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/citrine.webp",
     },
     {
-        warframeName: "Cyte-09",
+        name: "Cyte-09",
         abilities: [
             {
                 shortcut: 1,
@@ -208,7 +208,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/cyte-09.webp",
     },
     {
-        warframeName: "Dagath",
+        name: "Dagath",
         abilities: [
             {
                 shortcut: 1,
@@ -234,7 +234,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/dagath.webp",
     },
     {
-        warframeName: "Dante",
+        name: "Dante",
         abilities: [
             {
                 shortcut: 1,
@@ -260,7 +260,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/dante.webp",
     },
     {
-        warframeName: "Ember",
+        name: "Ember",
         abilities: [
             {
                 shortcut: 1,
@@ -286,7 +286,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/ember.webp",
     },
     {
-        warframeName: "Equinox",
+        name: "Equinox",
         abilities: [
             {
                 shortcut: 1,
@@ -312,7 +312,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/equinox.webp",
     },
     {
-        warframeName: "Excalibur",
+        name: "Excalibur",
         abilities: [
             {
                 shortcut: 1,
@@ -341,7 +341,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/excalibur.webp",
     },
     {
-        warframeName: "Follie",
+        name: "Follie",
         abilities: [
             {
                 shortcut: 1,
@@ -367,7 +367,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/follie.webp",
     },
     {
-        warframeName: "Frost",
+        name: "Frost",
         abilities: [
             {
                 shortcut: 1,
@@ -393,7 +393,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/frost.webp",
     },
     {
-        warframeName: "Gara",
+        name: "Gara",
         abilities: [
             {
                 shortcut: 1,
@@ -419,7 +419,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/gara.webp",
     },
     {
-        warframeName: "Garuda",
+        name: "Garuda",
         abilities: [
             {
                 shortcut: 1,
@@ -445,7 +445,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/garuda.webp",
     },
     {
-        warframeName: "Gauss",
+        name: "Gauss",
         abilities: [
             {
                 shortcut: 1,
@@ -471,7 +471,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/gauss.webp",
     },
     {
-        warframeName: "Grendel",
+        name: "Grendel",
         abilities: [
             {
                 shortcut: 1,
@@ -497,7 +497,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/grendel.webp",
     },
     {
-        warframeName: "Gyre",
+        name: "Gyre",
         abilities: [
             {
                 shortcut: 1,
@@ -523,7 +523,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/gyre.webp",
     },
     {
-        warframeName: "Harrow",
+        name: "Harrow",
         abilities: [
             {
                 shortcut: 1,
@@ -549,7 +549,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/harrow.webp",
     },
     {
-        warframeName: "Hildryn",
+        name: "Hildryn",
         abilities: [
             {
                 shortcut: 1,
@@ -575,7 +575,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/hildryn.webp",
     },
     {
-        warframeName: "Hydroid",
+        name: "Hydroid",
         abilities: [
             {
                 shortcut: 1,
@@ -601,7 +601,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/hydroid.webp",
     },
     {
-        warframeName: "Inaros",
+        name: "Inaros",
         abilities: [
             {
                 shortcut: 1,
@@ -627,7 +627,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/inaros.webp",
     },
     {
-        warframeName: "Ivara",
+        name: "Ivara",
         abilities: [
             {
                 shortcut: 1,
@@ -653,7 +653,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/ivara.webp",
     },
     {
-        warframeName: "Jade",
+        name: "Jade",
         abilities: [
             {
                 shortcut: 1,
@@ -679,7 +679,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/jade.webp",
     },
     {
-        warframeName: "Khora",
+        name: "Khora",
         abilities: [
             {
                 shortcut: 1,
@@ -705,7 +705,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/khora.webp",
     },
     {
-        warframeName: "Koumei",
+        name: "Koumei",
         abilities: [
             { shortcut: 1, abilityName: "Kumihimo", icon: "Kumihimo.png" },
             { shortcut: 2, abilityName: "Omikuji", icon: "Omikuji.png" },
@@ -715,7 +715,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/koumei.webp",
     },
     {
-        warframeName: "Kullervo",
+        name: "Kullervo",
         abilities: [
             {
                 shortcut: 1,
@@ -741,7 +741,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/kullervo.webp",
     },
     {
-        warframeName: "Lavos",
+        name: "Lavos",
         abilities: [
             {
                 shortcut: 1,
@@ -767,7 +767,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/lavos.webp",
     },
     {
-        warframeName: "Limbo",
+        name: "Limbo",
         abilities: [
             {
                 shortcut: 1,
@@ -793,7 +793,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/limbo.webp",
     },
     {
-        warframeName: "Loki",
+        name: "Loki",
         abilities: [
             {
                 shortcut: 1,
@@ -819,7 +819,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/loki.webp",
     },
     {
-        warframeName: "Mag",
+        name: "Mag",
         abilities: [
             {
                 shortcut: 1,
@@ -845,7 +845,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/mag.webp",
     },
     {
-        warframeName: "Mesa",
+        name: "Mesa",
         abilities: [
             {
                 shortcut: 1,
@@ -871,7 +871,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/mesa.webp",
     },
     {
-        warframeName: "Mirage",
+        name: "Mirage",
         abilities: [
             {
                 shortcut: 1,
@@ -897,7 +897,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/mirage.webp",
     },
     {
-        warframeName: "Nekros",
+        name: "Nekros",
         abilities: [
             {
                 shortcut: 1,
@@ -923,7 +923,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nekros.webp",
     },
     {
-        warframeName: "Nezha",
+        name: "Nezha",
         abilities: [
             {
                 shortcut: 1,
@@ -949,7 +949,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nezha.webp",
     },
     {
-        warframeName: "Nidus",
+        name: "Nidus",
         abilities: [
             {
                 shortcut: 1,
@@ -975,7 +975,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nidus.webp",
     },
     {
-        warframeName: "Nokko",
+        name: "Nokko",
         abilities: [
             {
                 shortcut: 1,
@@ -1001,7 +1001,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nokko.webp",
     },
     {
-        warframeName: "Nova",
+        name: "Nova",
         abilities: [
             {
                 shortcut: 1,
@@ -1027,7 +1027,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nova.webp",
     },
     {
-        warframeName: "Nyx",
+        name: "Nyx",
         abilities: [
             {
                 shortcut: 1,
@@ -1053,7 +1053,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/nyx.webp",
     },
     {
-        warframeName: "Oberon",
+        name: "Oberon",
         abilities: [
             {
                 shortcut: 1,
@@ -1079,7 +1079,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/oberon.webp",
     },
     {
-        warframeName: "Octavia",
+        name: "Octavia",
         abilities: [
             {
                 shortcut: 1,
@@ -1101,7 +1101,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/octavia.webp",
     },
     {
-        warframeName: "Oraxia",
+        name: "Oraxia",
         abilities: [
             {
                 shortcut: 1,
@@ -1127,7 +1127,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/oraxia.webp",
     },
     {
-        warframeName: "Protea",
+        name: "Protea",
         abilities: [
             {
                 shortcut: 1,
@@ -1153,7 +1153,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/protea.webp",
     },
     {
-        warframeName: "Qorvex",
+        name: "Qorvex",
         abilities: [
             {
                 shortcut: 1,
@@ -1179,7 +1179,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/qorvex.webp",
     },
     {
-        warframeName: "Revenant",
+        name: "Revenant",
         abilities: [
             {
                 shortcut: 1,
@@ -1205,7 +1205,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/revenant.webp",
     },
     {
-        warframeName: "Rhino",
+        name: "Rhino",
         abilities: [
             {
                 shortcut: 1,
@@ -1231,7 +1231,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/rhino.webp",
     },
     {
-        warframeName: "Saryn",
+        name: "Saryn",
         abilities: [
             {
                 shortcut: 1,
@@ -1257,7 +1257,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/saryn.webp",
     },
     {
-        warframeName: "Sevagoth",
+        name: "Sevagoth",
         abilities: [
             {
                 shortcut: 1,
@@ -1289,7 +1289,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/sevagoth.webp",
     },
     {
-        warframeName: "Styanax",
+        name: "Styanax",
         abilities: [
             {
                 shortcut: 1,
@@ -1315,7 +1315,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/styanax.webp",
     },
     {
-        warframeName: "Temple",
+        name: "Temple",
         abilities: [
             {
                 shortcut: 1,
@@ -1337,7 +1337,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/temple.webp",
     },
     {
-        warframeName: "Titania",
+        name: "Titania",
         abilities: [
             {
                 shortcut: 1,
@@ -1363,7 +1363,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/titania.webp",
     },
     {
-        warframeName: "Trinity",
+        name: "Trinity",
         abilities: [
             {
                 shortcut: 1,
@@ -1389,7 +1389,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/trinity.webp",
     },
     {
-        warframeName: "Uriel",
+        name: "Uriel",
         abilities: [
             {
                 shortcut: 1,
@@ -1415,7 +1415,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/uriel.webp",
     },
     {
-        warframeName: "Valkyr",
+        name: "Valkyr",
         abilities: [
             {
                 shortcut: 1,
@@ -1441,7 +1441,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/valkyr.webp",
     },
     {
-        warframeName: "Vauban",
+        name: "Vauban",
         abilities: [
             {
                 shortcut: 1,
@@ -1467,7 +1467,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/vauban.webp",
     },
     {
-        warframeName: "Volt",
+        name: "Volt",
         abilities: [
             {
                 shortcut: 1,
@@ -1493,7 +1493,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/volt.webp",
     },
     {
-        warframeName: "Voruna",
+        name: "Voruna",
         abilities: [
             {
                 shortcut: 1,
@@ -1519,7 +1519,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/voruna.webp",
     },
     {
-        warframeName: "Wisp",
+        name: "Wisp",
         abilities: [
             {
                 shortcut: 1,
@@ -1545,7 +1545,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/wisp.webp",
     },
     {
-        warframeName: "Wukong",
+        name: "Wukong",
         abilities: [
             {
                 shortcut: 1,
@@ -1571,7 +1571,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/wukong.webp",
     },
     {
-        warframeName: "Xaku",
+        name: "Xaku",
         abilities: [
             {
                 shortcut: 1,
@@ -1597,7 +1597,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/xaku.webp",
     },
     {
-        warframeName: "Yareli",
+        name: "Yareli",
         abilities: [
             {
                 shortcut: 1,
@@ -1623,7 +1623,7 @@ export const initialAbilities: WarframeAbility[] = [
         image: "/warframe_portraits/yareli.webp",
     },
     {
-        warframeName: "Zephyr",
+        name: "Zephyr",
         abilities: [
             {
                 shortcut: 1,

@@ -14,9 +14,9 @@
 
         width: 100%;
         max-width: 800px;
-        min-height: 100vh;
+        min-height: 100dvh;
 
-        background-image: url("../../assets/png/wp5835539.png");
+        background-image: url("../../assets/png/wp5835539.webp");
         background-position: bottom;
         background-size: cover;
     }
@@ -58,14 +58,8 @@
     }
 
     &_4 {
-        position: fixed;
-        z-index: 1000;
-        bottom: 75px;
-
-        align-self: center;
-
-        width: 300px;
-        max-width: 450px;
+        max-width: 300px;
+        margin-top: 20px;
         padding: 10px 20px;
         border: solid;
         border-color: var(--gold);
@@ -86,7 +80,7 @@
             border: 0;
             border-color: var(--gold);
 
-            color: #fff;
+            color: #f1f1f1;
 
             background-color: transparent;
 
@@ -106,7 +100,6 @@
             font-weight: 700;
             line-height: 18px;
             color: var(--light);
-            text-align: center;
         }
 
         &_indicators {
@@ -173,5 +166,20 @@
 
         width: 100%;
         margin-bottom: 80px;
+    }
+
+    &_8 {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+
+        width: calc(100% - 20px);
+        margin-bottom: 10px;
+
+        @media only screen and (max-width: 600px) {
+            margin-top: 5px;
+        }
     }
 }
