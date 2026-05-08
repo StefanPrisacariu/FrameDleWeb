@@ -5,6 +5,8 @@ export type Styles = {
   'fd_icon_3': string;
   'fd_icon_4': string;
   'fd_icon_5': string;
+  'fd_icon_fills_gold': string;
+  'fd_icon_fills_white': string;
   'fd_icon_p_3': string;
   'fd_icon_p_5': string;
   'fd_icon_reverse': string;

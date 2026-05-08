@@ -18,4 +18,29 @@
         width: 100%;
         max-width: 270px;
     }
+
+    &_2 {
+        position: absolute;
+        top: calc(50% - 150px);
+        left: calc(50% - 150px);
+
+        width: 300px;
+        height: 300px;
+
+        filter: brightness(0.3);
+
+        &_fill {
+            &_f {
+                fill: var(--gold);
+            }
+
+            &_d {
+                fill: var(--lightBlue);
+            }
+
+            &_outline {
+                stroke: var(--primary);
+            }
+        }
+    }
 }

@@ -1,3 +1,4 @@
+/* stylelint-disable @stylistic/string-quotes */
 .fd_icon {
     &_0 {
         position: absolute;
@@ -16,6 +17,7 @@
     }
 
     &_p_3 {
+        z-index: 0;
         padding: 3px;
     }
 
@@ -41,5 +43,15 @@
 
     &_5 {
         transform: rotateZ("180deg");
+    }
+
+    &_fills {
+        &_gold {
+            fill: var(--gold);
+        }
+
+        &_white {
+            fill: var(--light);
+        }
     }
 }

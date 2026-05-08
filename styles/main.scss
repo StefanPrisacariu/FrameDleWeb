@@ -1,3 +1,4 @@
+/* stylelint-disable @stylistic/function-parentheses-space-inside */
 /* stylelint-disable @stylistic/declaration-colon-space-after */
 /* stylelint-disable @stylistic/string-quotes */
 @use "global/reset";
@@ -48,18 +49,108 @@
     --orange: #505050;
 }
 
-[data-theme="test"] {
+//THEMES
+
+[data-theme="Stalker"] {
     --dark: #000;
-    --light: #f1f1f1;
-    --primary: #270909;
-    --gold: #f00;
-    --darkBlue: #800015;
-    --lightBlue: #dbd400;
-    --gray: #707070;
+    --light: #d0d0d0;
+    --primary: #140606;
+    --gold: #b32020;
+    --darkBlue: #250000;
+    --lightBlue: #ff3b30;
+    --gray: #5f5f5f;
 }
 
-main {
-    background-color: var(--primary);
+[data-theme="Vitruvian"] {
+    --dark: #050505;
+    --light: #d0c8b4;
+    --primary: #14110d;
+    --gold: #c6a56a;
+    --darkBlue: #2b2118;
+    --lightBlue: #f3d9a4;
+    --gray: #6e675d;
+}
+
+[data-theme="POM2"] {
+    --dark: #050805;
+    --light: #d7ffd0;
+    --primary: #0b140b;
+    --gold: #0acf2b;
+    --darkBlue: #112411;
+    --lightBlue: #57ff84;
+    --gray: #667066;
+}
+
+[data-theme="Equinox"] {
+    --dark: #05070a;
+    --light: #d9d7de;
+    --primary: #11141d;
+    --gold: #eee;
+    --darkBlue: #1f2a3a;
+    --lightBlue: #464a67;
+    --gray: #6d7480;
+}
+
+[data-theme="Legacy"] {
+    --dark: #060606;
+    --light: #d6d6d6;
+    --primary: #10151c;
+    --gold: #74b5c2;
+    --darkBlue: #1d2c3a;
+    --lightBlue: #6bb7ff;
+    --gray: #707781;
+}
+
+// END THEMES
+
+body {
+    height: 100dvh;
+
+    background:
+        radial-gradient(
+            circle at 25% 20%,
+            color-mix(in srgb, var(--lightBlue) 25%, transparent) 0%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 50%,
+            color-mix(in srgb, var(--lightBlue) 25%, transparent) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 75% 80%,
+            color-mix(in srgb, var(--gold) 25%, transparent) 0%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 50%,
+            color-mix(in srgb, var(--gold) 25%, transparent) 0%,
+            transparent 50%
+        ),
+        var(--primary);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+body::after {
+    pointer-events: none;
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at center,
+        transparent 40%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
 }
 
 body {
@@ -128,6 +219,14 @@ span :hover {
 
 body {
     color: #f1f1f1;
+}
+
+button,
+a,
+div,
+span {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .gr-correct {

@@ -6,7 +6,53 @@ import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
 import { initialWarframes } from "@/app/lib/warframes";
 import Container from "@/styles/components/Container.module.scss";
 import Text from "@/styles/components/Text.module.scss";
+import Menu from "@/styles/components/Menu.module.scss";
 import { TimerComponent } from "@/app/components/TimeComponent";
+import Card from "@/styles/components/Card.module.scss";
+import Image from "next/image";
+import Link from "next/link";
+import Kofi from "@/assets/png/ko-fi-icon.webp";
+
+type ModeConfig = {
+    id: string;
+    label: string;
+    description: string;
+    rules: string[];
+};
+
+const MODES: ModeConfig[] = [
+    {
+        id: "warframe",
+        label: "Warframe",
+        description: "Guess the daily warframe using property-based feedback.",
+        rules: [
+            "Each guess reveals attributes",
+            "Compare against: Gender, Variant, Aura Polarity, Playstyle, Progenitor Element, Release Year",
+        ],
+    },
+    {
+        id: "ability",
+        label: "Ability",
+        description: "Guess the warframe that owns the daily ability.",
+        rules: [
+            "Ability icon split into 4 sections",
+            "1 section visible initially",
+            "+1 section per wrong guess",
+            "Full icon after 3 wrong guesses",
+            "Ability name revealed after 4 wrong guesses",
+        ],
+    },
+    {
+        id: "emoji",
+        label: "Emoji",
+        description: "Guess the daily warframe based on emoji clues.",
+        rules: [
+            "3–5 emojis total",
+            "1 emoji visible initially",
+            "+1 emoji per wrong guess",
+        ],
+    },
+];
 
 function Info() {
     return (
@@ -46,94 +92,42 @@ function Info() {
             <h2 className="dont">How to Play & Disclaimers</h2>
             <div className={Container.fd_container_5}>
                 <h2 className={Text.fd_text_2_title}>How to play?</h2>
+                {MODES.map((mode) => (
+                    <div key={mode.id}>
+                        <p className={Text.fd_text_2_link}>{mode.label}</p>
+                        <p className={Text.fd_text_2_def}>{mode.description}</p>
+                        {mode.rules.map((rule, i) => (
+                            <p key={i} className={Text.fd_text_2_def}>
+                                • {rule}
+                            </p>
+                        ))}
+                    </div>
+                ))}
+
+                <h2 className={Text.fd_text_2_title}>Game Types</h2>
+
+                <p className={Text.fd_text_2_link}>Daily</p>
                 <p className={Text.fd_text_2_def}>
-                    In <span className={Text.fd_text_2_link}>Daily</span> mode
-                    you have to guess today&apos;s warframe and in{" "}
-                    <span className={Text.fd_text_2_link}>Ability</span> mode
-                    you will have to guess today&apos;s ability of a certain
-                    warframe from Digital Extreme&apos;s game
-                    &quot;Warframe&quot;. It changes every 24h.
+                    One challenge per mode, resets every 24 hours. Next reset:{" "}
+                    {<TimerComponent />}
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    Next warframe / ability in: <TimerComponent />
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    While in{" "}
-                    <span className={Text.fd_text_2_link}>Endless</span> mode,
-                    you can play as much as you want just by pressing the{" "}
-                    <span className={Text.fd_text_2_link}>New Warframe</span>{" "}
-                    button to reset the game, please note that the Endless mode
-                    doesn&apos;t add to the Daily mode&apos;s Streak. Also, the
-                    Endless mode doesn&apos;t require an internet connection, it
-                    can be enjoyed whenever you want.
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    Simply type in the name of a warframe and it will reveal its
-                    properties. The color of the tiles will change to show how
-                    close your guess was to the warframe to find.
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--green)" }}
-                    >
-                        Green
-                    </span>{" "}
-                    indicates the property is an exact match.
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--orange)" }}
-                    >
-                        Orange
-                    </span>{" "}
-                    indicates the property is a partial match, one or two
-                    elements overlapping.
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    <span
-                        className={Text.fd_text_2_link}
-                        style={{ color: "var(--red)" }}
-                    >
-                        Red
-                    </span>{" "}
-                    indicates there is no overlap between your guess and the
-                    property.
-                </p>
-                <p className={Text.fd_text_2_def}>
-                    ⬇️ ⬆️ With arrows, it also indicates if the answer property
-                    is above or below your guess.
+                    Progress counts toward streak.
                 </p>
 
-                <p className={Text.fd_text_2_title}>Properties</p>
+                <p className={Text.fd_text_2_link}>Endless</p>
                 <p className={Text.fd_text_2_def}>
-                    Here is the details of each of the properties columns:
+                    Unlimited play across all modes.
                 </p>
-
-                <p className={Text.fd_text_2_link}>Gender</p>
                 <p className={Text.fd_text_2_def}>
-                    Possible Values: Male, Female, Non Binary
+                    Use “New Warframe / Ability / Emoji” to reset the current
+                    mode.
                 </p>
-                <p className={Text.fd_text_2_link}>Variant</p>
                 <p className={Text.fd_text_2_def}>
-                    Possible Values: Standard, Prime, Umbra
+                    No streak tracking. No daily progression impact.
                 </p>
-                <p className={Text.fd_text_2_link}>Aura Polarity</p>
                 <p className={Text.fd_text_2_def}>
-                    Possible Values: Madurai, Vazarin, Naramon, etc...
-                </p>
-                <p className={Text.fd_text_2_link}>Playstyle</p>
-                <p className={Text.fd_text_2_def}>
-                    Possible Values: Damage, Stealth, Crowd Control etc...
-                </p>
-                <p className={Text.fd_text_2_link}>Progenitor Element</p>
-                <p className={Text.fd_text_2_def}>
-                    Possible Values: Impact, Radiation, Cold, etc...
-                </p>
-                <p className={Text.fd_text_2_link}>Release Year</p>
-                <p className={Text.fd_text_2_def}>
-                    When the champion was released to be played.
+                    Can function without internet.
                 </p>
 
                 <p className={Text.fd_text_2_title}>Example</p>
@@ -343,6 +337,33 @@ function Info() {
                     FrameDle for the Warframe community. Thank you for being a
                     part of the FrameDle journey!
                 </p>
+                <div
+                    className={Menu.fd_menu_0_big_grid}
+                    style={{ alignSelf: "center", marginTop: 20 }}
+                >
+                    <div></div>
+                    <div className={Card.fd_card_1}>
+                        <Link
+                            href="https://ko-fi.com/leokaiskarri"
+                            target="_blank"
+                            className={Card.fd_card_1_card}
+                        >
+                            <div className={Card.fd_card_1_card_wrap}>
+                                <Image
+                                    width={1024}
+                                    height={822}
+                                    src={Kofi}
+                                    alt="Ko-Fi Icon"
+                                    className={
+                                        Card.fd_card_1_card_wrap_icon_kofi
+                                    }
+                                />
+                            </div>
+                            <span>Ko-Fi</span>
+                        </Link>
+                    </div>
+                    <div></div>
+                </div>
             </div>
         </>
     );

@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 import Mod from "@/styles/components/Modal.module.scss";
 import Button from "@/styles/components/Button.module.scss";
+import Icon from "@/styles/components/Icon.module.scss";
 
 interface ModalProps {
     guesses: WarframeAbility[];
@@ -36,7 +37,11 @@ export const AbilityModal = ({ guesses }: ModalProps) => {
                         }}
                         className={Button.fd_button_0}
                     >
-                        <Share width={20} height={20} />
+                        <Share
+                            width={20}
+                            height={20}
+                            className={Icon.fd_icon_fills_white}
+                        />
                         <span id="share-button-text">
                             {copied ? "Copied" : "Share"}
                         </span>

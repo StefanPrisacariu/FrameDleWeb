@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { storeIndicatorToggle } from "@/app/helpers/indicatorStatus";
 import Link from "next/link";
 import { ColorIndicators } from "@/app/components/ColorIndicators";
-import LogoBaban from "@/assets/svg/title-logo.svg";
 
 import Close from "@/assets/svg/close-x.svg";
 import Menu from "@/assets/svg/bars-solid-icon.svg";
 
-import DropdownArrowWhite from "@/assets/svg/arrow-down-white.svg";
+import DropdownArrowWhite from "@/assets/svg/arrow-down-gold.svg";
 import { useRouter } from "next/router";
 import Button from "@/styles/components/Button.module.scss";
+import Icon from "@/styles/components/Icon.module.scss";
 import Nav from "@/styles/components/Navigation.module.scss";
 import Logo from "@/styles/components/Logo.module.scss";
 import Group from "@/styles/components/Group.module.scss";
@@ -24,7 +24,7 @@ import Quest from "@/assets/png/icons/IconQuest.webp";
 import Feedback from "@/assets/png/icons/Chem_w.webp";
 import Settings from "@/assets/png/icons/ReputationSmall.webp";
 import { AnimatePresence, motion } from "framer-motion";
-import { useSettings } from "@/app/context/SettingsContext";
+import { TitleLogo } from "@/app/components/Logos/TitleLogo";
 
 export const CustomNavigator = () => {
     const descriptor: string = useRouter().pathname;
@@ -36,8 +36,6 @@ export const CustomNavigator = () => {
     const mobileRef = useRef<HTMLDivElement | null>(null);
 
     const [endlessModes, setEndlessModes] = useState(false);
-
-    const { visibleSettings, setVisibleSettings } = useSettings();
 
     useEffect(() => {
         if (descriptor) {
@@ -106,9 +104,6 @@ export const CustomNavigator = () => {
 
     return (
         <>
-            {/* {visible && "/info" !== descriptor && (
-                <ColorIndicators visible={visible} setVisible={setVisible} />
-            )} */}
             <AnimatePresence>
                 {isMobileNavVisible && (
                     <motion.div
@@ -133,14 +128,25 @@ export const CustomNavigator = () => {
                         <div className={Nav.fd_nav_0_wrap}>
                             <div ref={mobileRef} className={Nav.fd_nav_content}>
                                 <div className={Nav.fd_nav_container}>
-                                    <LogoBaban className={Logo.fd_logo_0} />
+                                    <div
+                                        className={clsx(
+                                            Logo.fd_logo_0,
+                                            Nav.fd_nav_container_logo,
+                                        )}
+                                    >
+                                        <TitleLogo />
+                                    </div>
                                     <button
                                         onClick={() => {
                                             setIsMobileNavVisible(false);
                                         }}
                                         className={Nav.fd_nav_button}
                                     >
-                                        <Close width={20} height={20} />
+                                        <Close
+                                            width={20}
+                                            height={20}
+                                            className={Icon.fd_icon_fills_gold}
+                                        />
                                     </button>
                                     <div className={Group.fd_group_1}>
                                         <Link
@@ -315,6 +321,9 @@ export const CustomNavigator = () => {
                                                         <DropdownArrowWhite
                                                             width={15}
                                                             height={15}
+                                                            className={
+                                                                Icon.fd_icon_fills_white
+                                                            }
                                                         />
                                                     </motion.div>
                                                 </AnimatePresence>
@@ -327,7 +336,7 @@ export const CustomNavigator = () => {
                                                         height: 0,
                                                     }}
                                                     animate={{
-                                                        height: 155,
+                                                        height: "auto",
                                                     }}
                                                     exit={{
                                                         height: 0,
@@ -491,13 +500,9 @@ export const CustomNavigator = () => {
                                                 </span>
                                             </div>
                                         </Link>
-                                        <div
+                                        <Link
                                             className={Group.fd_group_1_button}
-                                            onClick={() => {
-                                                setVisibleSettings(
-                                                    !visibleSettings,
-                                                );
-                                            }}
+                                            href={"/settings"}
                                         >
                                             <div
                                                 className={
@@ -511,14 +516,19 @@ export const CustomNavigator = () => {
                                                     alt="Settings"
                                                 />
                                                 <span
-                                                    className={
-                                                        Button.fd_button_3_text
-                                                    }
+                                                    className={clsx(
+                                                        Group.fd_group_1_button_text,
+                                                        {
+                                                            [Group.fd_group_1_button_selected]:
+                                                                descriptor ===
+                                                                "/settings",
+                                                        },
+                                                    )}
                                                 >
                                                     Settings
                                                 </span>
                                             </div>
-                                        </div>
+                                        </Link>
                                         <ColorIndicators />
                                     </div>
                                 </div>

@@ -1,8 +1,10 @@
+import { BackgroundLogo } from "@/app/components/Logos/BackgroundLogo";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
     return (
         <Html lang="en">
+            <BackgroundLogo />
             <Head>
                 <meta
                     name="viewport"

@@ -39,6 +39,7 @@
         &_image {
             width: 20px;
             height: 20px;
+            fill: var(--gold);
 
             @media only screen and (max-width: 600px) {
                 width: 17px;

@@ -1,5 +1,3 @@
-import { getColorblindMode } from "@/app/helpers/colorblindStore";
-
 import GR from "@/styles/components/GuessRow.module.scss";
 import Container from "@/styles/components/Container.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
@@ -9,9 +7,10 @@ import Correct from "@/assets/svg/indicator-correct.svg";
 import Incorrect from "@/assets/svg/indicator-incorrect.svg";
 import Partial from "@/assets/svg/indicator-partial.svg";
 import clsx from "clsx";
+import { useColorblind } from "@/app/context/ColorblindContext";
 
 export const ColorIndicators = () => {
-    const colorblind = getColorblindMode();
+    const { mode } = useColorblind();
 
     return (
         <div className={Container.fd_container_4}>
@@ -24,7 +23,7 @@ export const ColorIndicators = () => {
                             GR.fd_gr_colors_correct,
                         )}
                     >
-                        {"Disabled" !== colorblind && (
+                        {"Disabled" !== mode && (
                             <Correct
                                 className={Icon.fd_icon_p_3}
                                 width={40}
@@ -41,7 +40,7 @@ export const ColorIndicators = () => {
                             GR.fd_gr_colors_partial,
                         )}
                     >
-                        {"Disabled" !== colorblind && (
+                        {"Disabled" !== mode && (
                             <Partial
                                 className={Icon.fd_icon_p_3}
                                 width={40}
@@ -58,7 +57,7 @@ export const ColorIndicators = () => {
                             GR.fd_gr_colors_incorrect,
                         )}
                     >
-                        {"Disabled" !== colorblind && (
+                        {"Disabled" !== mode && (
                             <Incorrect
                                 className={Icon.fd_icon_p_5}
                                 width={40}

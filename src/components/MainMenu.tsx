@@ -10,345 +10,154 @@ import Discord from "@/assets/png/discord-icon.webp";
 import Kofi from "@/assets/png/ko-fi-icon.webp";
 import HowToPlay from "@/assets/png/icons/IconQuest.webp";
 import Settings from "@/assets/png/icons/ReputationSmall.webp";
-import { useSettings } from "@/app/context/SettingsContext";
+import { ThemesCTA } from "@/app/components/ThemesCTA";
+import { MenuCard, MenuSmallCard } from "@/app/components/MenuCard";
+
+const DailyModes = [
+    {
+        href: "/warframe",
+        wallpaperSrc: "/wallpapers/wallpaper-warframe.webp",
+        iconSrc: "/game_progress/warframe.webp",
+        name: "Warframe",
+    },
+    {
+        href: "/ability",
+        wallpaperSrc: "/wallpapers/ability-icons.webp",
+        iconSrc: "/game_progress/ability.webp",
+        name: "Ability",
+    },
+    {
+        href: "/emoji",
+        wallpaperSrc: "/wallpapers/emojis.webp",
+        iconSrc: "/game_progress/emoji.webp",
+        name: "Emoji",
+    },
+];
+const EndlessModes = [
+    {
+        href: "/endless/warframe",
+        wallpaperSrc: "/wallpapers/wallpaper-warframe.webp",
+        iconSrc: Infinite.src,
+        name: "Warframe",
+    },
+    {
+        href: "/endless/ability",
+        wallpaperSrc: "/wallpapers/ability-icons.webp",
+        iconSrc: Infinite.src,
+        name: "Ability",
+    },
+    {
+        href: "/endless/emoji",
+        wallpaperSrc: "/wallpapers/emojis.webp",
+        iconSrc: Infinite.src,
+        name: "Emoji",
+    },
+];
+
+const UtilityItems = [
+    {
+        href: "/info",
+        iconSrc: HowToPlay.src,
+        name: "How to Play",
+    },
+    {
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview",
+        iconSrc: Feedback.src,
+        name: "Feedback",
+        targetBlank: true,
+    },
+];
+const UtilityItems2 = [
+    {
+        href: "https://discord.gg/qqmr3Uz32f",
+        iconSrc: Discord.src,
+        name: "Discord",
+        targetBlank: true,
+    },
+    {
+        href: "https://play.google.com/store/apps/details?id=com.framedle",
+        iconSrc: Google.src,
+        name: "Google Play",
+        targetBlank: true,
+    },
+    {
+        href: "https://ko-fi.com/leokaiskarri",
+        iconSrc: Kofi.src,
+        name: "Ko-Fi",
+        targetBlank: true,
+    },
+];
 
 export const MainMenu = () => {
-    const { visibleSettings, setVisibleSettings } = useSettings();
-
     return (
         <>
             <div className={Menu.fd_menu_0_section}>
                 <h2 className={Text.fd_text_4}>Daily Modes</h2>
                 <div className={Menu.fd_menu_0_big_container}>
-                    <div className={Card.fd_card_0}>
-                        <Link
-                            href={"/warframe"}
-                            className={Card.fd_card_0_wrap}
-                        >
-                            <div className={Card.fd_card_0_wrap_container}>
-                                <Image
-                                    width={700}
-                                    height={394}
-                                    src="/wallpapers/wallpaper-warframe.webp"
-                                    alt="Artwork Warframe"
-                                    className={
-                                        Card.fd_card_0_wrap_container_img
-                                    }
-                                />
-                                <div
-                                    className={
-                                        Card.fd_card_0_wrap_container_overlay
-                                    }
-                                >
-                                    <span>
-                                        <Image
-                                            width={200}
-                                            height={200}
-                                            src="/game_progress/warframe.webp"
-                                            alt="Icon Warframe"
-                                            className={
-                                                Card.fd_card_0_wrap_container_overlay_infinite
-                                            }
-                                        />
-                                        Warframe
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={Card.fd_card_0}>
-                        <Link href={"/ability"} className={Card.fd_card_0_wrap}>
-                            <div className={Card.fd_card_0_wrap_container}>
-                                <Image
-                                    width={700}
-                                    height={394}
-                                    src="/wallpapers/ability-icons.webp"
-                                    alt="Artwork Warframe Abilities"
-                                    className={
-                                        Card.fd_card_0_wrap_container_img
-                                    }
-                                />
-                                <div
-                                    className={
-                                        Card.fd_card_0_wrap_container_overlay
-                                    }
-                                >
-                                    <span>
-                                        <Image
-                                            width={200}
-                                            height={200}
-                                            src="/game_progress/ability.webp"
-                                            alt="Icon Warframe Abilities"
-                                            className={
-                                                Card.fd_card_0_wrap_container_overlay_infinite
-                                            }
-                                        />
-                                        Ability
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={Card.fd_card_0}>
-                        <Link href={"/emoji"} className={Card.fd_card_0_wrap}>
-                            <div className={Card.fd_card_0_wrap_container}>
-                                <Image
-                                    width={700}
-                                    height={394}
-                                    src="/wallpapers/emojis.webp"
-                                    alt="Emoji Wallpaper"
-                                    className={
-                                        Card.fd_card_0_wrap_container_img
-                                    }
-                                />
-                                <div
-                                    className={
-                                        Card.fd_card_0_wrap_container_overlay
-                                    }
-                                >
-                                    <span>
-                                        <Image
-                                            width={200}
-                                            height={200}
-                                            src="/game_progress/emoji.webp"
-                                            alt="Feedback"
-                                            className={
-                                                Card.fd_card_0_wrap_container_overlay_infinite
-                                            }
-                                        />
-                                        Emoji
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
+                    {DailyModes.map((item) => (
+                        <MenuCard
+                            key={item.name}
+                            href={item.href}
+                            wallpaperSrc={item.wallpaperSrc}
+                            iconSrc={item.iconSrc}
+                            name={item.name}
+                        />
+                    ))}
                 </div>
             </div>
             <div className={Menu.fd_menu_0_section}>
                 <h2 className={Text.fd_text_4}>Endless Modes</h2>
                 <div className={Menu.fd_menu_0_big_container}>
-                    <div className={Card.fd_card_0}>
-                        <Link
-                            href={"/endless/warframe"}
-                            className={Card.fd_card_0_wrap}
-                        >
-                            <div className={Card.fd_card_0_wrap_container}>
-                                <Image
-                                    width={700}
-                                    height={394}
-                                    src="/wallpapers/wallpaper-warframe.webp"
-                                    alt="Artwork Warframe"
-                                    className={
-                                        Card.fd_card_0_wrap_container_img
-                                    }
-                                />
-                                <div
-                                    className={
-                                        Card.fd_card_0_wrap_container_overlay
-                                    }
-                                >
-                                    <span>
-                                        <Image
-                                            width={200}
-                                            height={200}
-                                            src={Infinite}
-                                            alt="Icon Infinite"
-                                            className={
-                                                Card.fd_card_0_wrap_container_overlay_infinite
-                                            }
-                                        />
-                                        Warframe
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={Card.fd_card_0}>
-                        <Link
-                            href={"/endless/ability"}
-                            className={Card.fd_card_0_wrap}
-                        >
-                            <div className={Card.fd_card_0_wrap_container}>
-                                <Image
-                                    width={700}
-                                    height={394}
-                                    src="/wallpapers/ability-icons.webp"
-                                    alt="Artwork Warframe Ability"
-                                    className={
-                                        Card.fd_card_0_wrap_container_img
-                                    }
-                                />
-                                <div
-                                    className={
-                                        Card.fd_card_0_wrap_container_overlay
-                                    }
-                                >
-                                    <span>
-                                        <Image
-                                            width={200}
-                                            height={200}
-                                            src={Infinite}
-                                            alt="Icon Infinite"
-                                            className={
-                                                Card.fd_card_0_wrap_container_overlay_infinite
-                                            }
-                                        />
-                                        Ability
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={Card.fd_card_0}>
-                        <Link
-                            href={"/endless/emoji"}
-                            className={Card.fd_card_0_wrap}
-                        >
-                            <div className={Card.fd_card_0_wrap_container}>
-                                <Image
-                                    width={700}
-                                    height={394}
-                                    src="/wallpapers/emojis.webp"
-                                    alt="Emoji Wallpaper"
-                                    className={
-                                        Card.fd_card_0_wrap_container_img
-                                    }
-                                />
-                                <div
-                                    className={
-                                        Card.fd_card_0_wrap_container_overlay
-                                    }
-                                >
-                                    <span>
-                                        <Image
-                                            width={200}
-                                            height={200}
-                                            src={Infinite}
-                                            alt="Icon Infinite"
-                                            className={
-                                                Card.fd_card_0_wrap_container_overlay_infinite
-                                            }
-                                        />
-                                        Emoji
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
+                    {EndlessModes.map((item) => (
+                        <MenuCard
+                            key={item.name}
+                            href={item.href}
+                            wallpaperSrc={item.wallpaperSrc}
+                            iconSrc={item.iconSrc}
+                            name={item.name}
+                        />
+                    ))}
                 </div>
             </div>
             <div className={Menu.fd_menu_0_section}>
                 <h2 className={Text.fd_text_4}>Utility</h2>
                 <div className={Menu.fd_menu_0_big_grid}>
-                    <div className={Card.fd_card_1}>
-                        <Link href={"/info"} className={Card.fd_card_1_card}>
-                            <div className={Card.fd_card_1_card_wrap}>
-                                <Image
-                                    width={500}
-                                    height={500}
-                                    src={HowToPlay}
-                                    alt="Informations Icon"
-                                    className={Card.fd_card_1_card_wrap_icon}
-                                />
+                    {UtilityItems.map((item) => (
+                        <MenuSmallCard
+                            key={item.name}
+                            href={item.href}
+                            iconSrc={item.iconSrc}
+                            name={item.name}
+                        />
+                    ))}
+                    <div style={{ position: "relative" }}>
+                        <ThemesCTA />
+                        <Link href="/settings" className={Card.fd_card_1}>
+                            <div className={Card.fd_card_1_card}>
+                                <div className={Card.fd_card_1_card_wrap}>
+                                    <Image
+                                        width={500}
+                                        height={500}
+                                        src={Settings}
+                                        alt="Settings Icon"
+                                        className={
+                                            Card.fd_card_1_card_wrap_icon
+                                        }
+                                    />
+                                </div>
+                                <span>Settings</span>
                             </div>
-                            <span>How to Play</span>
                         </Link>
                     </div>
-                    <div className={Card.fd_card_1}>
-                        <Link
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
-                            target="_blank"
-                            className={Card.fd_card_1_card}
-                        >
-                            <div className={Card.fd_card_1_card_wrap}>
-                                <Image
-                                    width={500}
-                                    height={500}
-                                    src={Feedback}
-                                    alt="Feedback Icon"
-                                    className={Card.fd_card_1_card_wrap_icon}
-                                />
-                            </div>
-                            <span>Feedback</span>
-                        </Link>
-                    </div>
-                    <div
-                        onClick={() => {
-                            setVisibleSettings(!visibleSettings);
-                        }}
-                        className={Card.fd_card_1}
-                    >
-                        <div className={Card.fd_card_1_card}>
-                            <div className={Card.fd_card_1_card_wrap}>
-                                <Image
-                                    width={500}
-                                    height={500}
-                                    src={Settings}
-                                    alt="Settings Icon"
-                                    className={Card.fd_card_1_card_wrap_icon}
-                                />
-                            </div>
-                            <span>Settings</span>
-                        </div>
-                    </div>
-                    <div className={Card.fd_card_1}>
-                        <Link
-                            href="https://discord.gg/qqmr3Uz32f"
-                            target="_blank"
-                            className={Card.fd_card_1_card}
-                        >
-                            <div className={Card.fd_card_1_card_wrap}>
-                                <Image
-                                    width={719}
-                                    height={512}
-                                    src={Discord}
-                                    alt="Discord Icon"
-                                    className={
-                                        Card.fd_card_1_card_wrap_icon_discord
-                                    }
-                                />
-                            </div>
-                            <span>Discord</span>
-                        </Link>
-                    </div>
-                    <div className={Card.fd_card_1}>
-                        <Link
-                            href="https://play.google.com/store/apps/details?id=com.framedle"
-                            target="_blank"
-                            className={Card.fd_card_1_card}
-                        >
-                            <div className={Card.fd_card_1_card_wrap}>
-                                <Image
-                                    width={500}
-                                    height={500}
-                                    src={Google}
-                                    alt="Google Play Icon"
-                                    className={Card.fd_card_1_card_wrap_icon}
-                                />
-                            </div>
-                            <span>Google Play</span>
-                        </Link>
-                    </div>
-                    <div className={Card.fd_card_1}>
-                        <Link
-                            href="https://ko-fi.com/leokaiskarri"
-                            target="_blank"
-                            className={Card.fd_card_1_card}
-                        >
-                            <div className={Card.fd_card_1_card_wrap}>
-                                <Image
-                                    width={1024}
-                                    height={822}
-                                    src={Kofi}
-                                    alt="Ko-Fi Icon"
-                                    className={
-                                        Card.fd_card_1_card_wrap_icon_kofi
-                                    }
-                                />
-                            </div>
-                            <span>Ko-Fi</span>
-                        </Link>
-                    </div>
+                    {UtilityItems2.map((item) => (
+                        <MenuSmallCard
+                            key={item.name}
+                            href={item.href}
+                            iconSrc={item.iconSrc}
+                            name={item.name}
+                            targetBlank={item.targetBlank}
+                        />
+                    ))}
                 </div>
             </div>
         </>

@@ -1,0 +1,33 @@
+@keyframes myAnim {
+    0% {
+        transform: scale(1) rotateZ(12deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotateZ(12deg);
+    }
+
+    100% {
+        transform: scale(1) rotateZ(12deg);
+    }
+}
+
+.fd_cta {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    transform: rotateZ(12deg);
+
+    max-width: 60px;
+    padding: 2px 3px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+
+    font-size: 10px;
+    color: var(--light);
+    text-align: center;
+
+    background: var(--primary);
+
+    animation: myAnim 4s ease 0s infinite normal forwards;
+}

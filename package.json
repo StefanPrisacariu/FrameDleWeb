@@ -14,8 +14,6 @@
         "build:debug": "DEBUG_BUILD=true next build"
     },
     "dependencies": {
-        "@heroui/react": "^3.0.3",
-        "@heroui/styles": "^3.0.3",
         "@tanstack/react-query": "^5.84.1",
         "@total-typescript/ts-reset": "^0.6.1",
         "axios": "^1.11.0",

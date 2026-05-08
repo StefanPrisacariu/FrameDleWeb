@@ -3,6 +3,7 @@ export type Styles = {
   'fd_nav_0_wrap': string;
   'fd_nav_button': string;
   'fd_nav_container': string;
+  'fd_nav_container_logo': string;
   'fd_nav_content': string;
 };
 

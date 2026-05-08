@@ -50,7 +50,7 @@
 
                 border-radius: 50%;
 
-                background-color: var(--light);
+                background-color: #f1f1f1;
             }
         }
     }
@@ -103,5 +103,15 @@
             background-color: var(--primary);
             filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
         }
+    }
+
+    &_2 {
+        position: absolute;
+        right: 11px;
+        bottom: 31px;
+
+        border-radius: 50%;
+
+        background-color: #f1f1f1;
     }
 }
