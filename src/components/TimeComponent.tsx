@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 type Countdown = {
     hours: number;
@@ -6,7 +6,9 @@ type Countdown = {
     seconds: number;
 };
 
-export const startCountdown = (setCountdown: React.Dispatch<React.SetStateAction<Countdown>>): (() => void) => {
+export const startCountdown = (
+    setCountdown: React.Dispatch<React.SetStateAction<Countdown>>,
+): (() => void) => {
     const updateCountdown = () => {
         const now = new Date();
         const nextReset = new Date(now);
@@ -27,14 +29,18 @@ export const startCountdown = (setCountdown: React.Dispatch<React.SetStateAction
 };
 
 export const TimerComponent = (): string => {
-    const [countdown, setCountdown] = useState<Countdown>({ hours: 0, minutes: 0, seconds: 0 });
+    const [countdown, setCountdown] = useState<Countdown>({
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    });
 
     useEffect(() => {
         const cleanup = startCountdown(setCountdown);
         return cleanup;
     }, []);
 
-    const formatTime = (num: number): string => String(num).padStart(2, '0');
+    const formatTime = (num: number): string => String(num).padStart(2, "0");
 
     return `${formatTime(countdown.hours)}:${formatTime(countdown.minutes)}:${formatTime(countdown.seconds)}`;
 };

@@ -1,20 +1,20 @@
-import { NextSeo } from "next-seo";
-import Container from "@/styles/components/Container.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Section from "@/styles/components/Section.module.scss";
-import Group from "@/styles/components/Group.module.scss";
 import Button from "@/styles/components/Button.module.scss";
+import Container from "@/styles/components/Container.module.scss";
+import Group from "@/styles/components/Group.module.scss";
+import Section from "@/styles/components/Section.module.scss";
+import Text from "@/styles/components/Text.module.scss";
+import { NextSeo } from "next-seo";
 
-import { useEffect, useRef, useState } from "react";
 import { ColorIndicators } from "@/app/components/ColorIndicators";
 import { SettingsItemWithDropdown } from "@/app/components/SettingsItemWithDropdown";
 import { useColorblind } from "@/app/context/ColorblindContext";
+import { useEffect, useRef, useState } from "react";
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
 
-import Prog from "@/styles/components/Progress.module.scss";
 import Checkmark from "@/assets/svg/green_checkmark.svg";
+import Prog from "@/styles/components/Progress.module.scss";
 
 import Colorblind from "@/assets/png/icons/Ionic_w.webp";
 

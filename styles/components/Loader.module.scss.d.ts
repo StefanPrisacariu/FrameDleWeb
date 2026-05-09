@@ -1,5 +1,5 @@
 export type Styles = {
-  'fd_loader_0': string;
+    fd_loader_0: string;
 };
 
 export type ClassNames = keyof Styles;

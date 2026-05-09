@@ -1,9 +1,9 @@
 import Share from "@/assets/svg/share-solid.svg";
-import useClipboard from "react-use-clipboard";
 import { useRef } from "react";
+import useClipboard from "react-use-clipboard";
 
-import Mod from "@/styles/components/Modal.module.scss";
 import Button from "@/styles/components/Button.module.scss";
+import Mod from "@/styles/components/Modal.module.scss";
 
 const emojiMapping = {
     different: "🟥",
@@ -15,7 +15,7 @@ const emojiMapping = {
 
 const compareValues = (
     value: string | Polarities[] | Playstyle[],
-    reference: string | Polarities[] | Playstyle[]
+    reference: string | Polarities[] | Playstyle[],
 ) => {
     if (Array.isArray(value) && Array.isArray(reference)) {
         const commonElements = value.filter((v) => reference.includes(v));

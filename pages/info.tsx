@@ -3,15 +3,15 @@
 import { NextSeo } from "next-seo";
 
 import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
-import { initialWarframes } from "@/app/lib/warframes";
-import Container from "@/styles/components/Container.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Menu from "@/styles/components/Menu.module.scss";
 import { TimerComponent } from "@/app/components/TimeComponent";
+import { initialWarframes } from "@/app/lib/warframes";
+import Kofi from "@/assets/png/ko-fi-icon.webp";
 import Card from "@/styles/components/Card.module.scss";
+import Container from "@/styles/components/Container.module.scss";
+import Menu from "@/styles/components/Menu.module.scss";
+import Text from "@/styles/components/Text.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import Kofi from "@/assets/png/ko-fi-icon.webp";
 
 type ModeConfig = {
     id: string;

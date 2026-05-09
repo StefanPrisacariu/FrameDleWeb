@@ -1,10 +1,10 @@
 import Share from "@/assets/svg/share-solid.svg";
-import useClipboard from "react-use-clipboard";
 import { useRef } from "react";
+import useClipboard from "react-use-clipboard";
 
-import Mod from "@/styles/components/Modal.module.scss";
 import Button from "@/styles/components/Button.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
+import Mod from "@/styles/components/Modal.module.scss";
 
 interface ModalProps {
     guesses: WarframeAbility[];

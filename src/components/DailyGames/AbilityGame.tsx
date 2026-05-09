@@ -1,37 +1,38 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
-import { motion, AnimatePresence } from "framer-motion";
 
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
 import { TimerComponent } from "@/app/components/TimeComponent";
-import Container from "@/styles/components/Container.module.scss";
-import Group from "@/styles/components/Group.module.scss";
-import ImgStyle from "@/styles/components/ImgStyle.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Dropdown from "@/styles/components/Dropdown.module.scss";
-import Input from "@/styles/components/Input.module.scss";
 import {
     getAbilityStreak,
     storeAbilityStreak,
     storeAbilityStreakTime,
 } from "@/app/helpers/storeReadStreak";
-import {
-    storeAbilityGuesses,
-    getAbilityGuesses,
-} from "@/app/helpers/storeReadGuesses";
-import { checkResetNeeded } from "@/app/helpers/resetCheck";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
+import Container from "@/styles/components/Container.module.scss";
+import Dropdown from "@/styles/components/Dropdown.module.scss";
+import Group from "@/styles/components/Group.module.scss";
+import ImgStyle from "@/styles/components/ImgStyle.module.scss";
+import Input from "@/styles/components/Input.module.scss";
+import Text from "@/styles/components/Text.module.scss";
 
-import { initialAbilities } from "@/app/lib/abilities";
+import { checkResetNeeded } from "@/app/helpers/resetCheck";
+import {
+    getAbilityGuesses,
+    storeAbilityGuesses,
+} from "@/app/helpers/storeReadGuesses";
+
 import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
 import { AbilityModal } from "@/app/components/Modals/AbilityModal";
-import { scrollToId } from "@/app/helpers/scrollToId";
-import { useTags } from "@/app/context/TagsContext";
 import { StreakProgress } from "@/app/components/StreakProgress";
+import { useTags } from "@/app/context/TagsContext";
+import { scrollToId } from "@/app/helpers/scrollToId";
+import { initialAbilities } from "@/app/lib/abilities";
 
 interface AbilityGame {
     todaysWf: ProcessedAbility;

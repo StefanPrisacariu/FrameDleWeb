@@ -1,37 +1,38 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
-import { motion, AnimatePresence } from "framer-motion";
 
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
 import { TimerComponent } from "@/app/components/TimeComponent";
-import Container from "@/styles/components/Container.module.scss";
-import Group from "@/styles/components/Group.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Dropdown from "@/styles/components/Dropdown.module.scss";
-import Prog from "@/styles/components/Progress.module.scss";
-import Input from "@/styles/components/Input.module.scss";
 import {
     getEmojiStreak,
     storeEmojiStreak,
     storeEmojiStreakTime,
 } from "@/app/helpers/storeReadStreak";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
+import Container from "@/styles/components/Container.module.scss";
+import Dropdown from "@/styles/components/Dropdown.module.scss";
+import Group from "@/styles/components/Group.module.scss";
+import Input from "@/styles/components/Input.module.scss";
+import Prog from "@/styles/components/Progress.module.scss";
+import Text from "@/styles/components/Text.module.scss";
+
+import { checkResetNeeded } from "@/app/helpers/resetCheck";
 import {
     getEmojiGuesses,
     storeEmojiGuesses,
 } from "@/app/helpers/storeReadGuesses";
-import { checkResetNeeded } from "@/app/helpers/resetCheck";
 
-import { scrollToId } from "@/app/helpers/scrollToId";
-import { useTags } from "@/app/context/TagsContext";
-import { StreakProgress } from "@/app/components/StreakProgress";
-import { initialEmojis } from "@/app/lib/emojis";
 import { GuessEmoji } from "@/app/components/GuessContainers/GuessEmoji";
 import { EmojiModal } from "@/app/components/Modals/EmojiModal";
+import { StreakProgress } from "@/app/components/StreakProgress";
+import { useTags } from "@/app/context/TagsContext";
+import { scrollToId } from "@/app/helpers/scrollToId";
+import { initialEmojis } from "@/app/lib/emojis";
 
 interface EmojiGame {
     todaysWf: WarframeEmojis;

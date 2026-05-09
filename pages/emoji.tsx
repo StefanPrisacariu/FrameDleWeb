@@ -1,14 +1,14 @@
 "use client";
 
-import { NextSeo } from "next-seo";
 import { useQuery } from "@tanstack/react-query";
+import { NextSeo } from "next-seo";
 import { OrbitProgress } from "react-loading-indicators";
 
 import Loader from "@/styles/components/Loader.module.scss";
 
-import { getEmojiOfTheDay } from "@/app/lib/queries/apiQuery";
 import { EmojiGame } from "@/app/components/DailyGames/EmojiGame";
 import { initialEmojis } from "@/app/lib/emojis";
+import { getEmojiOfTheDay } from "@/app/lib/queries/apiQuery";
 
 export default function Emojis() {
     const { data, isLoading, isError } = useQuery({

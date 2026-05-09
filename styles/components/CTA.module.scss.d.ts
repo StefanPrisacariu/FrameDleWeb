@@ -1,6 +1,6 @@
 export type Styles = {
-  'fd_cta': string;
-  'myAnim': string;
+    fd_cta: string;
+    myAnim: string;
 };
 
 export type ClassNames = keyof Styles;

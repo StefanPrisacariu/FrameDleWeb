@@ -1,14 +1,14 @@
 "use client";
 
-import { NextSeo } from "next-seo";
 import { useQuery } from "@tanstack/react-query";
+import { NextSeo } from "next-seo";
 import { OrbitProgress } from "react-loading-indicators";
 
 import Loader from "@/styles/components/Loader.module.scss";
 
 import { AbilityGame } from "@/app/components/DailyGames/AbilityGame";
-import { getAbilityOfTheDay } from "@/app/lib/queries/apiQuery";
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
+import { getAbilityOfTheDay } from "@/app/lib/queries/apiQuery";
 
 export default function Ability() {
     const { data, isLoading, isError } = useQuery({

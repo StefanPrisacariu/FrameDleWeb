@@ -1,5 +1,5 @@
-import { polarity, elements, PlaystyleIcon } from "@/app/helpers/imageExports";
 import { compareArrays } from "@/app/helpers/compareArrays";
+import { elements, PlaystyleIcon, polarity } from "@/app/helpers/imageExports";
 
 import Arrow from "@/assets/svg/indicator-arrow.svg";
 import Correct from "@/assets/svg/indicator-correct.svg";
@@ -7,11 +7,11 @@ import Incorrect from "@/assets/svg/indicator-incorrect.svg";
 import Partial from "@/assets/svg/indicator-partial.svg";
 import Image from "next/image";
 
-import Icon from "@/styles/components/Icon.module.scss";
-import GR from "@/styles/components/GuessRow.module.scss";
-import clsx from "clsx";
-import { getPlaystylesShortLabels } from "@/app/helpers/shortStyle";
 import { useColorblind } from "@/app/context/ColorblindContext";
+import { getPlaystylesShortLabels } from "@/app/helpers/shortStyle";
+import GR from "@/styles/components/GuessRow.module.scss";
+import Icon from "@/styles/components/Icon.module.scss";
+import clsx from "clsx";
 
 interface Guess {
     warframeGuess: Warframe;

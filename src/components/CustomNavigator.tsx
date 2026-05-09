@@ -1,30 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import { ColorIndicators } from "@/app/components/ColorIndicators";
 import { storeIndicatorToggle } from "@/app/helpers/indicatorStatus";
 import Link from "next/link";
-import { ColorIndicators } from "@/app/components/ColorIndicators";
+import { useEffect, useRef, useState } from "react";
 
-import Close from "@/assets/svg/close-x.svg";
 import Menu from "@/assets/svg/bars-solid-icon.svg";
+import Close from "@/assets/svg/close-x.svg";
 
-import DropdownArrowWhite from "@/assets/svg/arrow-down-gold.svg";
-import { useRouter } from "next/router";
-import Button from "@/styles/components/Button.module.scss";
-import Icon from "@/styles/components/Icon.module.scss";
-import Nav from "@/styles/components/Navigation.module.scss";
-import Logo from "@/styles/components/Logo.module.scss";
-import Group from "@/styles/components/Group.module.scss";
-import clsx from "clsx";
-import Image from "next/image";
-import Mission from "/public/game_progress/warframe.webp";
+import { TitleLogo } from "@/app/components/Logos/TitleLogo";
+import Feedback from "@/assets/png/icons/Chem_w.webp";
+import Utility from "@/assets/png/icons/IconInfinite.webp";
 import Home from "@/assets/png/icons/IconMissionMarkerExtraction.webp";
+import Quest from "@/assets/png/icons/IconQuest.webp";
+import Settings from "@/assets/png/icons/ReputationSmall.webp";
+import DropdownArrowWhite from "@/assets/svg/arrow-down-gold.svg";
+import Button from "@/styles/components/Button.module.scss";
+import Group from "@/styles/components/Group.module.scss";
+import Icon from "@/styles/components/Icon.module.scss";
+import Logo from "@/styles/components/Logo.module.scss";
+import Nav from "@/styles/components/Navigation.module.scss";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import Focus from "/public/game_progress/ability.webp";
 import Emoji from "/public/game_progress/emoji.webp";
-import Utility from "@/assets/png/icons/IconInfinite.webp";
-import Quest from "@/assets/png/icons/IconQuest.webp";
-import Feedback from "@/assets/png/icons/Chem_w.webp";
-import Settings from "@/assets/png/icons/ReputationSmall.webp";
-import { AnimatePresence, motion } from "framer-motion";
-import { TitleLogo } from "@/app/components/Logos/TitleLogo";
+import Mission from "/public/game_progress/warframe.webp";
 
 export const CustomNavigator = () => {
     const descriptor: string = useRouter().pathname;

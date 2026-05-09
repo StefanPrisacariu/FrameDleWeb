@@ -1,17 +1,17 @@
-import Menu from "@/styles/components/Menu.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Card from "@/styles/components/Card.module.scss";
-import Image from "next/image";
-import Link from "next/link";
-import Infinite from "@/assets/png/icons/IconInfinite.webp";
-import Feedback from "@/assets/png/icons/Chem_w.webp";
-import Google from "@/assets/png/google-play-icon.webp";
+import { MenuCard, MenuSmallCard } from "@/app/components/MenuCard";
+import { ThemesCTA } from "@/app/components/ThemesCTA";
 import Discord from "@/assets/png/discord-icon.webp";
-import Kofi from "@/assets/png/ko-fi-icon.webp";
+import Google from "@/assets/png/google-play-icon.webp";
+import Feedback from "@/assets/png/icons/Chem_w.webp";
+import Infinite from "@/assets/png/icons/IconInfinite.webp";
 import HowToPlay from "@/assets/png/icons/IconQuest.webp";
 import Settings from "@/assets/png/icons/ReputationSmall.webp";
-import { ThemesCTA } from "@/app/components/ThemesCTA";
-import { MenuCard, MenuSmallCard } from "@/app/components/MenuCard";
+import Kofi from "@/assets/png/ko-fi-icon.webp";
+import Card from "@/styles/components/Card.module.scss";
+import Menu from "@/styles/components/Menu.module.scss";
+import Text from "@/styles/components/Text.module.scss";
+import Image from "next/image";
+import Link from "next/link";
 
 const DailyModes = [
     {

@@ -1,26 +1,26 @@
 "use client";
 
-import "@/styles/main.scss";
-import type { AppProps } from "next/app";
 import { emojis } from "@/app/hooks/useLocalFonts";
-import clsx from "clsx";
 import QueryClientProviderWrapper from "@/app/lib/queryClient";
+import "@/styles/main.scss";
 import { HydrationBoundary } from "@tanstack/react-query";
+import clsx from "clsx";
+import type { AppProps } from "next/app";
 
-import Section from "@/styles/components/Section.module.scss";
 import Container from "@/styles/components/Container.module.scss";
 import Header from "@/styles/components/Header.module.scss";
 import Logo from "@/styles/components/Logo.module.scss";
+import Section from "@/styles/components/Section.module.scss";
 
 import { CustomNavigator } from "@/app/components/CustomNavigator";
-import { TagsProvider } from "@/app/context/TagsContext";
 import { DailyProgress } from "@/app/components/DailyProgress";
+import { TagsProvider } from "@/app/context/TagsContext";
 import { useRouter } from "next/router";
 
-import Link from "next/link";
-import { ThemeProvider } from "next-themes";
-import { ColorblindProvider } from "@/app/context/ColorblindContext";
 import { TitleLogo } from "@/app/components/Logos/TitleLogo";
+import { ColorblindProvider } from "@/app/context/ColorblindContext";
+import { ThemeProvider } from "next-themes";
+import Link from "next/link";
 
 export default function App({ Component, pageProps }: AppProps) {
     const descriptor: string = useRouter().pathname;

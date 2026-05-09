@@ -1,9 +1,9 @@
 "use client";
 
-import { NextSeo } from "next-seo";
-import { useQuery } from "@tanstack/react-query";
-import { OrbitProgress } from "react-loading-indicators";
 import Loader from "@/styles/components/Loader.module.scss";
+import { useQuery } from "@tanstack/react-query";
+import { NextSeo } from "next-seo";
+import { OrbitProgress } from "react-loading-indicators";
 
 import { MainGame } from "@/app/components/DailyGames/MainGame";
 import { getWarframeOfTheDay } from "@/app/lib/queries/apiQuery";

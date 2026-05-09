@@ -23,6 +23,7 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "editor.codeActionsOnSave": {
+        "source.organizeImports.biome": "explicit",
         "source.fixAll.eslint": "always",
         "source.fixAll.stylelint": "always"
     },
@@ -37,6 +38,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "typescript.preferences.importModuleSpecifierEnding": "auto",
     "typescript.preferences.importModuleSpecifier": "non-relative",
+    "prettier.requireConfig": true,
 
     // Trailing Spaces
     "trailing-spaces.highlightCurrentLine": false,

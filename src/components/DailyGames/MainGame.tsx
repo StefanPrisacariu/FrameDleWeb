@@ -1,34 +1,34 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
-import { motion, AnimatePresence } from "framer-motion";
 
-import Lock from "@/assets/svg/lock-solid.svg";
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
-import { TableHeader } from "@/app/components/TableHeader";
 import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
-import { initialWarframes } from "@/app/lib/warframes";
-import { TimerComponent } from "@/app/components/TimeComponent";
 import { Modal } from "@/app/components/Modals/Modal";
-import Container from "@/styles/components/Container.module.scss";
-import Group from "@/styles/components/Group.module.scss";
-import ImgStyle from "@/styles/components/ImgStyle.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Dropdown from "@/styles/components/Dropdown.module.scss";
-import Input from "@/styles/components/Input.module.scss";
+import { StreakProgress } from "@/app/components/StreakProgress";
+import { TableHeader } from "@/app/components/TableHeader";
+import { TimerComponent } from "@/app/components/TimeComponent";
+import { useTags } from "@/app/context/TagsContext";
+import { checkResetNeeded } from "@/app/helpers/resetCheck";
+import { scrollToId } from "@/app/helpers/scrollToId";
+import { getGuesses, storeGuesses } from "@/app/helpers/storeReadGuesses";
 import {
     getDailyStreak,
     storeDailyStreak,
     storeDailyStreakTime,
 } from "@/app/helpers/storeReadStreak";
-import { storeGuesses, getGuesses } from "@/app/helpers/storeReadGuesses";
-import { checkResetNeeded } from "@/app/helpers/resetCheck";
-import { scrollToId } from "@/app/helpers/scrollToId";
-import { useTags } from "@/app/context/TagsContext";
-import { StreakProgress } from "@/app/components/StreakProgress";
+import { initialWarframes } from "@/app/lib/warframes";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
+import Lock from "@/assets/svg/lock-solid.svg";
+import Container from "@/styles/components/Container.module.scss";
+import Dropdown from "@/styles/components/Dropdown.module.scss";
+import Group from "@/styles/components/Group.module.scss";
+import ImgStyle from "@/styles/components/ImgStyle.module.scss";
+import Input from "@/styles/components/Input.module.scss";
+import Text from "@/styles/components/Text.module.scss";
 
 interface MainGame {
     todaysWf: Warframe;

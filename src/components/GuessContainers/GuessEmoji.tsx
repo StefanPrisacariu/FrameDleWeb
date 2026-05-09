@@ -1,14 +1,13 @@
-import React from "react";
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
 
 import Correct from "@/assets/svg/indicator-correct.svg";
 import Incorrect from "@/assets/svg/indicator-incorrect.svg";
 
+import { getColorblindMode } from "@/app/helpers/colorblindStore";
 import GA from "@/styles/components/GuessAbility.module.scss";
 import GR from "@/styles/components/GuessRow.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
-import { getColorblindMode } from "@/app/helpers/colorblindStore";
 
 interface GuessEmojiProps {
     warframeGuess: WarframeEmojis;

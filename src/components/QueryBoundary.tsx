@@ -1,7 +1,7 @@
 "use client";
 
-import { type ReactNode } from "react";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import { type ReactNode } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 export function QueryBoundary({ children }: { children: ReactNode }) {

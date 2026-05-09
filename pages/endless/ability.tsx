@@ -1,25 +1,25 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
-import { motion, AnimatePresence } from "framer-motion";
 
 import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
-import Container from "@/styles/components/Container.module.scss";
-import ImgStyle from "@/styles/components/ImgStyle.module.scss";
-import Group from "@/styles/components/Group.module.scss";
 import Button from "@/styles/components/Button.module.scss";
-import Text from "@/styles/components/Text.module.scss";
+import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
+import Group from "@/styles/components/Group.module.scss";
+import ImgStyle from "@/styles/components/ImgStyle.module.scss";
 import Input from "@/styles/components/Input.module.scss";
+import Text from "@/styles/components/Text.module.scss";
 
-import { initialAbilities } from "@/app/lib/abilities";
 import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
+import { initialAbilities } from "@/app/lib/abilities";
 import clsx from "clsx";
 
 function generateNewAbility(): ProcessedAbility | null {

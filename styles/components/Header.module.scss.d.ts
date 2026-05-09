@@ -1,5 +1,5 @@
 export type Styles = {
-  'fd_header_0': string;
+    fd_header_0: string;
 };
 
 export type ClassNames = keyof Styles;
