@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 
+import { YesterdayPortrait } from "@/app/components/Elements/YesterdayPortrait";
 import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
 import { Modal } from "@/app/components/Modals/Modal";
 import { StreakProgress } from "@/app/components/StreakProgress";
@@ -25,7 +26,6 @@ import DropdownX from "@/assets/svg/close-x.svg";
 import Lock from "@/assets/svg/lock-solid.svg";
 import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
-import Group from "@/styles/components/Group.module.scss";
 import ImgStyle from "@/styles/components/ImgStyle.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import Text from "@/styles/components/Text.module.scss";
@@ -167,18 +167,10 @@ export const MainGame = ({ todaysWf, yesterdayWf }: MainGame) => {
                 />
             )}
             <div className={Container.fd_container_1}>
-                <div className={Group.fd_group_0}>
-                    <h3 className={Group.fd_group_0_label}>Yesterday</h3>
-                    <div className={Group.fd_group_0_wrap}>
-                        <Image
-                            width={50}
-                            height={50}
-                            className={Group.fd_group_0_wrap_image}
-                            src={yesterdayWf.image as string}
-                            alt={yesterdayWf.name}
-                        />
-                    </div>
-                </div>
+                <YesterdayPortrait
+                    image={yesterdayWf.image}
+                    name={yesterdayWf.name}
+                />
 
                 <div className={ImgStyle.fd_imgstyle_0}>
                     {isGuessed ? (

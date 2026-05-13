@@ -51,7 +51,7 @@ export const MenuSmallCard = ({
     href,
     name,
     iconSrc,
-    targetBlank = false,
+    targetBlank,
 }: MenuCard) => {
     return (
         <div className={Card.fd_card_1}>

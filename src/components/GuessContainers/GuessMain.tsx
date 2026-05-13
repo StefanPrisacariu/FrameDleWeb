@@ -2,12 +2,10 @@ import { compareArrays } from "@/app/helpers/compareArrays";
 import { elements, PlaystyleIcon, polarity } from "@/app/helpers/imageExports";
 
 import Arrow from "@/assets/svg/indicator-arrow.svg";
-import Correct from "@/assets/svg/indicator-correct.svg";
-import Incorrect from "@/assets/svg/indicator-incorrect.svg";
-import Partial from "@/assets/svg/indicator-partial.svg";
 import Image from "next/image";
 
 import { useColorblind } from "@/app/context/ColorblindContext";
+import { handleIcon } from "@/app/helpers/handleIcon";
 import { getPlaystylesShortLabels } from "@/app/helpers/shortStyle";
 import GR from "@/styles/components/GuessRow.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
@@ -25,40 +23,6 @@ const removeDash = (str: string) => {
 
 export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
     const { mode } = useColorblind();
-
-    const handleIcon = (state: string) => {
-        if ("Disabled" !== mode) {
-            switch (state) {
-                case "correct":
-                    return (
-                        <Correct
-                            className={clsx(Icon.fd_icon_0, Icon.fd_icon_p_3)}
-                            width={55}
-                            height={55}
-                        />
-                    );
-                case "incorrect":
-                    return (
-                        <Incorrect
-                            className={clsx(Icon.fd_icon_0, Icon.fd_icon_p_5)}
-                            width={50}
-                            height={50}
-                        />
-                    );
-                case "partial":
-                    return (
-                        <Partial
-                            className={clsx(Icon.fd_icon_0, Icon.fd_icon_p_3)}
-                            width={60}
-                            height={60}
-                        />
-                    );
-                default:
-                    return null;
-            }
-        }
-    };
-
     return (
         <>
             <div className={GR.fd_gr_0}>
@@ -78,8 +42,8 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                     })}
                 >
                     {warframeGuess.gender === todayWarframe.gender
-                        ? handleIcon("correct")
-                        : handleIcon("incorrect")}
+                        ? handleIcon("correct", mode)
+                        : handleIcon("incorrect", mode)}
                     <p className={GR.fd_gr_0_text}>{warframeGuess.gender}</p>
                 </div>
                 <div
@@ -93,8 +57,8 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                     })}
                 >
                     {warframeGuess.primeUmbra === todayWarframe.primeUmbra
-                        ? handleIcon("correct")
-                        : handleIcon("incorrect")}
+                        ? handleIcon("correct", mode)
+                        : handleIcon("incorrect", mode)}
                     <p className={GR.fd_gr_0_text}>
                         {warframeGuess.primeUmbra}
                     </p>
@@ -126,14 +90,14 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                         warframeGuess.auraPolarity,
                         todayWarframe.auraPolarity,
                     )
-                        ? handleIcon("incorrect")
+                        ? handleIcon("incorrect", mode)
                         : true ===
                             compareArrays(
                                 warframeGuess.auraPolarity,
                                 todayWarframe.auraPolarity,
                             )
-                          ? handleIcon("correct")
-                          : handleIcon("partial")}
+                          ? handleIcon("correct", mode)
+                          : handleIcon("partial", mode)}
                     {warframeGuess.auraPolarity && (
                         <>
                             {warframeGuess.auraPolarity[0] !== "none" && (
@@ -181,14 +145,14 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                                 warframeGuess.playstyle,
                                 todayWarframe.playstyle,
                             )
-                                ? handleIcon("incorrect")
+                                ? handleIcon("incorrect", mode)
                                 : true ===
                                     compareArrays(
                                         warframeGuess.playstyle,
                                         todayWarframe.playstyle,
                                     )
-                                  ? handleIcon("correct")
-                                  : handleIcon("partial")}
+                                  ? handleIcon("correct", mode)
+                                  : handleIcon("partial", mode)}
                             {warframeGuess.playstyle && (
                                 <>
                                     <div className={GR.fd_gr_0_multiple}>
@@ -237,8 +201,8 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                 >
                     {warframeGuess.progenitorElement ===
                     todayWarframe.progenitorElement
-                        ? handleIcon("correct")
-                        : handleIcon("incorrect")}
+                        ? handleIcon("correct", mode)
+                        : handleIcon("incorrect", mode)}
                     {elements(warframeGuess.progenitorElement)}
                     <p className={GR.fd_gr_0_text}>
                         {warframeGuess.progenitorElement}
@@ -276,7 +240,7 @@ export const GuessRow = ({ warframeGuess, todayWarframe }: Guess) => {
                         )
                     )}
                     {warframeGuess.releaseYear === todayWarframe.releaseYear &&
-                        handleIcon("correct")}
+                        handleIcon("correct", mode)}
                     <p className={GR.fd_gr_0_text}>
                         {warframeGuess.releaseYear}
                     </p>

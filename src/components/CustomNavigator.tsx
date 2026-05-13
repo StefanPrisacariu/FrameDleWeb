@@ -1,18 +1,19 @@
 import { ColorIndicators } from "@/app/components/ColorIndicators";
 import { storeIndicatorToggle } from "@/app/helpers/indicatorStatus";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import Menu from "@/assets/svg/bars-solid-icon.svg";
 import Close from "@/assets/svg/close-x.svg";
 
+import {
+    CustomNavigatorDropdown,
+    CustomNavigatorLink,
+} from "@/app/components/CustomNavigatorLink";
 import { TitleLogo } from "@/app/components/Logos/TitleLogo";
 import Feedback from "@/assets/png/icons/Chem_w.webp";
-import Utility from "@/assets/png/icons/IconInfinite.webp";
 import Home from "@/assets/png/icons/IconMissionMarkerExtraction.webp";
 import Quest from "@/assets/png/icons/IconQuest.webp";
 import Settings from "@/assets/png/icons/ReputationSmall.webp";
-import DropdownArrowWhite from "@/assets/svg/arrow-down-gold.svg";
 import Button from "@/styles/components/Button.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
@@ -20,11 +21,68 @@ import Logo from "@/styles/components/Logo.module.scss";
 import Nav from "@/styles/components/Navigation.module.scss";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import Focus from "/public/game_progress/ability.webp";
 import Emoji from "/public/game_progress/emoji.webp";
 import Mission from "/public/game_progress/warframe.webp";
+
+const links = [
+    {
+        href: "/",
+        name: "Home",
+        iconSrc: Home.src,
+    },
+    {
+        href: "/warframe",
+        name: "Warframe",
+        iconSrc: Mission.src,
+    },
+    {
+        href: "/ability",
+        name: "Ability",
+        iconSrc: Focus.src,
+    },
+    {
+        href: "/emoji",
+        name: "Emoji",
+        iconSrc: Emoji.src,
+    },
+    {
+        links: [
+            {
+                href: "/endless/warframe",
+                name: "Warframe",
+                iconSrc: Mission.src,
+            },
+            {
+                href: "/endless/ability",
+                name: "Ability",
+                iconSrc: Focus.src,
+            },
+            {
+                href: "/endless/emoji",
+                name: "Emoji",
+                iconSrc: Emoji.src,
+            },
+        ],
+    },
+    {
+        href: "/info",
+        name: "Tutorial",
+        iconSrc: Quest.src,
+    },
+    {
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview",
+        name: "Feedback",
+        iconSrc: Feedback.src,
+        target: "_blank",
+    },
+    {
+        href: "/settings",
+        name: "Settings",
+        iconSrc: Settings.src,
+    },
+];
 
 export const CustomNavigator = () => {
     const descriptor: string = useRouter().pathname;
@@ -34,8 +92,6 @@ export const CustomNavigator = () => {
     const ref = useRef<HTMLDivElement | null>(null);
     const ref2 = useRef<HTMLDivElement | null>(null);
     const mobileRef = useRef<HTMLDivElement | null>(null);
-
-    const [endlessModes, setEndlessModes] = useState(false);
 
     useEffect(() => {
         if (descriptor) {
@@ -89,19 +145,6 @@ export const CustomNavigator = () => {
         };
     }, []);
 
-    useEffect(() => {
-        if (
-            descriptor !== "/endless/warframe" &&
-            descriptor !== "/endless/ability"
-        ) {
-            setEndlessModes(false);
-        }
-    }, [descriptor]);
-
-    if (descriptor === "/") {
-        return null;
-    }
-
     return (
         <>
             <AnimatePresence>
@@ -149,386 +192,27 @@ export const CustomNavigator = () => {
                                         />
                                     </button>
                                     <div className={Group.fd_group_1}>
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href="/"
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Home}
-                                                    alt="Home"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                "/",
-                                                        },
-                                                    )}
-                                                >
-                                                    Home
-                                                </span>
-                                            </div>
-                                        </Link>
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href="/warframe"
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Mission}
-                                                    alt="Warframe"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                "/warframe",
-                                                        },
-                                                    )}
-                                                >
-                                                    Warframe
-                                                </span>
-                                            </div>
-                                        </Link>
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href="/ability"
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Focus}
-                                                    alt="Ability"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                "/ability",
-                                                        },
-                                                    )}
-                                                >
-                                                    Ability
-                                                </span>
-                                            </div>
-                                        </Link>
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href="/emoji"
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Emoji}
-                                                    alt="Emoji"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                "/emoji",
-                                                        },
-                                                    )}
-                                                >
-                                                    Emoji
-                                                </span>
-                                            </div>
-                                        </Link>
-
-                                        <button
-                                            className={Group.fd_group_1_button}
-                                            onClick={() => {
-                                                setEndlessModes(!endlessModes);
-                                            }}
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Utility}
-                                                    alt="Endless"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                    "/endless/warframe" ||
-                                                                descriptor ===
-                                                                    "/endless/ability",
-                                                        },
-                                                    )}
-                                                >
-                                                    Endless Modes
-                                                </span>
-                                                <AnimatePresence>
-                                                    <motion.div
-                                                        initial={{
-                                                            rotateZ: 0,
-                                                        }}
-                                                        animate={{
-                                                            rotateZ:
-                                                                endlessModes
-                                                                    ? 180
-                                                                    : 0,
-                                                            transformOrigin:
-                                                                "50% 40%",
-                                                        }}
-                                                        exit={{
-                                                            rotateZ: 0,
-                                                        }}
-                                                        transition={{
-                                                            duration: 0.4,
-                                                            ease: "easeOut",
-                                                        }}
-                                                    >
-                                                        <DropdownArrowWhite
-                                                            width={15}
-                                                            height={15}
-                                                            className={
-                                                                Icon.fd_icon_fills_white
+                                        {links.map((item) => {
+                                            return (
+                                                <>
+                                                    {!item.links ? (
+                                                        <CustomNavigatorLink
+                                                            href={item.href}
+                                                            iconSrc={
+                                                                item.iconSrc
                                                             }
+                                                            name={item.name}
+                                                            target={item.target}
                                                         />
-                                                    </motion.div>
-                                                </AnimatePresence>
-                                            </div>
-                                        </button>
-                                        <AnimatePresence>
-                                            {endlessModes && (
-                                                <motion.div
-                                                    initial={{
-                                                        height: 0,
-                                                    }}
-                                                    animate={{
-                                                        height: "auto",
-                                                    }}
-                                                    exit={{
-                                                        height: 0,
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.4,
-                                                        ease: "easeOut",
-                                                    }}
-                                                    className={
-                                                        Group.fd_group_1_accordion
-                                                    }
-                                                >
-                                                    <Link
-                                                        className={
-                                                            Group.fd_group_1_button_2
-                                                        }
-                                                        href="/endless/warframe"
-                                                    >
-                                                        <div
-                                                            className={
-                                                                Group.fd_group_1_button_2_content
-                                                            }
-                                                        >
-                                                            <Image
-                                                                width={30}
-                                                                height={30}
-                                                                src={Mission}
-                                                                alt="Endless"
-                                                            />
-                                                            <span
-                                                                className={clsx(
-                                                                    Group.fd_group_1_button_2_text,
-                                                                    {
-                                                                        [Group.fd_group_1_button_2_selected]:
-                                                                            descriptor ===
-                                                                            "/endless/warframe",
-                                                                    },
-                                                                )}
-                                                            >
-                                                                Warframe
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                    <Link
-                                                        className={
-                                                            Group.fd_group_1_button_2
-                                                        }
-                                                        href="/endless/ability"
-                                                    >
-                                                        <div
-                                                            className={
-                                                                Group.fd_group_1_button_2_content
-                                                            }
-                                                        >
-                                                            <Image
-                                                                width={30}
-                                                                height={30}
-                                                                src={Focus}
-                                                                alt="Endless"
-                                                            />
-                                                            <span
-                                                                className={clsx(
-                                                                    Group.fd_group_1_button_2_text,
-                                                                    {
-                                                                        [Group.fd_group_1_button_2_selected]:
-                                                                            descriptor ===
-                                                                            "/endless/ability",
-                                                                    },
-                                                                )}
-                                                            >
-                                                                Ability
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                    <Link
-                                                        className={
-                                                            Group.fd_group_1_button_2
-                                                        }
-                                                        href="/endless/emoji"
-                                                    >
-                                                        <div
-                                                            className={
-                                                                Group.fd_group_1_button_2_content
-                                                            }
-                                                        >
-                                                            <Image
-                                                                width={30}
-                                                                height={30}
-                                                                src={Emoji}
-                                                                alt="EMoji"
-                                                            />
-                                                            <span
-                                                                className={clsx(
-                                                                    Group.fd_group_1_button_2_text,
-                                                                    {
-                                                                        [Group.fd_group_1_button_2_selected]:
-                                                                            descriptor ===
-                                                                            "/endless/emoji",
-                                                                    },
-                                                                )}
-                                                            >
-                                                                Emoji
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href="/info"
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Quest}
-                                                    alt="Info"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                "/info",
-                                                        },
+                                                    ) : (
+                                                        <CustomNavigatorDropdown
+                                                            links={item.links}
+                                                        />
                                                     )}
-                                                >
-                                                    Tutorial
-                                                </span>
-                                            </div>
-                                        </Link>
+                                                </>
+                                            );
+                                        })}
 
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href="https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview"
-                                            target="_blank"
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Feedback}
-                                                    alt="Feedback"
-                                                />
-                                                <span
-                                                    className={
-                                                        Button.fd_button_3_text
-                                                    }
-                                                >
-                                                    Feedback
-                                                </span>
-                                            </div>
-                                        </Link>
-                                        <Link
-                                            className={Group.fd_group_1_button}
-                                            href={"/settings"}
-                                        >
-                                            <div
-                                                className={
-                                                    Group.fd_group_1_button_content
-                                                }
-                                            >
-                                                <Image
-                                                    width={30}
-                                                    height={30}
-                                                    src={Settings}
-                                                    alt="Settings"
-                                                />
-                                                <span
-                                                    className={clsx(
-                                                        Group.fd_group_1_button_text,
-                                                        {
-                                                            [Group.fd_group_1_button_selected]:
-                                                                descriptor ===
-                                                                "/settings",
-                                                        },
-                                                    )}
-                                                >
-                                                    Settings
-                                                </span>
-                                            </div>
-                                        </Link>
                                         <ColorIndicators />
                                     </div>
                                 </div>

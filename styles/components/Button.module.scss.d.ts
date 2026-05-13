@@ -11,6 +11,9 @@ export type Styles = {
     fd_button_4_image: string;
     fd_button_5: string;
     fd_button_6: string;
+    fd_button_7: string;
+    fd_button_7_active: string;
+    fd_button_7_button: string;
 };
 
 export type ClassNames = keyof Styles;

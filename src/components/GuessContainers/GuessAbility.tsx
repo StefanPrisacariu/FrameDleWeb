@@ -1,13 +1,10 @@
 import clsx from "clsx";
 import Image from "next/image";
 
-import Correct from "@/assets/svg/indicator-correct.svg";
-import Incorrect from "@/assets/svg/indicator-incorrect.svg";
-
-import { getColorblindMode } from "@/app/helpers/colorblindStore";
+import { useColorblind } from "@/app/context/ColorblindContext";
+import { handleIcon } from "@/app/helpers/handleIcon";
 import GA from "@/styles/components/GuessAbility.module.scss";
 import GR from "@/styles/components/GuessRow.module.scss";
-import Icon from "@/styles/components/Icon.module.scss";
 
 interface GuessAbilityProps {
     warframeGuess: WarframeAbility;
@@ -18,33 +15,7 @@ export const GuessAbility = ({
     warframeGuess,
     todayWarframe,
 }: GuessAbilityProps) => {
-    const colorblind = getColorblindMode();
-
-    const handleIcon = (state: string) => {
-        if ("Disabled" !== colorblind) {
-            switch (state) {
-                case "correct":
-                    return (
-                        <Correct
-                            className={clsx(Icon.fd_icon_2, Icon.fd_icon_p_3)}
-                            width={30}
-                            height={30}
-                        />
-                    );
-                case "incorrect":
-                    return (
-                        <Incorrect
-                            className={clsx(Icon.fd_icon_2, Icon.fd_icon_p_5)}
-                            width={25}
-                            height={25}
-                        />
-                    );
-                default:
-                    return null;
-            }
-        }
-    };
-
+    const { mode } = useColorblind();
     const isCorrect = warframeGuess.name === todayWarframe.name;
 
     return (
@@ -61,7 +32,9 @@ export const GuessAbility = ({
                 height={70}
             />
             <p className={GA.fd_ga_text}>{warframeGuess.name}</p>
-            {isCorrect ? handleIcon("correct") : handleIcon("incorrect")}
+            {isCorrect
+                ? handleIcon("correct", mode)
+                : handleIcon("incorrect", mode)}
         </div>
     );
 };

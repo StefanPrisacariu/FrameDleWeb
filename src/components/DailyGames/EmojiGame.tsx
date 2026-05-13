@@ -16,7 +16,6 @@ import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 import DropdownX from "@/assets/svg/close-x.svg";
 import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
-import Group from "@/styles/components/Group.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import Prog from "@/styles/components/Progress.module.scss";
 import Text from "@/styles/components/Text.module.scss";
@@ -27,6 +26,7 @@ import {
     storeEmojiGuesses,
 } from "@/app/helpers/storeReadGuesses";
 
+import { YesterdayPortrait } from "@/app/components/Elements/YesterdayPortrait";
 import { GuessEmoji } from "@/app/components/GuessContainers/GuessEmoji";
 import { EmojiModal } from "@/app/components/Modals/EmojiModal";
 import { StreakProgress } from "@/app/components/StreakProgress";
@@ -184,18 +184,10 @@ export const EmojiGame = ({ todaysWf, yesterdayWf }: EmojiGame) => {
                 </div>
             </div>
             <div className={Container.fd_container_8}>
-                <div className={Group.fd_group_0}>
-                    <h3 className={Group.fd_group_0_label}>Yesterday</h3>
-                    <div className={Group.fd_group_0_wrap}>
-                        <Image
-                            width={50}
-                            height={50}
-                            className={Group.fd_group_0_wrap_image}
-                            src={yesterdayWf.image}
-                            alt={yesterdayWf.name}
-                        />
-                    </div>
-                </div>
+                <YesterdayPortrait
+                    image={yesterdayWf.image}
+                    name={yesterdayWf.name}
+                />
                 <span className={Text.fd_text_0} id="warframe-input">
                     <TimerComponent />
                 </span>
