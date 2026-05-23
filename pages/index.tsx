@@ -1,7 +1,8 @@
 "use client";
 
-import { MainMenu } from "@/app/components/MainMenu";
 import { NextSeo } from "next-seo";
+
+import { MainMenu } from "@/app/components/MainMenu";
 
 export default function Menu() {
     return (

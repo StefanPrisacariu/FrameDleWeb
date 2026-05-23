@@ -1,5 +1,6 @@
-import Group from "@/styles/components/Group.module.scss";
 import Image from "next/image";
+
+import Group from "@/styles/components/Group.module.scss";
 
 interface Yesterday {
     image: string;

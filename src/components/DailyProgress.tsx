@@ -1,9 +1,13 @@
-import { useTags } from "@/app/context/TagsContext";
-import Checkmark from "@/assets/svg/green_checkmark.svg";
-import Prog from "@/styles/components/Progress.module.scss";
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
+import { useTags } from "@/app/context/TagsContext";
+
+import Prog from "@/styles/components/Progress.module.scss";
+
+import Checkmark from "@/assets/svg/green_checkmark.svg";
 
 export const DailyProgress = () => {
     const { state } = useTags();

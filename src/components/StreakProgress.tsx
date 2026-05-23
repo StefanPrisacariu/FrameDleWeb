@@ -1,5 +1,6 @@
-import Group from "@/styles/components/Group.module.scss";
 import clsx from "clsx";
+
+import Group from "@/styles/components/Group.module.scss";
 
 interface Streak {
     streak: number;

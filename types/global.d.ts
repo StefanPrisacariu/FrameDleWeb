@@ -86,6 +86,8 @@ declare type WarframeAbility = {
 declare type WarframeOfTheDayResponse = {
     today: number;
     yesterday: number;
+    dailyId: string;
+    resetAt: string;
 };
 
 declare type AbilityOfTheDayResponse = {
@@ -95,16 +97,25 @@ declare type AbilityOfTheDayResponse = {
         variant: number;
     };
     yesterday: number;
+    dailyId: string;
+    resetAt: string;
 };
 
 declare type EmojiOfTheDayResponse = {
     today: number;
     yesterday: number;
+    dailyId: string;
+    resetAt: string;
 };
 
 declare type WarframeEmojis = {
     name: string;
     emojis: string[];
+    image: string;
+};
+
+declare type WarframeEmojisCorrected = {
+    name: string;
     image: string;
 };
 
@@ -114,3 +125,17 @@ declare type ColorblindMode =
     | "Deuteranopia"
     | "Tritanopia"
     | "Achromatopsia";
+
+//FEEDBACK
+
+declare type QuestionCardProps = {
+    id: string;
+
+    dateTime: string;
+
+    question: string;
+
+    answer: string | null;
+
+    liked: boolean;
+};

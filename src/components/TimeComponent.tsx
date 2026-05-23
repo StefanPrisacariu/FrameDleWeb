@@ -6,29 +6,11 @@ type Countdown = {
     seconds: number;
 };
 
-export const startCountdown = (
-    setCountdown: React.Dispatch<React.SetStateAction<Countdown>>,
-): (() => void) => {
-    const updateCountdown = () => {
-        const now = new Date();
-        const nextReset = new Date(now);
-        nextReset.setUTCHours(24, 0, 0, 0);
+interface TimerComponentProps {
+    resetAt: string;
+}
 
-        const timeLeft = nextReset.getTime() - now.getTime();
-        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        setCountdown({ hours, minutes, seconds });
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-
-    return () => clearInterval(interval);
-};
-
-export const TimerComponent = (): string => {
+export const TimerComponent = ({ resetAt }: TimerComponentProps): string => {
     const [countdown, setCountdown] = useState<Countdown>({
         hours: 0,
         minutes: 0,
@@ -36,11 +18,40 @@ export const TimerComponent = (): string => {
     });
 
     useEffect(() => {
-        const cleanup = startCountdown(setCountdown);
-        return cleanup;
-    }, []);
+        const updateCountdown = () => {
+            const now = Date.now();
+            const reset = new Date(resetAt).getTime();
 
-    const formatTime = (num: number): string => String(num).padStart(2, "0");
+            const timeLeft = reset - now;
 
-    return `${formatTime(countdown.hours)}:${formatTime(countdown.minutes)}:${formatTime(countdown.seconds)}`;
+            if (timeLeft <= 0) {
+                window.location.reload();
+                return;
+            }
+
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+
+            const minutes = Math.floor(
+                (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
+            );
+
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            setCountdown({
+                hours,
+                minutes,
+                seconds,
+            });
+        };
+
+        updateCountdown();
+
+        const interval = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(interval);
+    }, [resetAt]);
+
+    const format = (num: number) => String(num).padStart(2, "0");
+
+    return `${format(countdown.hours)}:${format(countdown.minutes)}:${format(countdown.seconds)}`;
 };

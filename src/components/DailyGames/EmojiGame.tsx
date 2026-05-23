@@ -1,50 +1,62 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+
+import { AnimatePresence, motion } from "framer-motion";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
 
+import Image from "next/image";
+
+import { YesterdayPortrait } from "@/app/components/Elements/YesterdayPortrait";
+import { GuessEmoji } from "@/app/components/GuessContainers/GuessEmoji";
+import { EmojiModal } from "@/app/components/Modals/EmojiModal";
+import { StreakProgress } from "@/app/components/StreakProgress";
 import { TimerComponent } from "@/app/components/TimeComponent";
+
+import { useTags } from "@/app/context/TagsContext";
+
+import { scrollToId } from "@/app/helpers/scrollToId";
 import {
-    getEmojiStreak,
-    storeEmojiStreak,
-    storeEmojiStreakTime,
-} from "@/app/helpers/storeReadStreak";
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
+    getEmojiGuesses,
+    storeEmojiGuesses,
+} from "@/app/helpers/storeReadGuesses";
+import {
+    completeDaily,
+    getPreviousDailyId,
+    getProgress,
+    saveProgress,
+} from "@/app/helpers/streakSystem";
+
+import { initialEmojis } from "@/app/lib/emojis";
+
 import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import Prog from "@/styles/components/Progress.module.scss";
 import Text from "@/styles/components/Text.module.scss";
 
-import { checkResetNeeded } from "@/app/helpers/resetCheck";
-import {
-    getEmojiGuesses,
-    storeEmojiGuesses,
-} from "@/app/helpers/storeReadGuesses";
-
-import { YesterdayPortrait } from "@/app/components/Elements/YesterdayPortrait";
-import { GuessEmoji } from "@/app/components/GuessContainers/GuessEmoji";
-import { EmojiModal } from "@/app/components/Modals/EmojiModal";
-import { StreakProgress } from "@/app/components/StreakProgress";
-import { useTags } from "@/app/context/TagsContext";
-import { scrollToId } from "@/app/helpers/scrollToId";
-import { initialEmojis } from "@/app/lib/emojis";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
 
 interface EmojiGame {
     todaysWf: WarframeEmojis;
     yesterdayWf: WarframeEmojis;
+    dailyId: string;
+    resetAt: string;
 }
 
-export const EmojiGame = ({ todaysWf, yesterdayWf }: EmojiGame) => {
-    const dayKey = todaysWf.name;
+export const EmojiGame = ({
+    todaysWf,
+    yesterdayWf,
+    dailyId,
+    resetAt,
+}: EmojiGame) => {
+    const dayKey = dailyId;
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
-    const [guesses, setGuesses] = useState<WarframeEmojis[]>([]);
+    const [guesses, setGuesses] = useState<WarframeEmojisCorrected[]>([]);
     const [isGuessed, setIsGuessed] = useState(false);
     const [filteredWarframes, setFilteredWarframes] = useState(initialEmojis);
     const [width, setWidth] = useState<number>();
@@ -58,49 +70,51 @@ export const EmojiGame = ({ todaysWf, yesterdayWf }: EmojiGame) => {
     }, []);
 
     useEffect(() => {
+        function sameDay() {
+            setDailyStreak(progress.streak);
+            setGuesses(tempGuesses);
+
+            const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
+
+            setIsGuessed(lastGuess === todaysWf.name);
+        }
+
+        function lastGuessedYesterday() {
+            setDailyStreak(progress.streak);
+        }
+
+        function lostStreak() {
+            saveProgress("emoji", {
+                streak: 0,
+                lastCompletedDailyId: progress.lastCompletedDailyId,
+            });
+        }
+
+        const progress = getProgress("emoji");
+        const prev = getPreviousDailyId(dailyId);
+        const tempGuesses = getEmojiGuesses(dayKey);
+
         setIsGuessed(false);
         setGuesses([]);
         setSearchText("");
         setVisible(false);
         setFilteredWarframes(initialEmojis);
 
-        const resetTime = checkResetNeeded("FD_EMOJI_STREAK_TIME");
-        const streak = getEmojiStreak();
-        const tempGuesses = getEmojiGuesses(dayKey);
-
-        switch (true) {
-            case resetTime >= 48: {
-                setDailyStreak(0);
-                storeEmojiStreak(0);
-
-                setGuesses([]);
-                storeEmojiGuesses(dayKey, []);
-
-                setIsGuessed(false);
-                break;
-            }
-
-            case resetTime >= 24 && resetTime < 48: {
-                setGuesses([]);
-                storeEmojiGuesses(dayKey, []);
-
-                setDailyStreak(streak);
-                setIsGuessed(false);
-                break;
-            }
-
-            case resetTime < 24: {
-                setGuesses(tempGuesses);
-                setDailyStreak(streak);
-
-                const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
-
-                setIsGuessed(lastGuess === todaysWf.name);
-
-                break;
-            }
+        if (
+            prev !== progress.lastCompletedDailyId &&
+            dailyId !== progress.lastCompletedDailyId
+        ) {
+            lostStreak();
         }
-    }, [dayKey, todaysWf.name]);
+
+        if (prev === progress.lastCompletedDailyId) {
+            lastGuessedYesterday();
+        }
+
+        if (dailyId === progress.lastCompletedDailyId) {
+            sameDay();
+        }
+    }, [dailyId, dayKey, todaysWf.name]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,9 +144,12 @@ export const EmojiGame = ({ todaysWf, yesterdayWf }: EmojiGame) => {
     }, [isGuessed, state.emoji, updateState]);
 
     const warframeSelected = useCallback(
-        (selectedWf: WarframeEmojis) => {
+        (selectedWf: WarframeEmojisCorrected) => {
             if (selectedWf.name === todaysWf.name) scrollToId("logo");
-            const updated = [...guesses, selectedWf];
+            const updated = [
+                ...guesses,
+                { name: selectedWf.name, image: selectedWf.image },
+            ];
             setGuesses(updated);
             setSearchText("");
             setVisible(false);
@@ -141,19 +158,15 @@ export const EmojiGame = ({ todaysWf, yesterdayWf }: EmojiGame) => {
 
             if (selectedWf.name === todaysWf.name) {
                 setIsGuessed(true);
-                const newStreak = dailyStreak + 1;
-                setDailyStreak(newStreak);
-                storeEmojiStreak(newStreak);
-                storeEmojiStreakTime();
+                const updated = completeDaily("emoji", dailyId);
+
+                setDailyStreak(updated.streak);
             }
             setFilteredWarframes(
                 initialEmojis.filter((item) => !updated.includes(item)),
             );
-            if (guesses.length === 0) {
-                storeEmojiStreakTime();
-            }
         },
-        [guesses, dayKey, todaysWf.name, dailyStreak],
+        [todaysWf.name, guesses, dayKey, dailyId],
     );
 
     return (
@@ -189,7 +202,7 @@ export const EmojiGame = ({ todaysWf, yesterdayWf }: EmojiGame) => {
                     name={yesterdayWf.name}
                 />
                 <span className={Text.fd_text_0} id="warframe-input">
-                    <TimerComponent />
+                    <TimerComponent resetAt={resetAt} />
                 </span>
                 <StreakProgress streak={dailyStreak} />
             </div>

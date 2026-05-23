@@ -43,4 +43,20 @@
             }
         }
     }
+
+    &_3 {
+        &_fill {
+            &_f {
+                fill: var(--gold);
+            }
+
+            &_d {
+                fill: var(--lightBlue);
+            }
+
+            &_outline {
+                stroke: var(--primary);
+            }
+        }
+    }
 }

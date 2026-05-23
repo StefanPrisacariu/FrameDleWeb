@@ -1,5 +1,4 @@
 // ColorblindProvider.tsx
-import { getColorblindMode } from "@/app/helpers/colorblindStore";
 import {
     createContext,
     ReactNode,
@@ -7,6 +6,8 @@ import {
     useEffect,
     useState,
 } from "react";
+
+import { getColorblindMode } from "@/app/helpers/colorblindStore";
 
 type Ctx = {
     mode: ColorblindMode;

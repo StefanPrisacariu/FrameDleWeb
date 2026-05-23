@@ -1,4 +1,5 @@
 import { abilityIcon } from "@/app/helpers/abilityIcon";
+
 import { initialAbilities } from "@/app/lib/abilities";
 
 const FALLBACK_WARFRAME = "Unknown Warframe";

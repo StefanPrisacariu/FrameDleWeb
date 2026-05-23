@@ -1,16 +1,6 @@
-import Universal from "@/assets/png/polarities/Aura_Pol.webp";
-import Madurai from "@/assets/png/polarities/Madurai_Pol.webp";
-import Naramon from "@/assets/png/polarities/Naramon_Pol.webp";
-import Unairu from "@/assets/png/polarities/Unairu_Pol.webp";
-import Vazarin from "@/assets/png/polarities/Vazarin_Pol.webp";
-import Zenurik from "@/assets/png/polarities/Zenurik_Pol.webp";
 import Image from "next/image";
 
-import CrowdControl from "@/assets/png/playstyle_icons/crowd_control.webp";
-import Damage from "@/assets/png/playstyle_icons/damage.webp";
-import Stealth from "@/assets/png/playstyle_icons/stealth.webp";
-import Support from "@/assets/png/playstyle_icons/support.webp";
-import Survival from "@/assets/png/playstyle_icons/survival.webp";
+import Icon from "@/styles/components/Icon.module.scss";
 
 import Cold from "@/assets/png/damage_types/DmgColdSmall64.webp";
 import Electricity from "@/assets/png/damage_types/DmgElectricitySmall64.webp";
@@ -19,8 +9,17 @@ import Impact from "@/assets/png/damage_types/DmgImpactSmall64.webp";
 import Magnetic from "@/assets/png/damage_types/DmgMagneticSmall64.webp";
 import Radiation from "@/assets/png/damage_types/DmgRadiationSmall64.webp";
 import Toxin from "@/assets/png/damage_types/DmgToxinSmall64.webp";
-
-import Icon from "@/styles/components/Icon.module.scss";
+import CrowdControl from "@/assets/png/playstyle_icons/crowd_control.webp";
+import Damage from "@/assets/png/playstyle_icons/damage.webp";
+import Stealth from "@/assets/png/playstyle_icons/stealth.webp";
+import Support from "@/assets/png/playstyle_icons/support.webp";
+import Survival from "@/assets/png/playstyle_icons/survival.webp";
+import Universal from "@/assets/png/polarities/Aura_Pol.webp";
+import Madurai from "@/assets/png/polarities/Madurai_Pol.webp";
+import Naramon from "@/assets/png/polarities/Naramon_Pol.webp";
+import Unairu from "@/assets/png/polarities/Unairu_Pol.webp";
+import Vazarin from "@/assets/png/polarities/Vazarin_Pol.webp";
+import Zenurik from "@/assets/png/polarities/Zenurik_Pol.webp";
 
 export const polarity = (e: string, index: number) => {
     switch (e) {

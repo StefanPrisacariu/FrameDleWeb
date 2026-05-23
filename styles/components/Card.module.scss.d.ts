@@ -11,6 +11,9 @@ export type Styles = {
     fd_card_1_card_wrap_icon: string;
     fd_card_1_card_wrap_icon_discord: string;
     fd_card_1_card_wrap_icon_kofi: string;
+    fd_card_2: string;
+    fd_card_2_quote: string;
+    fd_card_2_quote_logo: string;
 };
 
 export type ClassNames = keyof Styles;

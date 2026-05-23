@@ -4,11 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { NextSeo } from "next-seo";
 import { OrbitProgress } from "react-loading-indicators";
 
-import Loader from "@/styles/components/Loader.module.scss";
-
 import { EmojiGame } from "@/app/components/DailyGames/EmojiGame";
+
 import { initialEmojis } from "@/app/lib/emojis";
 import { getEmojiOfTheDay } from "@/app/lib/queries/apiQuery";
+
+import Loader from "@/styles/components/Loader.module.scss";
 
 export default function Emojis() {
     const { data, isLoading, isError } = useQuery({
@@ -18,6 +19,7 @@ export default function Emojis() {
         refetchOnMount: true,
         refetchOnWindowFocus: true,
         gcTime: 0,
+        refetchInterval: 1000 * 60,
     });
 
     return (
@@ -78,6 +80,8 @@ export default function Emojis() {
                     yesterdayWf={
                         initialEmojis[data.yesterday] as WarframeEmojis
                     }
+                    dailyId={data.dailyId}
+                    resetAt={data.resetAt}
                 />
             )}
         </>

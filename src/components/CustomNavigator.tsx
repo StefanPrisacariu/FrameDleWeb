@@ -1,27 +1,32 @@
-import { ColorIndicators } from "@/app/components/ColorIndicators";
-import { storeIndicatorToggle } from "@/app/helpers/indicatorStatus";
 import { useEffect, useRef, useState } from "react";
 
-import Menu from "@/assets/svg/bars-solid-icon.svg";
-import Close from "@/assets/svg/close-x.svg";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
 
+import { useRouter } from "next/router";
+
+import { ColorIndicators } from "@/app/components/ColorIndicators";
 import {
     CustomNavigatorDropdown,
     CustomNavigatorLink,
 } from "@/app/components/CustomNavigatorLink";
 import { TitleLogo } from "@/app/components/Logos/TitleLogo";
-import Feedback from "@/assets/png/icons/Chem_w.webp";
-import Home from "@/assets/png/icons/IconMissionMarkerExtraction.webp";
-import Quest from "@/assets/png/icons/IconQuest.webp";
-import Settings from "@/assets/png/icons/ReputationSmall.webp";
+
+import { storeIndicatorToggle } from "@/app/helpers/indicatorStatus";
+
 import Button from "@/styles/components/Button.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
 import Logo from "@/styles/components/Logo.module.scss";
 import Nav from "@/styles/components/Navigation.module.scss";
-import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/router";
+
+import Feedback from "@/assets/png/icons/Chem_w.webp";
+import Home from "@/assets/png/icons/IconMissionMarkerExtraction.webp";
+import Quest from "@/assets/png/icons/IconQuest.webp";
+import Settings from "@/assets/png/icons/ReputationSmall.webp";
+import Menu from "@/assets/svg/bars-solid-icon.svg";
+import Close from "@/assets/svg/close-x.svg";
+
 import Focus from "/public/game_progress/ability.webp";
 import Emoji from "/public/game_progress/emoji.webp";
 import Mission from "/public/game_progress/warframe.webp";
@@ -72,10 +77,9 @@ const links = [
         iconSrc: Quest.src,
     },
     {
-        href: "https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview",
+        href: "/feedback",
         name: "Feedback",
         iconSrc: Feedback.src,
-        target: "_blank",
     },
     {
         href: "/settings",
@@ -202,7 +206,6 @@ export const CustomNavigator = () => {
                                                                 item.iconSrc
                                                             }
                                                             name={item.name}
-                                                            target={item.target}
                                                         />
                                                     ) : (
                                                         <CustomNavigatorDropdown

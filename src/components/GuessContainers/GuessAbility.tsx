@@ -1,8 +1,11 @@
 import clsx from "clsx";
+
 import Image from "next/image";
 
 import { useColorblind } from "@/app/context/ColorblindContext";
+
 import { handleIcon } from "@/app/helpers/handleIcon";
+
 import GA from "@/styles/components/GuessAbility.module.scss";
 import GR from "@/styles/components/GuessRow.module.scss";
 

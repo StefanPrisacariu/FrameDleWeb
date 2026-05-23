@@ -4,11 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { NextSeo } from "next-seo";
 import { OrbitProgress } from "react-loading-indicators";
 
-import Loader from "@/styles/components/Loader.module.scss";
-
 import { AbilityGame } from "@/app/components/DailyGames/AbilityGame";
+
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
+
 import { getAbilityOfTheDay } from "@/app/lib/queries/apiQuery";
+
+import Loader from "@/styles/components/Loader.module.scss";
 
 export default function Ability() {
     const { data, isLoading, isError } = useQuery({
@@ -18,6 +20,7 @@ export default function Ability() {
         refetchOnMount: true,
         refetchOnWindowFocus: true,
         gcTime: 0,
+        refetchInterval: 1000 * 60,
     });
 
     return (
@@ -76,6 +79,8 @@ export default function Ability() {
                 <AbilityGame
                     todaysWf={getProcessedAbility(data.today)}
                     yesterdayWf={data.yesterday}
+                    dailyId={data.dailyId}
+                    resetAt={data.resetAt}
                 />
             )}
         </>

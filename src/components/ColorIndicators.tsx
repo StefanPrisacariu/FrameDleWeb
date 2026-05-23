@@ -1,13 +1,15 @@
+import clsx from "clsx";
+
+import { useColorblind } from "@/app/context/ColorblindContext";
+
 import Container from "@/styles/components/Container.module.scss";
 import GR from "@/styles/components/GuessRow.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
 
-import { useColorblind } from "@/app/context/ColorblindContext";
 import Arrow from "@/assets/svg/indicator-arrow.svg";
 import Correct from "@/assets/svg/indicator-correct.svg";
 import Incorrect from "@/assets/svg/indicator-incorrect.svg";
 import Partial from "@/assets/svg/indicator-partial.svg";
-import clsx from "clsx";
 
 export const ColorIndicators = () => {
     const { mode } = useColorblind();

@@ -5,6 +5,9 @@ export type Styles = {
     fd_logo_2_fill_d: string;
     fd_logo_2_fill_f: string;
     fd_logo_2_fill_outline: string;
+    fd_logo_3_fill_d: string;
+    fd_logo_3_fill_f: string;
+    fd_logo_3_fill_outline: string;
 };
 
 export type ClassNames = keyof Styles;

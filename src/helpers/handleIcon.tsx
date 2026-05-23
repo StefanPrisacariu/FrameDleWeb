@@ -1,5 +1,6 @@
-import Icon from "@/styles/components/Icon.module.scss";
 import clsx from "clsx";
+
+import Icon from "@/styles/components/Icon.module.scss";
 
 import Correct from "@/assets/svg/indicator-correct.svg";
 import Incorrect from "@/assets/svg/indicator-incorrect.svg";

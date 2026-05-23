@@ -1,13 +1,15 @@
-import Colorblind from "@/assets/png/icons/Ionic_w.webp";
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
+
+import Image from "next/image";
+
 import Button from "@/styles/components/Button.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
 import Group from "@/styles/components/Group.module.scss";
 import Icon from "@/styles/components/Icon.module.scss";
-import clsx from "clsx";
 
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
+import Colorblind from "@/assets/png/icons/Ionic_w.webp";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
 
 interface Item {
     title: string;

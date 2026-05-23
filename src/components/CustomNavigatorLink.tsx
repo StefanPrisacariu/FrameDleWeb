@@ -1,14 +1,17 @@
-import Group from "@/styles/components/Group.module.scss";
+import { useEffect, useState } from "react";
+
 import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+
+import Group from "@/styles/components/Group.module.scss";
+import Icon from "@/styles/components/Icon.module.scss";
 
 import Utility from "@/assets/png/icons/IconInfinite.webp";
 import DropdownArrowWhite from "@/assets/svg/arrow-down-gold.svg";
-import Icon from "@/styles/components/Icon.module.scss";
-import { AnimatePresence, motion } from "framer-motion";
 
 interface CustomNavLink {
     href: string;

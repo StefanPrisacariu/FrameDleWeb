@@ -2,16 +2,19 @@
 
 import { NextSeo } from "next-seo";
 
+import Image from "next/image";
+import Link from "next/link";
+
 import { GuessRow } from "@/app/components/GuessContainers/GuessMain";
-import { TimerComponent } from "@/app/components/TimeComponent";
+
 import { initialWarframes } from "@/app/lib/warframes";
-import Kofi from "@/assets/png/ko-fi-icon.webp";
+
 import Card from "@/styles/components/Card.module.scss";
 import Container from "@/styles/components/Container.module.scss";
 import Menu from "@/styles/components/Menu.module.scss";
 import Text from "@/styles/components/Text.module.scss";
-import Image from "next/image";
-import Link from "next/link";
+
+import Kofi from "@/assets/png/ko-fi-icon.webp";
 
 type ModeConfig = {
     id: string;
@@ -108,8 +111,7 @@ function Info() {
 
                 <p className={Text.fd_text_2_link}>Daily</p>
                 <p className={Text.fd_text_2_def}>
-                    One challenge per mode, resets every 24 hours. Next reset:{" "}
-                    {<TimerComponent />}
+                    One challenge per mode, resets every 24 hours.
                 </p>
                 <p className={Text.fd_text_2_def}>
                     Progress counts toward streak.

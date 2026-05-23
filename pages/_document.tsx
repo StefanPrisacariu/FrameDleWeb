@@ -1,5 +1,6 @@
-import { BackgroundLogo } from "@/app/components/Logos/BackgroundLogo";
 import { Head, Html, Main, NextScript } from "next/document";
+
+import { BackgroundLogo } from "@/app/components/Logos/BackgroundLogo";
 
 export default function Document() {
     return (

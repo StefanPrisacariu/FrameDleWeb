@@ -1,6 +1,7 @@
-import Card from "@/styles/components/Card.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+
+import Card from "@/styles/components/Card.module.scss";
 
 interface MenuCard {
     href: string;

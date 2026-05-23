@@ -1,5 +1,14 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { FeedbackCTA } from "@/app/components/FeedbackCTA";
 import { MenuCard, MenuSmallCard } from "@/app/components/MenuCard";
 import { ThemesCTA } from "@/app/components/ThemesCTA";
+
+import Card from "@/styles/components/Card.module.scss";
+import Menu from "@/styles/components/Menu.module.scss";
+import Text from "@/styles/components/Text.module.scss";
+
 import Discord from "@/assets/png/discord-icon.webp";
 import Google from "@/assets/png/google-play-icon.webp";
 import Feedback from "@/assets/png/icons/Chem_w.webp";
@@ -7,11 +16,6 @@ import Infinite from "@/assets/png/icons/IconInfinite.webp";
 import HowToPlay from "@/assets/png/icons/IconQuest.webp";
 import Settings from "@/assets/png/icons/ReputationSmall.webp";
 import Kofi from "@/assets/png/ko-fi-icon.webp";
-import Card from "@/styles/components/Card.module.scss";
-import Menu from "@/styles/components/Menu.module.scss";
-import Text from "@/styles/components/Text.module.scss";
-import Image from "next/image";
-import Link from "next/link";
 
 const DailyModes = [
     {
@@ -60,12 +64,12 @@ const UtilityItems = [
         iconSrc: HowToPlay.src,
         name: "How to Play",
     },
-    {
-        href: "https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview",
-        iconSrc: Feedback.src,
-        name: "Feedback",
-        targetBlank: true,
-    },
+    // {
+    //     href: "https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview",
+    //     iconSrc: Feedback.src,
+    //     name: "Feedback",
+    //     targetBlank: true,
+    // },
 ];
 const UtilityItems2 = [
     {
@@ -130,6 +134,25 @@ export const MainMenu = () => {
                             name={item.name}
                         />
                     ))}
+                    <div style={{ position: "relative" }}>
+                        <FeedbackCTA />
+                        <Link href="/feedback" className={Card.fd_card_1}>
+                            <div className={Card.fd_card_1_card}>
+                                <div className={Card.fd_card_1_card_wrap}>
+                                    <Image
+                                        width={500}
+                                        height={500}
+                                        src={Feedback}
+                                        alt="Feedback Icon"
+                                        className={
+                                            Card.fd_card_1_card_wrap_icon
+                                        }
+                                    />
+                                </div>
+                                <span>Feedback</span>
+                            </div>
+                        </Link>
+                    </div>
                     <div style={{ position: "relative" }}>
                         <ThemesCTA />
                         <Link href="/settings" className={Card.fd_card_1}>

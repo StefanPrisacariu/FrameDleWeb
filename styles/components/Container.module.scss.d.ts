@@ -10,6 +10,7 @@ export type Styles = {
     fd_container_6: string;
     fd_container_7: string;
     fd_container_8: string;
+    fd_container_9: string;
     fd_container_button: string;
     fd_container_item: string;
     fd_container_item_box: string;

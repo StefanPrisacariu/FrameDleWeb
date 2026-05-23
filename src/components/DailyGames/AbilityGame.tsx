@@ -1,46 +1,58 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+
+import { AnimatePresence, motion } from "framer-motion";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
 
+import Image from "next/image";
+
+import { YesterdayPortrait } from "@/app/components/Elements/YesterdayPortrait";
+import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
+import { AbilityModal } from "@/app/components/Modals/AbilityModal";
+import { StreakProgress } from "@/app/components/StreakProgress";
 import { TimerComponent } from "@/app/components/TimeComponent";
+
+import { useTags } from "@/app/context/TagsContext";
+
+import { scrollToId } from "@/app/helpers/scrollToId";
 import {
-    getAbilityStreak,
-    storeAbilityStreak,
-    storeAbilityStreakTime,
-} from "@/app/helpers/storeReadStreak";
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
+    getAbilityGuesses,
+    storeAbilityGuesses,
+} from "@/app/helpers/storeReadGuesses";
+import {
+    completeDaily,
+    getPreviousDailyId,
+    getProgress,
+    saveProgress,
+} from "@/app/helpers/streakSystem";
+
+import { initialAbilities } from "@/app/lib/abilities";
+
 import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
 import ImgStyle from "@/styles/components/ImgStyle.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import Text from "@/styles/components/Text.module.scss";
 
-import { checkResetNeeded } from "@/app/helpers/resetCheck";
-import {
-    getAbilityGuesses,
-    storeAbilityGuesses,
-} from "@/app/helpers/storeReadGuesses";
-
-import { YesterdayPortrait } from "@/app/components/Elements/YesterdayPortrait";
-import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
-import { AbilityModal } from "@/app/components/Modals/AbilityModal";
-import { StreakProgress } from "@/app/components/StreakProgress";
-import { useTags } from "@/app/context/TagsContext";
-import { scrollToId } from "@/app/helpers/scrollToId";
-import { initialAbilities } from "@/app/lib/abilities";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
 
 interface AbilityGame {
     todaysWf: ProcessedAbility;
     yesterdayWf: number;
+    dailyId: string;
+    resetAt: string;
 }
 
-export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
-    const dayKey = todaysWf.name;
+export const AbilityGame = ({
+    todaysWf,
+    yesterdayWf,
+    dailyId,
+    resetAt,
+}: AbilityGame) => {
+    const dayKey = dailyId;
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
@@ -59,49 +71,51 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
     }, []);
 
     useEffect(() => {
+        function sameDay() {
+            setDailyStreak(progress.streak);
+            setGuesses(tempGuesses);
+
+            const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
+
+            setIsGuessed(lastGuess === todaysWf.name);
+        }
+
+        function lastGuessedYesterday() {
+            setDailyStreak(progress.streak);
+        }
+
+        function lostStreak() {
+            saveProgress("ability", {
+                streak: 0,
+                lastCompletedDailyId: progress.lastCompletedDailyId,
+            });
+        }
+
+        const progress = getProgress("ability");
+        const prev = getPreviousDailyId(dailyId);
+        const tempGuesses = getAbilityGuesses(dayKey);
+
         setIsGuessed(false);
         setGuesses([]);
         setSearchText("");
         setVisible(false);
         setFilteredWarframes(initialAbilities);
 
-        const resetTime = checkResetNeeded("FD_ABILITY_STREAK_TIME");
-        const streak = getAbilityStreak();
-        const tempGuesses = getAbilityGuesses(dayKey);
-
-        switch (true) {
-            case resetTime >= 48: {
-                setDailyStreak(0);
-                storeAbilityStreak(0);
-
-                setGuesses([]);
-                storeAbilityGuesses(dayKey, []);
-
-                setIsGuessed(false);
-                break;
-            }
-
-            case resetTime >= 24 && resetTime < 48: {
-                setGuesses([]);
-                storeAbilityGuesses(dayKey, []);
-
-                setDailyStreak(streak);
-                setIsGuessed(false);
-                break;
-            }
-
-            case resetTime < 24: {
-                setGuesses(tempGuesses);
-                setDailyStreak(streak);
-
-                const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
-
-                setIsGuessed(lastGuess === todaysWf.name);
-
-                break;
-            }
+        if (
+            prev !== progress.lastCompletedDailyId &&
+            dailyId !== progress.lastCompletedDailyId
+        ) {
+            lostStreak();
         }
-    }, [dayKey, todaysWf.name]);
+
+        if (prev === progress.lastCompletedDailyId) {
+            lastGuessedYesterday();
+        }
+
+        if (dailyId === progress.lastCompletedDailyId) {
+            sameDay();
+        }
+    }, [dailyId, dayKey, todaysWf.name]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,19 +156,15 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
 
             if (selectedWf.name === todaysWf.name) {
                 setIsGuessed(true);
-                const newStreak = dailyStreak + 1;
-                setDailyStreak(newStreak);
-                storeAbilityStreak(newStreak);
-                storeAbilityStreakTime();
+                const updated = completeDaily("ability", dailyId);
+
+                setDailyStreak(updated.streak);
             }
             setFilteredWarframes(
                 initialAbilities.filter((item) => !updated.includes(item)),
             );
-            if (guesses.length === 0) {
-                storeAbilityStreakTime();
-            }
         },
-        [guesses, dayKey, todaysWf.name, dailyStreak],
+        [todaysWf.name, guesses, dayKey, dailyId],
     );
 
     return (
@@ -223,7 +233,7 @@ export const AbilityGame = ({ todaysWf, yesterdayWf }: AbilityGame) => {
                 <StreakProgress streak={dailyStreak} />
             </div>
             <span className={Text.fd_text_0} id="warframe-input">
-                <TimerComponent />
+                <TimerComponent resetAt={resetAt} />
             </span>
             <>
                 {4 - guesses.length > 0 && !isGuessed && (

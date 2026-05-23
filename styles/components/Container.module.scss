@@ -1,5 +1,3 @@
-/* stylelint-disable @stylistic/string-quotes */
-
 .fd_container {
     $cont: &;
 
@@ -16,10 +14,6 @@
         width: 100%;
         max-width: 800px;
         min-height: 100dvh;
-
-        // background-image: url("../../assets/png/wp5835539.webp");
-        // background-position: bottom;
-        // background-size: cover;
     }
 
     &_1 {
@@ -182,5 +176,16 @@
         @media only screen and (max-width: 600px) {
             margin-top: 5px;
         }
+    }
+
+    &_9 {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        min-height: 200px;
     }
 }

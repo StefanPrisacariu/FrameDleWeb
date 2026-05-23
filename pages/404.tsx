@@ -1,7 +1,8 @@
 "use client";
 
-import ErrorStyle from "@/styles/components/Error.module.scss";
 import Error from "next/error";
+
+import ErrorStyle from "@/styles/components/Error.module.scss";
 
 export default function Custom404() {
     return (

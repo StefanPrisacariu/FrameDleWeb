@@ -1,12 +1,15 @@
-import Share from "@/assets/svg/share-solid.svg";
 import { useRef } from "react";
+
 import useClipboard from "react-use-clipboard";
 
 import Button from "@/styles/components/Button.module.scss";
+import Icon from "@/styles/components/Icon.module.scss";
 import Mod from "@/styles/components/Modal.module.scss";
 
+import Share from "@/assets/svg/share-solid.svg";
+
 interface ModalProps {
-    guesses: WarframeEmojis[];
+    guesses: WarframeEmojisCorrected[];
 }
 
 export const EmojiModal = ({ guesses }: ModalProps) => {
@@ -36,7 +39,11 @@ export const EmojiModal = ({ guesses }: ModalProps) => {
                         }}
                         className={Button.fd_button_0}
                     >
-                        <Share width={20} height={20} />
+                        <Share
+                            width={20}
+                            height={20}
+                            className={Icon.fd_icon_fills_white}
+                        />
                         <span id="share-button-text">
                             {copied ? "Copied" : "Share"}
                         </span>
