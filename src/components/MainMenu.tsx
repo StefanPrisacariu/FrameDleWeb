@@ -1,11 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-
-import { FeedbackCTA } from "@/app/components/FeedbackCTA";
 import { MenuCard, MenuSmallCard } from "@/app/components/MenuCard";
-import { ThemesCTA } from "@/app/components/ThemesCTA";
 
-import Card from "@/styles/components/Card.module.scss";
 import Menu from "@/styles/components/Menu.module.scss";
 import Text from "@/styles/components/Text.module.scss";
 
@@ -64,14 +58,18 @@ const UtilityItems = [
         iconSrc: HowToPlay.src,
         name: "How to Play",
     },
-    // {
-    //     href: "https://docs.google.com/forms/d/e/1FAIpQLSdymNhRnpB4KHeGbSipdaSVTKss9KzrZHtxRope7uekQV8PMQ/viewform?usp=preview",
-    //     iconSrc: Feedback.src,
-    //     name: "Feedback",
-    //     targetBlank: true,
-    // },
-];
-const UtilityItems2 = [
+    {
+        href: "/feedback",
+        iconSrc: Feedback.src,
+        name: "Feedback",
+        cta: "New Feedback",
+    },
+    {
+        href: "/settings",
+        iconSrc: Settings.src,
+        name: "Settings",
+        cta: "Try New Themes!",
+    },
     {
         href: "https://discord.gg/qqmr3Uz32f",
         iconSrc: Discord.src,
@@ -132,53 +130,7 @@ export const MainMenu = () => {
                             href={item.href}
                             iconSrc={item.iconSrc}
                             name={item.name}
-                        />
-                    ))}
-                    <div style={{ position: "relative" }}>
-                        <FeedbackCTA />
-                        <Link href="/feedback" className={Card.fd_card_1}>
-                            <div className={Card.fd_card_1_card}>
-                                <div className={Card.fd_card_1_card_wrap}>
-                                    <Image
-                                        width={500}
-                                        height={500}
-                                        src={Feedback}
-                                        alt="Feedback Icon"
-                                        className={
-                                            Card.fd_card_1_card_wrap_icon
-                                        }
-                                    />
-                                </div>
-                                <span>Feedback</span>
-                            </div>
-                        </Link>
-                    </div>
-                    <div style={{ position: "relative" }}>
-                        <ThemesCTA />
-                        <Link href="/settings" className={Card.fd_card_1}>
-                            <div className={Card.fd_card_1_card}>
-                                <div className={Card.fd_card_1_card_wrap}>
-                                    <Image
-                                        width={500}
-                                        height={500}
-                                        src={Settings}
-                                        alt="Settings Icon"
-                                        className={
-                                            Card.fd_card_1_card_wrap_icon
-                                        }
-                                    />
-                                </div>
-                                <span>Settings</span>
-                            </div>
-                        </Link>
-                    </div>
-                    {UtilityItems2.map((item) => (
-                        <MenuSmallCard
-                            key={item.name}
-                            href={item.href}
-                            iconSrc={item.iconSrc}
-                            name={item.name}
-                            targetBlank={item.targetBlank}
+                            cta={item.cta}
                         />
                     ))}
                 </div>

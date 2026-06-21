@@ -12,8 +12,6 @@ import {
 import { decodeStorage, encodeStorage } from "@/app/helpers/encoder";
 import { getCurrentDailyId, getProgress } from "@/app/helpers/streakSystem";
 
-type TagMode = "daily" | "ability" | "emoji";
-
 type TagsState = {
     daily: boolean;
     ability: boolean;

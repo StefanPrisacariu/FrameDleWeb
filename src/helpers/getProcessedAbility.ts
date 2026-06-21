@@ -1,10 +1,9 @@
-import { abilityIcon } from "@/app/helpers/abilityIcon";
+import { abilityIconNew } from "@/app/helpers/abilityIcon";
 
 import { initialAbilities } from "@/app/lib/abilities";
 
 const FALLBACK_WARFRAME = "Unknown Warframe";
 const FALLBACK_ABILITY = "Unknown Ability";
-const FALLBACK_ICON = abilityIcon("default");
 
 export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
     const today = initialAbilities[api.warframe] ?? {
@@ -13,6 +12,7 @@ export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
     };
 
     const ability = today.abilities.find((a) => a.shortcut === api.ability) ?? {
+        shortcut: 1,
         abilityName: FALLBACK_ABILITY,
         icon: "default",
     };
@@ -25,13 +25,12 @@ export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
           FALLBACK_ABILITY)
         : (ability.abilityName ?? FALLBACK_ABILITY);
 
-    const iconKey = Array.isArray(ability.icon)
-        ? (ability.icon[idx] ?? ability.icon[0] ?? "default")
-        : (ability.icon ?? "default");
+    const owners = ability.owners ?? [today.name];
 
     return {
-        name: today.name ?? FALLBACK_WARFRAME,
+        name: today.name,
         abilityName,
-        icon: abilityIcon(iconKey) ?? FALLBACK_ICON,
+        owners,
+        icon: abilityIconNew(today.name, ability.shortcut, abilityName),
     };
 }

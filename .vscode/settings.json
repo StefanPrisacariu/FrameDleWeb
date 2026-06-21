@@ -81,5 +81,8 @@
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
-    "cSpell.words": ["Oraxia"]
+    "cSpell.words": ["Oraxia"],
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    }
 }

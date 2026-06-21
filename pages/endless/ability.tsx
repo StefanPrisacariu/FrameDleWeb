@@ -1,14 +1,21 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { NextSeo } from "next-seo";
-import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
 
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
+import Image from "next/image";
+
+import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
+
+import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
+
+import { initialAbilities } from "@/app/lib/abilities";
+
 import Button from "@/styles/components/Button.module.scss";
 import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
@@ -17,10 +24,8 @@ import ImgStyle from "@/styles/components/ImgStyle.module.scss";
 import Input from "@/styles/components/Input.module.scss";
 import Text from "@/styles/components/Text.module.scss";
 
-import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
-import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
-import { initialAbilities } from "@/app/lib/abilities";
-import clsx from "clsx";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
 
 function generateNewAbility(): ProcessedAbility | null {
     const asd = {
@@ -46,12 +51,12 @@ export default function AbilityEndless() {
     // FORCE ABILITY
     // const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
     //     getProcessedAbility({
-    //         ability: 4,
+    //         ability: 2,
     //         variant: 1,
     //         warframe: initialAbilities.findIndex(
-    //             (item) => item.name === "Uriel"
+    //             (item) => item.name === "Sevagoth's Shadow",
     //         ),
-    //     }) as ProcessedAbility
+    //     }) as ProcessedAbility,
     // );
 
     useEffect(() => {
@@ -62,10 +67,13 @@ export default function AbilityEndless() {
     }, []);
 
     useEffect(() => {
+        const lastGuess = guesses[guesses.length - 1]?.name;
+
         if (
             todaysWf &&
-            guesses.length > 0 &&
-            guesses[guesses.length - 1]?.name === todaysWf.name
+            lastGuess &&
+            todaysWf.owners &&
+            todaysWf.owners.includes(lastGuess)
         ) {
             setIsGuessed(true);
         }
@@ -100,7 +108,10 @@ export default function AbilityEndless() {
                 setSearchText("");
 
                 setGuesses(temp);
-                if (selectedWf.name === todaysWf.name) {
+                if (
+                    todaysWf.owners &&
+                    todaysWf.owners.includes(selectedWf.name)
+                ) {
                     setIsGuessed(true);
                 }
             }
@@ -134,22 +145,28 @@ export default function AbilityEndless() {
     //             blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
     //             loading="eager"
     //         />
-    //         {item.abilities.map((ability) => (
-    //             <Image
-    //                 key={ability.shortcut}
-    //                 width={50}
-    //                 height={50}
-    //                 src={
-    //                     typeof ability.icon === "string"
-    //                         ? abilityIcon(ability.icon)
-    //                         : abilityIcon(ability.icon[1])
-    //                 }
-    //                 alt={"hidden"}
-    //                 placeholder="blur"
-    //                 blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
-    //                 loading="eager"
-    //             />
-    //         ))}
+    //         {item.abilities.map((ability, index) => {
+    //             const abilityName =
+    //                 typeof ability.abilityName === "string"
+    //                     ? ability.abilityName
+    //                     : ability.abilityName[1];
+    //             return (
+    //                 <Image
+    //                     key={ability.shortcut}
+    //                     width={50}
+    //                     height={50}
+    //                     src={abilityIconNew(
+    //                         item.name,
+    //                         ability.shortcut,
+    //                         abilityName,
+    //                     )}
+    //                     alt={"hidden"}
+    //                     placeholder="blur"
+    //                     blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+    //                     loading="eager"
+    //                 />
+    //             );
+    //         })}
     //     </div>
     // ));
 
@@ -379,6 +396,7 @@ export default function AbilityEndless() {
                             </AnimatePresence>
                         </div>
                         <h4 className={Text.fd_text_1}>Attempts</h4>
+                        {/* {fullList} */}
 
                         <div className={Container.fd_container_7}>
                             <AnimatePresence>

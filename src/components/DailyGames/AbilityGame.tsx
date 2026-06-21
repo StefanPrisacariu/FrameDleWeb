@@ -77,7 +77,14 @@ export const AbilityGame = ({
 
             const lastGuess = tempGuesses?.[tempGuesses.length - 1]?.name;
 
-            setIsGuessed(lastGuess === todaysWf.name);
+            if (lastGuess) {
+                setIsGuessed(
+                    todaysWf.owners?.includes(lastGuess) ??
+                        lastGuess === todaysWf.name,
+                );
+            } else {
+                setIsGuessed(false);
+            }
         }
 
         function lastGuessedYesterday() {
@@ -99,23 +106,21 @@ export const AbilityGame = ({
         setGuesses([]);
         setSearchText("");
         setVisible(false);
-        setFilteredWarframes(initialAbilities);
 
-        if (
-            prev !== progress.lastCompletedDailyId &&
-            dailyId !== progress.lastCompletedDailyId
-        ) {
+        if (tempGuesses.length > 0) {
+            sameDay();
+        } else if (prev === progress.lastCompletedDailyId) {
+            lastGuessedYesterday();
+        } else {
             lostStreak();
         }
 
-        if (prev === progress.lastCompletedDailyId) {
-            lastGuessedYesterday();
-        }
+        const namesToRemove = new Set(tempGuesses.map((item) => item.name));
 
-        if (dailyId === progress.lastCompletedDailyId) {
-            sameDay();
-        }
-    }, [dailyId, dayKey, todaysWf.name]);
+        setFilteredWarframes(
+            initialAbilities.filter((item) => !namesToRemove.has(item.name)),
+        );
+    }, [dailyId, dayKey, todaysWf.name, todaysWf.owners]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,7 +151,11 @@ export const AbilityGame = ({
 
     const warframeSelected = useCallback(
         (selectedWf: WarframeAbility) => {
-            if (selectedWf.name === todaysWf.name) scrollToId("logo");
+            if (
+                todaysWf.owners?.includes(selectedWf.name) ||
+                selectedWf.name === todaysWf.name
+            )
+                scrollToId("logo");
             const updated = [...guesses, selectedWf];
             setGuesses(updated);
             setSearchText("");
@@ -154,7 +163,10 @@ export const AbilityGame = ({
 
             storeAbilityGuesses(dayKey, updated);
 
-            if (selectedWf.name === todaysWf.name) {
+            if (
+                todaysWf.owners?.includes(selectedWf.name) ||
+                selectedWf.name === todaysWf.name
+            ) {
                 setIsGuessed(true);
                 const updated = completeDaily("ability", dailyId);
 
@@ -164,7 +176,7 @@ export const AbilityGame = ({
                 initialAbilities.filter((item) => !updated.includes(item)),
             );
         },
-        [todaysWf.name, guesses, dayKey, dailyId],
+        [todaysWf.owners, todaysWf.name, guesses, dayKey, dailyId],
     );
 
     return (

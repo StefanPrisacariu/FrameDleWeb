@@ -213,22 +213,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Wyrd Scythes",
-                icon: "WyrdScythes130%28xWhite%29.png",
+                icon: "WyrdScythesIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Doom",
-                icon: "Doom130%28xWhite%29.png",
+                icon: "DoomIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Grave Spirit",
-                icon: "GraveSpirit130%28xWhite%29.png",
+                icon: "GraveSpiritIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Rakhali's Cavalry",
-                icon: "RakhalisCavalry130%28xWhite%29.png",
+                icon: "RakhalisCavalryIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/dagath.webp",
@@ -239,22 +239,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Noctua",
-                icon: "Noctua130%28xWhite%29.png",
+                icon: "NoctuaIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Light Verse",
-                icon: "LightVerse130%28xWhite%29.png",
+                icon: "LightVerseIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Dark Verse",
-                icon: "DarkVerse130%28xWhite%29.png",
+                icon: "DarkVerseIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Final Verse",
-                icon: "FinalVerse130%28xWhite%29.png",
+                icon: "FinalVerseIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/dante.webp",
@@ -270,7 +270,7 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 2,
                 abilityName: "Immolation",
-                icon: "Immolation130%28xWhite%29.png",
+                icon: "ImmolationIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
@@ -280,7 +280,7 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 4,
                 abilityName: "Inferno",
-                icon: "Inferno130%28xWhite%29.png",
+                icon: "InfernoIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/ember.webp",
@@ -318,14 +318,40 @@ export const initialAbilities: WarframeAbility[] = [
                 shortcut: 1,
                 abilityName: "Slash Dash",
                 icon: "SlashDash130%28xWhite%29.png",
+                owners: ["Excalibur", "Excalibur Umbra"],
             },
             {
                 shortcut: 2,
-                abilityName: ["Radial Blind", "Radial Howl"],
-                icon: [
-                    "RadialBlind130%28xWhite%29.png",
-                    "RadialHowl130%28xWhite%29.png",
-                ],
+                abilityName: "Radial Blind",
+                icon: "RadialBlind130%28xWhite%29.png",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Radial Javelin",
+                icon: "RadialJavelin130%28xWhite%29.png",
+                owners: ["Excalibur", "Excalibur Umbra"],
+            },
+            {
+                shortcut: 4,
+                abilityName: "Exalted Blade",
+                icon: "ExaltedBlade130%28xWhite%29.png",
+                owners: ["Excalibur", "Excalibur Umbra"],
+            },
+        ],
+        image: "/warframe_portraits/excalibur.webp",
+    },
+    {
+        name: "Excalibur Umbra",
+        abilities: [
+            {
+                shortcut: 1,
+                abilityName: "Slash Dash",
+                icon: "SlashDash130%28xWhite%29.png",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Radial Howl",
+                icon: "RadialHowl130%28xWhite%29.png",
             },
             {
                 shortcut: 3,
@@ -338,7 +364,7 @@ export const initialAbilities: WarframeAbility[] = [
                 icon: "ExaltedBlade130%28xWhite%29.png",
             },
         ],
-        image: "/warframe_portraits/excalibur.webp",
+        image: "/warframe_portraits/excalibur-umbra.webp",
     },
     {
         name: "Follie",
@@ -346,22 +372,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Forced Perspective",
-                icon: "ForcedPerspective%28xWhite%29.png",
+                icon: "ForcedPerspectiveIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Shadowgraph",
-                icon: "Shadowgraph%28xWhite%29.png",
+                icon: "ShadowgraphIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Self Portrait",
-                icon: "SelfPortrait%28xWhite%29.png",
+                icon: "SelfPortraitIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Plein Air",
-                icon: "PleinAir%28xWhite%29.png",
+                icon: "PleinAirIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/follie.webp",
@@ -424,22 +450,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Dread Mirror",
-                icon: "DreadMirror130%28xWhite%29.png",
+                icon: "DreadMirrorIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Blood Altar",
-                icon: "BloodAltar130%28xWhite%29.png",
+                icon: "BloodAltarIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Bloodletting",
-                icon: "Bloodletting130%28xWhite%29.png",
+                icon: "BloodlettingIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Seeking Talons",
-                icon: "SeekingTalons130%28xWhite%29.png",
+                icon: "SeekingTalonsIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/garuda.webp",
@@ -450,22 +476,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Mach Rush",
-                icon: "MachRush130%28xWhite%29.png",
+                icon: "MachRushIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Kinetic Plating",
-                icon: "KineticPlating130%28xWhite%29.png",
+                icon: "KineticPlatingIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Thermal Sunder",
-                icon: "ThermalSunder130%28xWhite%29.png",
+                icon: "ThermalSunderIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Redline",
-                icon: "Redline130%28xWhite%29.png",
+                icon: "RedlineIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/gauss.webp",
@@ -476,22 +502,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Feast",
-                icon: "Feast130%28xWhite%29.png",
+                icon: "FeastIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Nourish",
-                icon: "Nourish130%28xWhite%29.png",
+                icon: "NourishIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Pulverize",
-                icon: "Pulverize130%28xWhite%29.png",
+                icon: "PulverizeIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Regurgitate",
-                icon: "Regurgitate130%28xWhite%29.png",
+                icon: "RegurgitateIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/grendel.webp",
@@ -502,22 +528,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Arcsphere",
-                icon: "Arcsphere130%28xWhite%29.png",
+                icon: "ArcsphereIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Coil Horizon",
-                icon: "CoilHorizon130%28xWhite%29.png",
+                icon: "CoilHorizonIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Cathode Grace",
-                icon: "CathodeGrace130%28xWhite%29.png",
+                icon: "CathodeGraceIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Rotorswell",
-                icon: "Rotorswell130%28xWhite%29.png",
+                icon: "RotorswellIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/gyre.webp",
@@ -621,7 +647,7 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 4,
                 abilityName: "Scarab Swarm",
-                icon: "ScarabSwarm130%28xWhite%29.png",
+                icon: "ScarabSwarmIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/inaros.webp",
@@ -658,22 +684,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Light's Judgment",
-                icon: "Light%27sJudgment130%28xWhite%29.png",
+                icon: "Light%27sJudgmentIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Symphony of Mercy",
-                icon: "SymphonyofMercy130%28xWhite%29.png",
+                icon: "SymphonyOfMercyIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Ophanim Eyes",
-                icon: "OphanimEyes130%28xWhite%29.png",
+                icon: "OphanimEyesIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Glory on High",
-                icon: "GloryonHigh130%28xWhite%29.png",
+                icon: "GloryOnHighIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/jade.webp",
@@ -684,22 +710,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Ensnare",
-                icon: "Ensnare130%28xWhite%29.png",
+                icon: "EnsnareIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Venari",
-                icon: "Venari130%28xWhite%29.png",
+                icon: "VenariIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Whipclaw",
-                icon: "Whipclaw130%28xWhite%29.png",
+                icon: "WhipclawIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Strangledome",
-                icon: "Strangledome130%28xWhite%29.png",
+                icon: "StrangledomeIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/khora.webp",
@@ -707,10 +733,26 @@ export const initialAbilities: WarframeAbility[] = [
     {
         name: "Koumei",
         abilities: [
-            { shortcut: 1, abilityName: "Kumihimo", icon: "Kumihimo.png" },
-            { shortcut: 2, abilityName: "Omikuji", icon: "Omikuji.png" },
-            { shortcut: 3, abilityName: "Omamori", icon: "Omamori.png" },
-            { shortcut: 4, abilityName: "Bunraku", icon: "Bunraku.png" },
+            {
+                shortcut: 1,
+                abilityName: "Kumihimo",
+                icon: "KumihimoIcon%28xWhite%29.png",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Omikuji",
+                icon: "OmikujiIcon%28xWhite%29.png",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Omamori",
+                icon: "OmamoriIcon%28xWhite%29.png",
+            },
+            {
+                shortcut: 4,
+                abilityName: "Bunraku",
+                icon: "BunrakuIcon%28xWhite%29.png",
+            },
         ],
         image: "/warframe_portraits/koumei.webp",
     },
@@ -735,7 +777,7 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 4,
                 abilityName: "Storm of Ukko",
-                icon: "StormofUkkoIcon%28xWhite%29.png",
+                icon: "StormOfUkkoIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/kullervo.webp",
@@ -746,22 +788,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Ophidian Bite",
-                icon: "OphidianBite130%28xWhite%29.png",
+                icon: "OphidianBiteIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Vial Rush",
-                icon: "VialRush130%28xWhite%29.png",
+                icon: "VialRushIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Transmutation Probe",
-                icon: "TransmutationProbe130%28xWhite%29.png",
+                icon: "TransmutationProbeIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Catalyze",
-                icon: "Catalyze130%28xWhite%29.png",
+                icon: "CatalyzeIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/lavos.webp",
@@ -980,22 +1022,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Stinkbrain",
-                icon: "Stinkbrain.png",
+                icon: "StinkbrainIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Brightbonnet",
-                icon: "Brightbonnet.png",
+                icon: "BrightbonnetIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Reroot",
-                icon: "Reroot.png",
+                icon: "RerootIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Sporespring",
-                icon: "Sporespring.png",
+                icon: "SporespringIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/nokko.webp",
@@ -1106,25 +1148,52 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Mercy's Kiss",
-                icon: "Mercy%27sKiss.png",
+                icon: "Mercy%27sKissIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Webbed Embrace",
-                icon: "WebbedEmbrace%28xWhite%29.png",
+                icon: "WebbedEmbraceIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Widow's Brood",
-                icon: "Widow%27sBrood.png",
+                icon: "Widow%27sBroodIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Silken Stride",
-                icon: "SilkenStride.png",
+                icon: "SilkenStrideIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/oraxia.webp",
+    },
+    {
+        name: "Orion",
+        abilities: [
+            {
+                shortcut: 1,
+                abilityName: "Gravitic Slash",
+                icon: "CoronalEjection.webp",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Astral Shell",
+                icon: "JadeStars.webp",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Event Horizon",
+                icon: "LightsSanctuary.webp",
+            },
+            {
+                shortcut: 4,
+                abilityName: "Celestial Clash",
+                icon: "CelestialClash.webp",
+                owners: ["Sirius", "Orion"],
+            },
+        ],
+        image: "/warframe_portraits/orion.webp",
     },
     {
         name: "Protea",
@@ -1132,22 +1201,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Grenade Fan",
-                icon: "GrenadeFan130%28xWhite%29.png",
+                icon: "GrenadeFanIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Blaze Artillery",
-                icon: "BlazeArtillery130%28xWhite%29.png",
+                icon: "BlazeArtilleryIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Dispensary",
-                icon: "Dispensary130%28xWhite%29.png",
+                icon: "DispensaryIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Temporal Anchor",
-                icon: "TemporalAnchor130%28xWhite%29.png",
+                icon: "TemporalAnchorIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/protea.webp",
@@ -1158,22 +1227,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Chyrinka Pillar",
-                icon: "ChyrinkaPillar130%28xWhite%29.png",
+                icon: "ChyrinkaPillarIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Containment Wall",
-                icon: "ContainmentWall130%28xWhite%29.png",
+                icon: "ContainmentWallIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Disometric Guard",
-                icon: "DisometricGuard130%28xWhite%29.png",
+                icon: "DisometricGuardIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Crucible Blast",
-                icon: "CrucibleBlast130%28xWhite%29.png",
+                icon: "CrucibleBlastIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/qorvex.webp",
@@ -1184,22 +1253,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Enthrall",
-                icon: "Enthrall130%28xWhite%29.png",
+                icon: "EnthrallIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Mesmer Skin",
-                icon: "MesmerSkin130%28xWhite%29.png",
+                icon: "MesmerSkinIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Reave",
-                icon: "Reave130%28xWhite%29.png",
+                icon: "ReaveIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Danse Macabre",
-                icon: "DanseMacabre130%28xWhite%29.png",
+                icon: "DanseMacabreIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/revenant.webp",
@@ -1261,32 +1330,79 @@ export const initialAbilities: WarframeAbility[] = [
         abilities: [
             {
                 shortcut: 1,
-                abilityName: ["Reap", "Embrace"],
-                icon: ["Reap130%28xWhite%29.png", "Embrace130%28xWhite%29.png"],
+                abilityName: "Reap",
+                icon: "ReapIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
-                abilityName: ["Sow", "Consume"],
-                icon: ["Sow130%28xWhite%29.png", "Consume130%28xWhite%29.png"],
+                abilityName: "Sow",
+                icon: "SowIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
-                abilityName: ["Gloom", "Death's Harvest"],
-                icon: [
-                    "Gloom130%28xWhite%29.png",
-                    "DeathsHarvest130%28xWhite%29.png",
-                ],
+                abilityName: "Gloom",
+                icon: "GloomIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
-                abilityName: ["Exalted Shadow", "Reunite"],
-                icon: [
-                    "ExaltedShadow130%28xWhite%29.png",
-                    "Reunite130%28xWhite%29.png",
-                ],
+                abilityName: "Exalted Shadow",
+                icon: "ExaltedShadowIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/sevagoth.webp",
+    },
+    {
+        name: "Sevagoth's Shadow",
+        abilities: [
+            {
+                shortcut: 1,
+                abilityName: "Embrace",
+                icon: "EmbraceIcon%28xWhite%29.png",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Consume",
+                icon: "ConsumeIcon%28xWhite%29.png",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Death's Harvest",
+                icon: "DeathsHarvestIcon%28xWhite%29.png",
+            },
+            {
+                shortcut: 4,
+                abilityName: "Reunite",
+                icon: "ReuniteIcon%28xWhite%29.png",
+            },
+        ],
+        image: "/warframe_portraits/sevagoth-shadow.webp",
+    },
+    {
+        name: "Sirius",
+        abilities: [
+            {
+                shortcut: 1,
+                abilityName: "Coronal Ejection",
+                icon: "CoronalEjection.webp",
+            },
+            {
+                shortcut: 2,
+                abilityName: "Jade Stars",
+                icon: "JadeStars.webp",
+            },
+            {
+                shortcut: 3,
+                abilityName: "Light's Sanctuary",
+                icon: "LightsSanctuary.webp",
+            },
+            {
+                shortcut: 4,
+                abilityName: "Celestial Clash",
+                icon: "CelestialClash.webp",
+                owners: ["Sirius", "Orion"],
+            },
+        ],
+        image: "/warframe_portraits/sirius.webp",
     },
     {
         name: "Styanax",
@@ -1294,22 +1410,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Axios Javelin",
-                icon: "AxiosJavelin130%28xWhite%29.png",
+                icon: "AxiosJavelinIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Tharros Strike",
-                icon: "TharrosStrike130%28xWhite%29.png",
+                icon: "TharrosStrikeIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Rally Point",
-                icon: "RallyPoint130%28xWhite%29.png",
+                icon: "RallyPointIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Final Stand",
-                icon: "FinalStand130%28xWhite%29.png",
+                icon: "FinalStandIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/styanax.webp",
@@ -1320,18 +1436,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Pyrotechnics",
-                icon: "Pyrotechnics.png",
+                icon: "PyrotechnicsIcon%28xWhite%29.png",
             },
-            { shortcut: 2, abilityName: "Overdrive", icon: "Overdrive.png" },
+            {
+                shortcut: 2,
+                abilityName: "Overdrive",
+                icon: "OverdriveIcon%28xWhite%29.png",
+            },
             {
                 shortcut: 3,
                 abilityName: "Ripper's Wail",
-                icon: "Ripper%27sWail.png",
+                icon: "Ripper%27sWailIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Exalted Solo",
-                icon: "ExaltedSolo.png",
+                icon: "ExaltedSoloIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/temple.webp",
@@ -1394,22 +1514,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Infernalis",
-                icon: "UrielInfernalis.png",
+                icon: "Infernalis130%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Remedium",
-                icon: "UrielRemedium.png",
+                icon: "Remedium130%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Demonium",
-                icon: "UrielDemonium.png",
+                icon: "Demonium130%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Brimstone",
-                icon: "UrielBrimstone.png",
+                icon: "Brimstone130%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/uriel.webp",
@@ -1446,22 +1566,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Tesla Nervos",
-                icon: "TeslaNervos130%28xWhite%29.png",
+                icon: "TeslaNervosIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Minelayer",
-                icon: "Minelayer130%28xWhite%29.png",
+                icon: "MinelayerIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Photon Strike",
-                icon: "PhotonStrike130%28xWhite%29.png",
+                icon: "PhotonStrikeIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Bastille",
-                icon: "Bastille130%28xWhite%29.png",
+                icon: "BastilleIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/vauban.webp",
@@ -1550,7 +1670,7 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Celestial Twin",
-                icon: "CelestialTwin130%28xWhite%29.png",
+                icon: "CelestialTwinIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
@@ -1576,22 +1696,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Xata's Whisper",
-                icon: "Xata%27sWhisper130%28xWhite%29.png",
+                icon: "Xata%27sWhisperIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Grasp of Lohk",
-                icon: "GraspofLohk130%28xWhite%29.png",
+                icon: "GraspOfLohkIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "The Lost",
-                icon: "TheLost130%28xWhite%29.png",
+                icon: "TheLostIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "The Vast Untime",
-                icon: "TheVastUntime130%28xWhite%29.png",
+                icon: "TheVastUntimeIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/xaku.webp",
@@ -1602,22 +1722,22 @@ export const initialAbilities: WarframeAbility[] = [
             {
                 shortcut: 1,
                 abilityName: "Sea Snares",
-                icon: "SeaSnares130%28xWhite%29.png",
+                icon: "SeaSnaresIcon%28xWhite%29.png",
             },
             {
                 shortcut: 2,
                 abilityName: "Merulina",
-                icon: "Merulina130%28xWhite%29.png",
+                icon: "MerulinaIcon%28xWhite%29.png",
             },
             {
                 shortcut: 3,
                 abilityName: "Aquablades",
-                icon: "Aquablades130%28xWhite%29.png",
+                icon: "AquabladesIcon%28xWhite%29.png",
             },
             {
                 shortcut: 4,
                 abilityName: "Riptide",
-                icon: "Riptide130%28xWhite%29.png",
+                icon: "RiptideIcon%28xWhite%29.png",
             },
         ],
         image: "/warframe_portraits/yareli.webp",

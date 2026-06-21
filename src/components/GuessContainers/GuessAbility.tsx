@@ -19,7 +19,7 @@ export const GuessAbility = ({
     todayWarframe,
 }: GuessAbilityProps) => {
     const { mode } = useColorblind();
-    const isCorrect = warframeGuess.name === todayWarframe.name;
+    const isCorrect = todayWarframe.owners?.includes(warframeGuess.name);
 
     return (
         <div

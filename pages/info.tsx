@@ -307,23 +307,6 @@ function Info() {
                     app.
                 </p>
                 <p className={Text.fd_text_2_def}>
-                    The icons and fonts used in FrameDle are sourced from
-                    Warframe, and the captivating background image is courtesy
-                    of a talented creator on{" "}
-                    <span
-                        className={Text.fd_text_2_link}
-                        onClick={() =>
-                            window.open(
-                                "https://www.reddit.com/r/Warframe/comments/8xsta2/warframe_fortuna_mobile_wallpaper_i_made_thought/",
-                            )
-                        }
-                    >
-                        Reddit
-                    </span>
-                    , . We appreciate their contributions to making FrameDle
-                    visually appealing.
-                </p>
-                <p className={Text.fd_text_2_def}>
                     If you have any questions, feedback, or simply want to reach
                     out, you can contact us at{" "}
                     <span className={Text.fd_text_2_link}>

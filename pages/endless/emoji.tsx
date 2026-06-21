@@ -1,14 +1,19 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { NextSeo } from "next-seo";
-import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { OrbitProgress } from "react-loading-indicators";
 
-import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
-import DropdownX from "@/assets/svg/close-x.svg";
+import Image from "next/image";
+
+import { GuessEmoji } from "@/app/components/GuessContainers/GuessEmoji";
+
+import { initialEmojis } from "@/app/lib/emojis";
+
 import Button from "@/styles/components/Button.module.scss";
 import Container from "@/styles/components/Container.module.scss";
 import Dropdown from "@/styles/components/Dropdown.module.scss";
@@ -17,9 +22,8 @@ import Input from "@/styles/components/Input.module.scss";
 import Prog from "@/styles/components/Progress.module.scss";
 import Text from "@/styles/components/Text.module.scss";
 
-import { GuessEmoji } from "@/app/components/GuessContainers/GuessEmoji";
-import { initialEmojis } from "@/app/lib/emojis";
-import clsx from "clsx";
+import DropdownArrow from "@/assets/svg/arrow-down-gold.svg";
+import DropdownX from "@/assets/svg/close-x.svg";
 
 function generateNewEmoji(): WarframeEmojis {
     const asd = initialEmojis[Math.floor(Math.random() * initialEmojis.length)];

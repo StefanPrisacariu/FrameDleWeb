@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ThemesCTA } from "@/app/components/ThemesCTA";
+
 import Card from "@/styles/components/Card.module.scss";
 
 interface MenuCard {
@@ -9,6 +11,7 @@ interface MenuCard {
     iconSrc: string;
     name: string;
     targetBlank?: boolean;
+    cta?: string;
 }
 
 export const MenuCard = ({
@@ -53,31 +56,35 @@ export const MenuSmallCard = ({
     name,
     iconSrc,
     targetBlank,
+    cta = "",
 }: MenuCard) => {
     return (
-        <div className={Card.fd_card_1}>
-            <Link
-                href={href}
-                target={targetBlank ? "_blank" : "_self"}
-                className={Card.fd_card_1_card}
-            >
-                <div className={Card.fd_card_1_card_wrap}>
-                    <Image
-                        width={500}
-                        height={500}
-                        src={iconSrc}
-                        alt={`${name} Icon`}
-                        className={
-                            name === "Discord"
-                                ? Card.fd_card_1_card_wrap_icon_discord
-                                : name === "Ko-Fi"
-                                  ? Card.fd_card_1_card_wrap_icon_discord
-                                  : Card.fd_card_1_card_wrap_icon
-                        }
-                    />
-                </div>
-                <span>{name}</span>
-            </Link>
+        <div style={{ position: "relative" }}>
+            {cta.length > 0 && <ThemesCTA text={cta} />}
+            <div className={Card.fd_card_1}>
+                <Link
+                    href={href}
+                    target={targetBlank ? "_blank" : "_self"}
+                    className={Card.fd_card_1_card}
+                >
+                    <div className={Card.fd_card_1_card_wrap}>
+                        <Image
+                            width={500}
+                            height={500}
+                            src={iconSrc}
+                            alt={`${name} Icon`}
+                            className={
+                                name === "Discord"
+                                    ? Card.fd_card_1_card_wrap_icon_discord
+                                    : name === "Ko-Fi"
+                                      ? Card.fd_card_1_card_wrap_icon_discord
+                                      : Card.fd_card_1_card_wrap_icon
+                            }
+                        />
+                    </div>
+                    <span>{name}</span>
+                </Link>
+            </div>
         </div>
     );
 };

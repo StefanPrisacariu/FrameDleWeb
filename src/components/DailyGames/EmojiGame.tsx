@@ -52,7 +52,6 @@ export const EmojiGame = ({
     dailyId,
     resetAt,
 }: EmojiGame) => {
-    const dayKey = dailyId;
     const [dailyStreak, setDailyStreak] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [visible, setVisible] = useState(false);
@@ -86,35 +85,33 @@ export const EmojiGame = ({
         function lostStreak() {
             saveProgress("emoji", {
                 streak: 0,
-                lastCompletedDailyId: progress.lastCompletedDailyId,
+                lastCompletedDailyId: dailyId,
             });
         }
 
         const progress = getProgress("emoji");
         const prev = getPreviousDailyId(dailyId);
-        const tempGuesses = getEmojiGuesses(dayKey);
+        const tempGuesses = getEmojiGuesses(dailyId);
 
         setIsGuessed(false);
         setGuesses([]);
         setSearchText("");
         setVisible(false);
-        setFilteredWarframes(initialEmojis);
 
-        if (
-            prev !== progress.lastCompletedDailyId &&
-            dailyId !== progress.lastCompletedDailyId
-        ) {
+        if (tempGuesses.length > 0) {
+            sameDay();
+        } else if (prev === progress.lastCompletedDailyId) {
+            lastGuessedYesterday();
+        } else {
             lostStreak();
         }
 
-        if (prev === progress.lastCompletedDailyId) {
-            lastGuessedYesterday();
-        }
+        const namesToRemove = new Set(tempGuesses.map((item) => item.name));
 
-        if (dailyId === progress.lastCompletedDailyId) {
-            sameDay();
-        }
-    }, [dailyId, dayKey, todaysWf.name]);
+        setFilteredWarframes(
+            initialEmojis.filter((item) => !namesToRemove.has(item.name)),
+        );
+    }, [dailyId, todaysWf.name]);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,7 +151,7 @@ export const EmojiGame = ({
             setSearchText("");
             setVisible(false);
 
-            storeEmojiGuesses(dayKey, updated);
+            storeEmojiGuesses(dailyId, updated);
 
             if (selectedWf.name === todaysWf.name) {
                 setIsGuessed(true);
@@ -162,11 +159,14 @@ export const EmojiGame = ({
 
                 setDailyStreak(updated.streak);
             }
+
+            const namesToRemove = new Set(updated.map((item) => item.name));
+
             setFilteredWarframes(
-                initialEmojis.filter((item) => !updated.includes(item)),
+                initialEmojis.filter((item) => !namesToRemove.has(item.name)),
             );
         },
-        [todaysWf.name, guesses, dayKey, dailyId],
+        [todaysWf.name, guesses, dailyId],
     );
 
     return (

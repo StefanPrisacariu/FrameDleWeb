@@ -1,5 +1,9 @@
 import Cta from "@/styles/components/CTA.module.scss";
 
-export const ThemesCTA = () => {
-    return <div className={Cta.fd_cta}>Try out Themes!</div>;
+interface CTA {
+    text: string;
+}
+
+export const ThemesCTA = ({ text }: CTA) => {
+    return <div className={Cta.fd_cta}>{text}</div>;
 };

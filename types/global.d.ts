@@ -33,7 +33,8 @@ declare type Elements =
     | "electricity"
     | "toxin"
     | "magnetic"
-    | "radiation";
+    | "radiation"
+    | "slash";
 
 declare type Playstyle =
     | "damage"
@@ -46,6 +47,7 @@ declare type Ability = {
     shortcut: 1 | 2 | 3 | 4;
     abilityName: string | string[];
     icon: string | string[];
+    owners?: string[];
 };
 
 declare type Warframe = {
@@ -65,6 +67,7 @@ declare type ProcessedAbility = {
     name: string;
     abilityName: string;
     icon: string;
+    owners?: string[];
 };
 
 declare type AbilityToday = {
@@ -118,6 +121,8 @@ declare type WarframeEmojisCorrected = {
     name: string;
     image: string;
 };
+
+declare type TagMode = "daily" | "ability" | "emoji";
 
 declare type ColorblindMode =
     | "Disabled"

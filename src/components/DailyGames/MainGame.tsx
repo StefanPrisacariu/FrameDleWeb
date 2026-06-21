@@ -98,22 +98,20 @@ export const MainGame = ({
         setIsGuessed(false);
         setSearchText("");
         setVisible(false);
-        setFilteredWarframes(initialWarframes);
 
-        if (
-            prev !== progress.lastCompletedDailyId &&
-            dailyId !== progress.lastCompletedDailyId
-        ) {
+        if (tempGuesses.length > 0) {
+            sameDay();
+        } else if (prev === progress.lastCompletedDailyId) {
+            lastGuessedYesterday();
+        } else {
             lostStreak();
         }
 
-        if (prev === progress.lastCompletedDailyId) {
-            lastGuessedYesterday();
-        }
+        const namesToRemove = new Set(tempGuesses.map((item) => item.name));
 
-        if (dailyId === progress.lastCompletedDailyId) {
-            sameDay();
-        }
+        setFilteredWarframes(
+            initialWarframes.filter((item) => !namesToRemove.has(item.name)),
+        );
     }, [dailyId, dayKey, todaysWf.name]);
 
     const handleChange = useCallback(

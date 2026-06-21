@@ -8,6 +8,7 @@ import Heat from "@/assets/png/damage_types/DmgHeatSmall64.webp";
 import Impact from "@/assets/png/damage_types/DmgImpactSmall64.webp";
 import Magnetic from "@/assets/png/damage_types/DmgMagneticSmall64.webp";
 import Radiation from "@/assets/png/damage_types/DmgRadiationSmall64.webp";
+import Slash from "@/assets/png/damage_types/DmgSlashSmall64.webp";
 import Toxin from "@/assets/png/damage_types/DmgToxinSmall64.webp";
 import CrowdControl from "@/assets/png/playstyle_icons/crowd_control.webp";
 import Damage from "@/assets/png/playstyle_icons/damage.webp";
@@ -42,7 +43,7 @@ export const polarity = (e: string, index: number) => {
                     className={Icon.fd_icon_1}
                     src={Naramon}
                     width={20}
-                    height={20}
+                    height={16}
                 />
             );
         case "unairu":
@@ -164,6 +165,16 @@ export const elements = (e: string) => {
                     width={30}
                     height={30}
                     alt="toxin"
+                />
+            );
+        case "slash":
+            return (
+                <Image
+                    className={Icon.fd_icon_1}
+                    src={Slash}
+                    width={30}
+                    height={30}
+                    alt="slash"
                 />
             );
         default:
