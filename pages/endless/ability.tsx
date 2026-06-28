@@ -12,6 +12,7 @@ import Image from "next/image";
 
 import { GuessAbility } from "@/app/components/GuessContainers/GuessAbility";
 
+import { abilityIconNew } from "@/app/helpers/abilityIcon";
 import { getProcessedAbility } from "@/app/helpers/getProcessedAbility";
 
 import { initialAbilities } from "@/app/lib/abilities";
@@ -30,7 +31,6 @@ import DropdownX from "@/assets/svg/close-x.svg";
 function generateNewAbility(): ProcessedAbility | null {
     const asd = {
         ability: Math.floor(Math.random() * 4) + 1,
-        variant: Math.floor(Math.random() * 2) + 1,
         warframe: Math.floor(Math.random() * initialAbilities.length),
     };
     return getProcessedAbility(asd);
@@ -44,20 +44,19 @@ export default function AbilityEndless() {
     const [filteredWarframes, setFilteredWarframes] =
         useState(initialAbilities);
     const [width, setWidth] = useState<number>();
-    const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
-        generateNewAbility() as ProcessedAbility,
-    );
+    // const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
+    //     generateNewAbility() as ProcessedAbility,
+    // );
 
     // FORCE ABILITY
-    // const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
-    //     getProcessedAbility({
-    //         ability: 2,
-    //         variant: 1,
-    //         warframe: initialAbilities.findIndex(
-    //             (item) => item.name === "Sevagoth's Shadow",
-    //         ),
-    //     }) as ProcessedAbility,
-    // );
+    const [todaysWf, setTodaysWf] = useState<ProcessedAbility>(
+        getProcessedAbility({
+            ability: 1,
+            warframe: initialAbilities.findIndex(
+                (item) => item.name === "Excalibur Umbra",
+            ),
+        }) as ProcessedAbility,
+    );
 
     useEffect(() => {
         const updateDimensions = () => setWidth(window.innerWidth);
@@ -128,47 +127,43 @@ export default function AbilityEndless() {
         setTodaysWf(generateNewAbility() as ProcessedAbility);
     }, []);
 
-    // const fullList = initialAbilities.map((item) => (
-    //     <div
-    //         key={item.name}
-    //         style={{
-    //             display: "flex",
-    //             flexDirection: "row",
-    //         }}
-    //     >
-    //         <Image
-    //             width={50}
-    //             height={50}
-    //             src={item.image}
-    //             alt={"hidden"}
-    //             placeholder="blur"
-    //             blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
-    //             loading="eager"
-    //         />
-    //         {item.abilities.map((ability, index) => {
-    //             const abilityName =
-    //                 typeof ability.abilityName === "string"
-    //                     ? ability.abilityName
-    //                     : ability.abilityName[1];
-    //             return (
-    //                 <Image
-    //                     key={ability.shortcut}
-    //                     width={50}
-    //                     height={50}
-    //                     src={abilityIconNew(
-    //                         item.name,
-    //                         ability.shortcut,
-    //                         abilityName,
-    //                     )}
-    //                     alt={"hidden"}
-    //                     placeholder="blur"
-    //                     blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
-    //                     loading="eager"
-    //                 />
-    //             );
-    //         })}
-    //     </div>
-    // ));
+    const fullList = initialAbilities.map((item) => (
+        <div
+            key={item.name}
+            style={{
+                display: "flex",
+                flexDirection: "row",
+            }}
+        >
+            <Image
+                width={50}
+                height={50}
+                src={item.image}
+                alt={"hidden"}
+                placeholder="blur"
+                blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+                loading="eager"
+            />
+            {item.abilities.map((ability) => {
+                return (
+                    <Image
+                        key={ability.shortcut}
+                        width={50}
+                        height={50}
+                        src={abilityIconNew(
+                            item.name,
+                            ability.shortcut,
+                            ability.abilityName,
+                        )}
+                        alt={"hidden"}
+                        placeholder="blur"
+                        blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+                        loading="eager"
+                    />
+                );
+            })}
+        </div>
+    ));
 
     return (
         <>
@@ -230,40 +225,39 @@ export default function AbilityEndless() {
                                 loading="eager"
                             />
 
-                            <div className={ImgStyle.fd_imgstyle_1_hidden_wrap}>
-                                <div
-                                    className={
-                                        ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    }
-                                />
-                                <div
-                                    className={
-                                        isGuessed
-                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                            : guesses.length >= 1
-                                              ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                              : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
-                                    }
-                                />
-                                <div
-                                    className={
-                                        isGuessed
-                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                            : guesses.length >= 2
-                                              ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                              : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
-                                    }
-                                />
-                                <div
-                                    className={
-                                        isGuessed
-                                            ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                            : guesses.length >= 3
-                                              ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                              : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
-                                    }
-                                />
-                            </div>
+                            <table
+                                className={ImgStyle.fd_imgstyle_1_hidden_table}
+                            >
+                                <tbody>
+                                    <tr>
+                                        <td />
+                                        <td
+                                            className={
+                                                guesses.length < 1 && !isGuessed
+                                                    ? ImgStyle.fd_imgstyle_1_hidden_table_hidden
+                                                    : ""
+                                            }
+                                        />
+                                    </tr>
+
+                                    <tr>
+                                        <td
+                                            className={
+                                                guesses.length < 2 && !isGuessed
+                                                    ? ImgStyle.fd_imgstyle_1_hidden_table_hidden
+                                                    : ""
+                                            }
+                                        />
+                                        <td
+                                            className={
+                                                guesses.length < 3 && !isGuessed
+                                                    ? ImgStyle.fd_imgstyle_1_hidden_table_hidden
+                                                    : ""
+                                            }
+                                        />
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -396,7 +390,7 @@ export default function AbilityEndless() {
                             </AnimatePresence>
                         </div>
                         <h4 className={Text.fd_text_1}>Attempts</h4>
-                        {/* {fullList} */}
+                        {fullList}
 
                         <div className={Container.fd_container_7}>
                             <AnimatePresence>

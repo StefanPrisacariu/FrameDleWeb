@@ -15,15 +15,10 @@ export function getProcessedAbility(api: AbilityToday): ProcessedAbility {
         shortcut: 1,
         abilityName: FALLBACK_ABILITY,
         icon: "default",
+        owners: [FALLBACK_WARFRAME],
     };
 
-    const idx = Math.max(0, (api.variant || 1) - 1);
-
-    const abilityName = Array.isArray(ability.abilityName)
-        ? (ability.abilityName[idx] ??
-          ability.abilityName[0] ??
-          FALLBACK_ABILITY)
-        : (ability.abilityName ?? FALLBACK_ABILITY);
+    const abilityName = ability.abilityName ?? FALLBACK_ABILITY;
 
     const owners = ability.owners ?? [today.name];
 

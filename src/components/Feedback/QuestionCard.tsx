@@ -1,5 +1,7 @@
 import { FeedbackLogo } from "@/app/components/Logos/FeedbackLogo";
 
+import { renderApiText } from "@/app/helpers/regex";
+
 import Card from "@/styles/components/Card.module.scss";
 
 export const QuestionCard = ({
@@ -17,13 +19,15 @@ export const QuestionCard = ({
             hour12: true,
         })
         .replace(",", " ");
+
+    console.log(answer);
     return (
         <>
             {question && (
                 <div className={Card.fd_card_2}>
                     <span>Date posted: {formatted}</span>
 
-                    <p>{question}</p>
+                    <p>{renderApiText(question)}</p>
                     {answer && (
                         <div className={Card.fd_card_2_quote}>
                             <div className={Card.fd_card_2_quote_logo}>
@@ -31,7 +35,7 @@ export const QuestionCard = ({
                                 <span>Dev: </span>
                             </div>
 
-                            <blockquote>{answer}</blockquote>
+                            <blockquote>{renderApiText(answer)}</blockquote>
                         </div>
                     )}
                 </div>

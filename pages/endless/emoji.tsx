@@ -115,6 +115,31 @@ export default function EmojiEndless() {
         setTodaysWf(generateNewEmoji());
     }, []);
 
+    // const allEmojis = () => {
+    //     return initialEmojis.map((frame) => (
+    //         <div key={frame.name}>
+    //             <Image
+    //                 width={50}
+    //                 height={50}
+    //                 src={frame.image}
+    //                 alt={"hidden"}
+    //                 placeholder="blur"
+    //                 blurDataURL="https://media.tenor.com/khzZ7-YSJW4AAAAM/cargando.gif"
+    //                 loading="eager"
+    //             />
+
+    //             {frame.emojis.map((emoji, index) => (
+    //                 <span
+    //                     key={index}
+    //                     style={{ fontSize: 40, fontFamily: "var(--emojis)" }}
+    //                 >
+    //                     {emoji}
+    //                 </span>
+    //             ))}
+    //         </div>
+    //     ));
+    // };
+
     return (
         <>
             <NextSeo
@@ -298,6 +323,8 @@ export default function EmojiEndless() {
                             </AnimatePresence>
                         </div>
                         <h4 className={Text.fd_text_1}>Attempts</h4>
+
+                        {/* {allEmojis()} */}
 
                         <div className={Container.fd_container_7}>
                             <AnimatePresence>

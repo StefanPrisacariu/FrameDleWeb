@@ -45,8 +45,7 @@ declare type Playstyle =
 
 declare type Ability = {
     shortcut: 1 | 2 | 3 | 4;
-    abilityName: string | string[];
-    icon: string | string[];
+    abilityName: string;
     owners?: string[];
 };
 
@@ -72,7 +71,6 @@ declare type ProcessedAbility = {
 
 declare type AbilityToday = {
     ability: number;
-    variant: number;
     warframe: number;
 };
 
@@ -97,7 +95,6 @@ declare type AbilityOfTheDayResponse = {
     today: {
         warframe: number;
         ability: number;
-        variant: number;
     };
     yesterday: number;
     dailyId: string;

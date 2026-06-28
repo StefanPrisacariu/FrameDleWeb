@@ -1,7 +1,7 @@
 export const initialEmojis: WarframeEmojis[] = [
     {
         name: "Ash",
-        emojis: ["🥷", "💨", "🗡️", "👥"],
+        emojis: ["🗡️", "🥷", "💨", "👥"],
         image: "/warframe_portraits/ash.webp",
     },
     {
@@ -11,13 +11,18 @@ export const initialEmojis: WarframeEmojis[] = [
     },
     {
         name: "Banshee",
-        emojis: ["🔊", "🗣️", "🔇", "👻"],
+        emojis: ["🔊", "🗣️", "🔇"],
         image: "/warframe_portraits/banshee.webp",
     },
     {
         name: "Baruuk",
         emojis: ["🥊", "😠", "🌪️", "🧘"],
         image: "/warframe_portraits/baruuk.webp",
+    },
+    {
+        name: "Caliban",
+        emojis: ["🛡️", "🤖", "🌀", "👽"],
+        image: "/warframe_portraits/caliban.webp",
     },
     {
         name: "Chroma",
@@ -35,8 +40,13 @@ export const initialEmojis: WarframeEmojis[] = [
         image: "/warframe_portraits/cyte-09.webp",
     },
     {
+        name: "Dagath",
+        emojis: ["💀", "🗡️", "👻", "🐎"],
+        image: "/warframe_portraits/dagath.webp",
+    },
+    {
         name: "Dante",
-        emojis: ["📖", "🪄", "🖋️", "📜"],
+        emojis: ["🪄", "🖋️", "🦉", "📜"],
         image: "/warframe_portraits/dante.webp",
     },
     {
@@ -50,6 +60,11 @@ export const initialEmojis: WarframeEmojis[] = [
         image: "/warframe_portraits/equinox.webp",
     },
     {
+        name: "Excalibur",
+        emojis: ["⚔️", "🚫", "🤺"],
+        image: "/warframe_portraits/excalibur.webp",
+    },
+    {
         name: "Follie",
         emojis: ["🖋️", "🎨", "👻", "🎈"],
         image: "/warframe_portraits/follie.webp",
@@ -58,6 +73,16 @@ export const initialEmojis: WarframeEmojis[] = [
         name: "Frost",
         emojis: ["🛡️", "❄️", "🌨️", "🧊"],
         image: "/warframe_portraits/frost.webp",
+    },
+    {
+        name: "Gara",
+        emojis: ["🗡️", "🚫", "🪞", "🛡️"],
+        image: "/warframe_portraits/gara.webp",
+    },
+    {
+        name: "Garuda",
+        emojis: ["🗡️", "😈", "🔁", "🩸"],
+        image: "/warframe_portraits/garuda.webp",
     },
     {
         name: "Gauss",
@@ -95,8 +120,23 @@ export const initialEmojis: WarframeEmojis[] = [
         image: "/warframe_portraits/inaros.webp",
     },
     {
+        name: "Ivara",
+        emojis: ["🫥", "🔕", "🕹️", "🏹"],
+        image: "/warframe_portraits/ivara.webp",
+    },
+    {
+        name: "Jade",
+        emojis: ["🪽", "👁️", "🧑‍🧑‍🧒", "💚"],
+        image: "/warframe_portraits/jade.webp",
+    },
+    {
+        name: "Khora",
+        emojis: ["⛓️", "🕸️", "💢", "🐈‍⬛"],
+        image: "/warframe_portraits/khora.webp",
+    },
+    {
         name: "Koumei",
-        emojis: ["🎲", "🧵", "🪡", "🎭"],
+        emojis: ["🧵", "🪡", "🎭", "🎲"],
         image: "/warframe_portraits/koumei.webp",
     },
     {
@@ -113,6 +153,11 @@ export const initialEmojis: WarframeEmojis[] = [
         name: "Limbo",
         emojis: ["🌀", "♟️", "🕳️", "🎩"],
         image: "/warframe_portraits/limbo.webp",
+    },
+    {
+        name: "Loki",
+        emojis: ["👥", "🔁", "🫥", "🚫"],
+        image: "/warframe_portraits/loki.webp",
     },
     {
         name: "Mag",
@@ -133,6 +178,21 @@ export const initialEmojis: WarframeEmojis[] = [
         name: "Nekros",
         emojis: ["💀", "☠️", "👻", "⚰️"],
         image: "/warframe_portraits/nekros.webp",
+    },
+    {
+        name: "Nezha",
+        emojis: ["🏃", "⭕", "🔥", "🗡️"],
+        image: "/warframe_portraits/nezha.webp",
+    },
+    {
+        name: "Nidus",
+        emojis: ["☣️", "🦠", "🪱", "♨️"],
+        image: "/warframe_portraits/nidus.webp",
+    },
+    {
+        name: "Nokko",
+        emojis: ["🤏", "🏐", "🍄‍🟫", "🍄"],
+        image: "/warframe_portraits/nokko.webp",
     },
     {
         name: "Nova",
@@ -160,6 +220,21 @@ export const initialEmojis: WarframeEmojis[] = [
         image: "/warframe_portraits/oraxia.webp",
     },
     {
+        name: "Orion",
+        emojis: ["🧑‍🧑‍🧒‍🧒", "🗡️", "🪐", "🔴"],
+        image: "/warframe_portraits/orion.webp",
+    },
+    {
+        name: "Protea",
+        emojis: ["🛩️", "📦", "💣", "⏳"],
+        image: "/warframe_portraits/protea.webp",
+    },
+    {
+        name: "Qorvex",
+        emojis: ["🛡️", "☄️", "🧱", "💥"],
+        image: "/warframe_portraits/qorvex.webp",
+    },
+    {
         name: "Revenant",
         emojis: ["👻", "🩸", "🌀", "✨"],
         image: "/warframe_portraits/revenant.webp",
@@ -178,6 +253,16 @@ export const initialEmojis: WarframeEmojis[] = [
         name: "Sevagoth",
         emojis: ["⚰️", "👻", "⛓️", "🏴‍☠️"],
         image: "/warframe_portraits/sevagoth.webp",
+    },
+    {
+        name: "Sirius",
+        emojis: ["🧑‍🧑‍🧒‍🧒", "🗡️", "👁️", "🟢"],
+        image: "/warframe_portraits/sirius.webp",
+    },
+    {
+        name: "Styanax",
+        emojis: ["🛡️", "🗡️", "🏛️", "🪽"],
+        image: "/warframe_portraits/styanax.webp",
     },
     {
         name: "Temple",
@@ -205,6 +290,11 @@ export const initialEmojis: WarframeEmojis[] = [
         image: "/warframe_portraits/valkyr.webp",
     },
     {
+        name: "Vauban",
+        emojis: ["💣", "⚡", "🧲", "🎇"],
+        image: "/warframe_portraits/vauban.webp",
+    },
+    {
         name: "Volt",
         emojis: ["⚡", "🏃", "🛡️", "🌩️"],
         image: "/warframe_portraits/volt.webp",
@@ -223,6 +313,11 @@ export const initialEmojis: WarframeEmojis[] = [
         name: "Wukong",
         emojis: ["☁️", "🪄", "👑", "🐒"],
         image: "/warframe_portraits/wukong.webp",
+    },
+    {
+        name: "Xaku",
+        emojis: ["🔫", "🦾", "🦿", "☠️"],
+        image: "/warframe_portraits/xaku.webp",
     },
     {
         name: "Yareli",

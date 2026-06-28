@@ -22,6 +22,8 @@ export default function Emojis() {
         refetchInterval: 1000 * 60,
     });
 
+    console.log(initialEmojis.findIndex((item) => item.name === "Mesa"));
+
     return (
         <>
             <NextSeo

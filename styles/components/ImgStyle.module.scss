@@ -70,29 +70,28 @@
             border-radius: 2px;
         }
 
-        &_hidden_wrap {
+        &_hidden_table {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
 
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            table-layout: fixed;
+            border-collapse: collapse;
 
-            width: 120px;
-            height: 120px;
+            width: 100%;
+            height: 100%;
 
-            &_hidden {
-                width: calc(50% - 2px);
-                height: calc(50% - 2px);
-                border: 1px solid var(--primary);
-                background-color: var(--red);
+            td {
+                width: 50%;
+                height: 50%;
+                padding: 0;
+                border: 0;
+
+                background: transparent;
             }
 
-            &_visible {
-                width: calc(50% - 2px);
-                height: calc(50% - 2px);
-                border: 1px solid var(--none);
+            &_hidden {
+                border: 1px solid var(--primary) !important;
+                background: var(--red) !important;
             }
         }
     }

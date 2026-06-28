@@ -206,40 +206,37 @@ export const AbilityGame = ({
                         loading="eager"
                     />
 
-                    <div className={ImgStyle.fd_imgstyle_1_hidden_wrap}>
-                        <div
-                            className={
-                                ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                            }
-                        />
-                        <div
-                            className={
-                                isGuessed
-                                    ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    : guesses.length >= 1
-                                      ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                      : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
-                            }
-                        />
-                        <div
-                            className={
-                                isGuessed
-                                    ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    : guesses.length >= 2
-                                      ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                      : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
-                            }
-                        />
-                        <div
-                            className={
-                                isGuessed
-                                    ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                    : guesses.length >= 3
-                                      ? ImgStyle.fd_imgstyle_1_hidden_wrap_visible
-                                      : ImgStyle.fd_imgstyle_1_hidden_wrap_hidden
-                            }
-                        />
-                    </div>
+                    <table className={ImgStyle.fd_imgstyle_1_hidden_table}>
+                        <tbody>
+                            <tr>
+                                <td />
+                                <td
+                                    className={
+                                        guesses.length < 1 && !isGuessed
+                                            ? ImgStyle.fd_imgstyle_1_hidden_table_hidden
+                                            : ""
+                                    }
+                                />
+                            </tr>
+
+                            <tr>
+                                <td
+                                    className={
+                                        guesses.length < 2 && !isGuessed
+                                            ? ImgStyle.fd_imgstyle_1_hidden_table_hidden
+                                            : ""
+                                    }
+                                />
+                                <td
+                                    className={
+                                        guesses.length < 3 && !isGuessed
+                                            ? ImgStyle.fd_imgstyle_1_hidden_table_hidden
+                                            : ""
+                                    }
+                                />
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <StreakProgress streak={dailyStreak} />
